@@ -1,0 +1,60 @@
+{
+  "paragraphs": [
+    {
+      "text": "%sql\n\nCREATE TABLE COLUMN_TYPES_TEST\n(\nColDecimal decimal,\nColNumeric numeric,\nColDecimal_10_2 decimal(10,2),\nColNumeric_10_2 numeric(10,2)\n);\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 15, 2019 6:59:37 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1555354765993_-2146149381",
+      "id": "20190415-185925_1203164114",
+      "dateCreated": "Apr 15, 2019 6:59:25 PM",
+      "dateStarted": "Apr 15, 2019 6:59:37 PM",
+      "dateFinished": "Apr 15, 2019 6:59:37 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 15, 2019 6:59:37 PM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1555354777208_-676393258",
+      "id": "20190415-185937_1463258129",
+      "dateCreated": "Apr 15, 2019 6:59:37 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Testing",
+  "id": "2E7UKQC45",
+  "angularObjects": {
+    "2EA979ZH6:existing_process": [],
+    "2E8BS2UKF:shared_process": [],
+    "2EA2P371D:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

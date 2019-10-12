@@ -1,0 +1,63 @@
+{
+  "paragraphs": [
+    {
+      "text": "/*\r\n * Copyright (c) 2018 SnappyData, Inc. All rights reserved.\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the \"License\"); you\r\n * may not use this file except in compliance with the License. You\r\n * may obtain a copy of the License at\r\n *\r\n * http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an \"AS IS\" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\r\n * implied. See the License for the specific language governing\r\n * permissions and limitations under the License. See accompanying\r\n * LICENSE file.\r\n */\r\n\r\n//package io.snappydata.examples\r\n\r\nimport java.io.PrintWriter\r\n\r\nimport com.typesafe.config.Config\r\n\r\nimport org.apache.spark.sql.streaming.{SchemaDStream, SnappyStreamingJob}\r\nimport org.apache.spark.sql.types._\r\nimport org.apache.spark.sql.{SaveMode, SnappyJobValid, SnappyJobValidation}\r\nimport org.apache.spark.streaming.SnappyStreamingContext\r\nimport org.apache.spark.streaming.dstream.DStream\r\n\r\n/**\r\n * Run this on your local machine:\r\n * \u003cp/\u003e\r\n * `$ sbin/snappy-start-all.sh`\r\n * \u003cp/\u003e\r\n * To run with live twitter streaming, export twitter credentials\r\n *\r\n * `$ export APP_PROPS\u003d\"consumerKey\u003d\u003cconsumerKey\u003e,consumerSecret\u003d\u003cconsumerSecret\u003e, \\\r\n * accessToken\u003d\u003caccessToken\u003e,accessTokenSecret\u003d\u003caccessTokenSecret\u003e\"`\r\n *\r\n *  \u003cp/\u003e\r\n * `$ ./bin/snappy-job.sh submit --lead localhost:8090 \\\r\n * --app-name TwitterPopularTagsJob --class io.snappydata.examples.TwitterPopularTagsJob \\\r\n * --app-jar $SNAPPY_HOME/examples/jars/quickstart.jar --stream`\r\n * \u003cp/\u003e\r\n * To run with stored twitter data, run simulateTwitterStream after the Job is submitted:\r\n *\r\n * `$ ./quickstart/scripts/simulateTwitterStream`\r\n */\r\n\r\nobject TwitterPopularTagsJob extends SnappyStreamingJob {\r\n\r\n  override def runSnappyJob(snsc: C, jobConfig: Config): Any \u003d {\r\n\r\n    def getCurrentDirectory \u003d new java.io.File(\".\").getCanonicalPath\r\n\r\n    // scalastyle:off println\r\n    var stream: DStream[_] \u003d null\r\n    var outFileName \u003d s\"TwitterPopularTagsJob-${System.currentTimeMillis}.out\"\r\n    val pw \u003d new PrintWriter(outFileName)\r\n\r\n    val schema \u003d StructType(List(StructField(\"hashtag\", StringType)))\r\n\r\n    snsc.snappyContext.sql(\"DROP TABLE IF EXISTS topktable\")\r\n    snsc.snappyContext.sql(\"DROP TABLE IF EXISTS hashtagtable\")\r\n    snsc.snappyContext.sql(\"DROP TABLE IF EXISTS retweettable\")\r\n\r\n    if (jobConfig.hasPath(\"consumerKey\") \u0026\u0026 jobConfig.hasPath(\"consumerKey\")\r\n        \u0026\u0026 jobConfig.hasPath(\"accessToken\") \u0026\u0026 jobConfig.hasPath(\"accessTokenSecret\")) {\r\n      pw.println(\"##### Running example with live twitter stream #####\")\r\n\r\n      // Create twitter stream table\r\n      snsc.sql(\"CREATE STREAM TABLE hashtagtable (hashtag STRING) USING \" +\r\n          \"twitter_stream OPTIONS (\" +\r\n          s\"consumerKey \u0027${jobConfig.getString(\"consumerKey\")}\u0027, \" +\r\n          s\"consumerSecret \u0027${jobConfig.getString(\"consumerSecret\")}\u0027, \" +\r\n          s\"accessToken \u0027${jobConfig.getString(\"accessToken\")}\u0027, \" +\r\n          s\"accessTokenSecret \u0027${jobConfig.getString(\"accessTokenSecret\")}\u0027, \" +\r\n          \"rowConverter \u0027org.apache.spark.sql.streaming.TweetToHashtagRow\u0027)\")\r\n\r\n      snsc.sql(\"CREATE STREAM TABLE retweettable (retweetId LONG, retweetCnt INT, \" +\r\n          \"retweetTxt STRING) USING twitter_stream OPTIONS (\" +\r\n          s\"consumerKey \u0027${jobConfig.getString(\"consumerKey\")}\u0027, \" +\r\n          s\"consumerSecret \u0027${jobConfig.getString(\"consumerSecret\")}\u0027, \" +\r\n          s\"accessToken \u0027${jobConfig.getString(\"accessToken\")}\u0027, \" +\r\n          s\"accessTokenSecret \u0027${jobConfig.getString(\"accessTokenSecret\")}\u0027, \" +\r\n          \"rowConverter \u0027org.apache.spark.sql.streaming.TweetToRetweetRow\u0027)\")\r\n\r\n\r\n    } else {\r\n      // Create file stream table\r\n      pw.println(\"##### Running example with stored tweet data #####\")\r\n      snsc.sql(\"CREATE STREAM TABLE hashtagtable (hashtag STRING) USING file_stream \" +\r\n          \"OPTIONS (storagelevel \u0027MEMORY_AND_DISK_SER_2\u0027, \" +\r\n          \"rowConverter \u0027org.apache.spark.sql.streaming.TweetToHashtagRow\u0027,\" +\r\n          \"directory \u0027/tmp/copiedtwitterdata\u0027)\")\r\n\r\n      snsc.sql(\"CREATE STREAM TABLE retweettable (retweetId LONG, retweetCnt INT, \" +\r\n          \"retweetTxt STRING) USING file_stream \" +\r\n          \"OPTIONS (storagelevel \u0027MEMORY_AND_DISK_SER_2\u0027, \" +\r\n          \"rowConverter \u0027org.apache.spark.sql.streaming.TweetToRetweetRow\u0027,\" +\r\n          \"directory \u0027/tmp/copiedtwitterdata\u0027)\")\r\n\r\n    }\r\n\r\n    // Register continuous queries on the tables and specify window clauses\r\n    val retweetStream: SchemaDStream \u003d snsc.registerCQ(\"SELECT * FROM retweettable \" +\r\n        \"WINDOW (DURATION 2 SECONDS, SLIDE 2 SECONDS)\")\r\n\r\n    val topKOption \u003d Map(\r\n      \"epoch\" -\u003e System.currentTimeMillis().toString,\r\n      \"timeInterval\" -\u003e \"2000ms\",\r\n      \"size\" -\u003e \"10\"\r\n    )\r\n\r\n    // Create TopK table on the base stream table which is hashtagtable\r\n    // TopK object is automatically populated from the stream table\r\n    snsc.snappyContext.createApproxTSTopK(\"topktable\", Some(\"hashtagTable\"),\r\n      \"hashtag\", schema, topKOption)\r\n\r\n    val tableName \u003d \"retweetStore\"\r\n\r\n    snsc.snappyContext.dropTable(tableName, true)\r\n\r\n    // Create row table to insert retweets based on retweetId as Primary key\r\n    // When a tweet is retweeted multiple times, the previous entry of the tweet\r\n    // is over written by the new retweet count.\r\n    snsc.snappyContext.sql(s\"CREATE TABLE $tableName (retweetId BIGINT PRIMARY KEY, \" +\r\n        s\"retweetCnt INT, retweetTxt STRING) USING row OPTIONS ()\")\r\n\r\n    // Save data in snappy store\r\n    retweetStream.foreachDataFrame(df \u003d\u003e {\r\n      df.write.mode(SaveMode.Append).saveAsTable(tableName)\r\n    })\r\n\r\n    snsc.start()\r\n\r\n    // Iterate over the streaming data for twitter data and publish the results to a file.\r\n    try {\r\n\r\n      val runTime \u003d if (jobConfig.hasPath(\"streamRunTime\")) {\r\n        jobConfig.getString(\"streamRunTime\").toInt * 1000\r\n      } else {\r\n        120 * 1000\r\n      }\r\n\r\n      val end \u003d System.currentTimeMillis + runTime\r\n      while (end \u003e System.currentTimeMillis()) {\r\n        Thread.sleep(2000)\r\n        pw.println(\"\\n******** Top 10 hash tags of last two seconds *******\\n\")\r\n\r\n        // Query the topk structure for the popular hashtags of last two seconds\r\n        snsc.snappyContext.queryApproxTSTopK(\"topktable\",\r\n          System.currentTimeMillis - 2000,\r\n          System.currentTimeMillis).collect().foreach {\r\n          result \u003d\u003e pw.println(result.toString())\r\n        }\r\n\r\n      }\r\n      pw.println(\"\\n************ Top 10 hash tags until now ***************\\n\")\r\n\r\n      // Query the topk structure for the popular hashtags of until now\r\n      snsc.sql(\"SELECT * FROM topktable\").collect().foreach {\r\n        result \u003d\u003e pw.println(result.toString())\r\n      }\r\n\r\n      // Query the snappystore Row table to find out the top retweets\r\n      pw.println(\"\\n####### Top 10 popular tweets - Query Row table #######\\n\")\r\n      snsc.snappyContext.sql(s\"SELECT retweetId AS RetweetId, \" +\r\n          s\"retweetCnt AS RetweetsCount, retweetTxt AS Text FROM ${tableName}\" +\r\n          s\" ORDER BY RetweetsCount DESC LIMIT 10\")\r\n          .collect.foreach(row \u003d\u003e {\r\n        pw.println(row.toString())\r\n      })\r\n\r\n      pw.println(\"\\n#######################################################\")\r\n\r\n    } finally {\r\n      pw.close()\r\n\r\n      snsc.stop(false, true)\r\n    }\r\n    // Return the output file name\r\n    s\"See ${getCurrentDirectory}/$outFileName\"\r\n\r\n    // scalastyle:on println\r\n  }\r\n\r\n  override def isValidJob(snsc: SnappyStreamingContext, config: Config): SnappyJobValidation \u003d {\r\n    SnappyJobValid()\r\n  }\r\n\r\n\r\n}\r\n\r\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 17, 2019 7:38:45 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import java.io.PrintWriter\nimport com.typesafe.config.Config\nimport org.apache.spark.sql.streaming.{SchemaDStream, SnappyStreamingJob}\nimport org.apache.spark.sql.types._\nimport org.apache.spark.sql.{SaveMode, SnappyJobValid, SnappyJobValidation}\nimport org.apache.spark.streaming.SnappyStreamingContext\nimport org.apache.spark.streaming.dstream.DStream\ndefined object TwitterPopularTagsJob\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1555529827805_1306435079",
+      "id": "20190417-193707_2082153818",
+      "dateCreated": "Apr 17, 2019 7:37:07 PM",
+      "dateStarted": "Apr 17, 2019 7:38:45 PM",
+      "dateFinished": "Apr 17, 2019 7:38:47 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1555529859811_559499546",
+      "id": "20190417-193739_124984529",
+      "dateCreated": "Apr 17, 2019 7:37:39 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Twitter Popular Tags",
+  "id": "2E992CYQZ",
+  "angularObjects": {
+    "2EA979ZH6:existing_process": [],
+    "2E8BS2UKF:shared_process": [],
+    "2EA2P371D:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

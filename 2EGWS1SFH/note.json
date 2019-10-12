@@ -1,0 +1,130 @@
+{
+  "paragraphs": [
+    {
+      "text": "%snappydata\r\nimport java.io.{ByteArrayInputStream, ByteArrayOutputStream, ObjectInputStream, ObjectOutputStream}\r\nimport org.apache.spark.{SparkConf, SparkContext}\r\nimport org.apache.spark.ml.{Pipeline, PipelineModel}\r\nimport org.apache.spark.ml.evaluation.RegressionEvaluator\r\nimport org.apache.spark.ml.feature.VectorAssembler\r\nimport org.apache.spark.ml.feature.VectorIndexer\r\nimport org.apache.spark.ml.regression.{DecisionTreeRegressor, RandomForestRegressor}\r\nimport org.apache.spark.mllib.evaluation.RegressionMetrics\r\nimport org.apache.spark.sql.{Row, DataFrame, SnappySession}\r\n\r\n\r\nval snappy \u003d new SnappySession(spark.sparkContext)\r\nval csv_data \u003d snappy.read.\r\n    format(\"com.databricks.spark.csv\") // CSV to DF package\r\n    .option(\"header\", \"true\")\r\n    .option(\"inferSchema\", \"true\") // Automatically infer data types\r\n    .load(\"/opt/TIB_compute_1.1.0_linux/projects/image-classification/SampleCode/src/main/scala/NAR_VHI_EQP.csv\")\r\n    .withColumnRenamed(\"PoF\", \"label\")\r\n\r\nval assembler \u003d new VectorAssembler().\r\n    setInputCols(Array(\"LightningRisk\", \"VHI\")).\r\n    setOutputCol(\"features\")\r\n\r\nval data \u003d assembler.transform(csv_data)\r\n\r\n// Automatically identify categorical features, and index them.\r\n// Here, we treat features with \u003e 4 distinct values as continuous.\r\nval featureIndexer \u003d new VectorIndexer()\r\n    .setInputCol(\"features\")\r\n    .setOutputCol(\"indexedFeatures\")\r\n    .setMaxCategories(4)\r\n    .fit(data)\r\n    \r\n// Split the data into training and test sets (30% held out for testing).\r\nval Array(trainingData, testData) \u003d data.randomSplit(Array(0.7, 0.3))\r\n\r\nval TABLE_NAME \u003d \"Models\"\r\n\r\ndef storeModelToSnappy(name : String, model : Any): Unit \u003d {\r\n\r\n    val stream: ByteArrayOutputStream \u003d new ByteArrayOutputStream()\r\n    val oos \u003d new ObjectOutputStream(stream)\r\n    oos.writeObject(model)\r\n    oos.close\r\n\r\n    snappy.insert(TABLE_NAME, Row(name, stream.toByteArray))\r\n}\r\n\r\ndef createDecisionTreeModel(): Unit \u003d {\r\n\r\n    // Train a DecisionTree model.\r\n    val dt \u003d new DecisionTreeRegressor()\r\n      .setLabelCol(\"label\")\r\n      .setFeaturesCol(\"indexedFeatures\")\r\n\r\n    // Chain indexer and tree in a Pipeline.\r\n    val pipeline \u003d new Pipeline()\r\n      .setStages(Array(featureIndexer, dt))\r\n\r\n    // Train model. This also runs the indexer.\r\n    val model \u003d pipeline.fit(trainingData)\r\n\r\n    // Store model to Snappy\r\n    storeModelToSnappy(\"DecisionTree\", model)\r\n\r\n}\r\n\r\ndef createRandomForestModel(): Unit \u003d {\r\n\r\n    // Train a RandomForest model.\r\n    val rf \u003d new RandomForestRegressor()\r\n      .setLabelCol(\"label\")\r\n      .setFeaturesCol(\"indexedFeatures\").setMaxDepth(10)\r\n\r\n    // Chain indexer and forest in a Pipeline.\r\n    val pipeline \u003d new Pipeline()\r\n      .setStages(Array(featureIndexer, rf))\r\n\r\n    // Train model. This also runs the indexer.\r\n    val model \u003d pipeline.fit(trainingData)\r\n\r\n    // Store model to Snappy\r\n    storeModelToSnappy(\"RandomForest\", model)\r\n}\r\n\r\n\r\n\r\ndef readModelFromSnappy(name : String): PipelineModel \u003d {\r\n\r\n    val rs \u003d snappy.sql(s\"Select model from $TABLE_NAME where name \u003d \u0027$name\u0027\")\r\n\r\n    val ois \u003d new ObjectInputStream(new ByteArrayInputStream(rs.first().\r\n      get(0).asInstanceOf[Array[Byte]]))\r\n    val value \u003d ois.readObject.asInstanceOf[PipelineModel]\r\n    ois.close\r\n    value\r\n}\r\n\r\nsnappy.sql(\"drop table if exists Models\")\r\nsnappy.sql(s\"CREATE table $TABLE_NAME(name STRING, model BLOB) \" +\r\n     \" using column options()\")\r\n\r\n// Train models\r\nvar startTime \u003d System.currentTimeMillis()\r\ncreateDecisionTreeModel()\r\nprintln(\"Time taken to train DecisionTree Model : \" +\r\n    (System.currentTimeMillis() - startTime ) + \" ms\" )\r\n\r\nstartTime \u003d System.currentTimeMillis()\r\ncreateRandomForestModel()\r\nprintln(\"Time taken to train RandomForest Model : \" +\r\n    (System.currentTimeMillis() - startTime )  + \" ms\" )\r\n\r\n// Make predictions using DecisionTree.\r\nvar value \u003d readModelFromSnappy(\"DecisionTree\")\r\n\r\nstartTime \u003d System.currentTimeMillis()\r\nvar predictions \u003d value.transform(testData)\r\nprintln(\"Time taken to predict using DecisionTree Model : \" +\r\n    (System.currentTimeMillis() - startTime )  + \" ms\" )\r\n\r\n// Select example rows to display.\r\n// predictions.select(\"prediction\", \"label\", \"features\").show(20)//UNCOMMENT TO DISPLAY ROWS\r\n// Select (prediction, true label) and compute test error.\r\nvar evaluator \u003d new RegressionEvaluator()\r\n    .setLabelCol(\"label\")\r\n    .setPredictionCol(\"prediction\")\r\n    .setMetricName(\"rmse\")\r\nvar rmse \u003d evaluator.evaluate(predictions)\r\nprintln(\"Root Mean Squared Error (RMSE) on test data for DecisionTree model \u003d \" + rmse)\r\n\r\n// Make predictions using RandomForest.\r\n\r\nvalue \u003d readModelFromSnappy(\"RandomForest\")\r\n\r\nstartTime \u003d System.currentTimeMillis()\r\npredictions \u003d value.transform(testData)\r\nprintln(\"Time taken to predict using RandomForest Model : \" +\r\n    (System.currentTimeMillis() - startTime ) + \" ms\"  )\r\n\r\n// Select example rows to display.\r\n// predictions.select(\"prediction\", \"label\", \"features\").show(20)//UNCOMMENT TO DISPLAY ROWS\r\n// Select (prediction, true label) and compute test error.\r\nevaluator \u003d new RegressionEvaluator()\r\n    .setLabelCol(\"label\")\r\n    .setPredictionCol(\"prediction\")\r\n    .setMetricName(\"rmse\")\r\nrmse \u003d evaluator.evaluate(predictions)\r\nprintln(\"Root Mean Squared Error (RMSE) on test data for RandomForest model \u003d \" + rmse)\r\n\r\n    ",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2019 8:54:00 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import java.io.{ByteArrayInputStream, ByteArrayOutputStream, ObjectInputStream, ObjectOutputStream}\nimport org.apache.spark.{SparkConf, SparkContext}\nimport org.apache.spark.ml.{Pipeline, PipelineModel}\nimport org.apache.spark.ml.evaluation.RegressionEvaluator\nimport org.apache.spark.ml.feature.VectorAssembler\nimport org.apache.spark.ml.feature.VectorIndexer\nimport org.apache.spark.ml.regression.{DecisionTreeRegressor, RandomForestRegressor}\nimport org.apache.spark.mllib.evaluation.RegressionMetrics\nimport org.apache.spark.sql.{Row, DataFrame, SnappySession}\nsnappy: org.apache.spark.sql.SnappySession \u003d org.apache.spark.sql.SnappySession@518b9fa1\ncsv_data: org.apache.spark.sql.DataFrame \u003d [EquipId: int, LightningRisk: int ... 2 more fields]\nassembler: org.apache.spark.ml.feature.VectorAssembler \u003d vecAssembler_578e1a0725af\ndata: org.apache.spark.sql.DataFrame \u003d [EquipId: int, LightningRisk: int ... 3 more fields]\nfeatureIndexer: org.apache.spark.ml.feature.VectorIndexerModel \u003d vecIdx_0cdb3696e3f8\ntrainingData: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [EquipId: int, LightningRisk: int ... 3 more fields]\ntestData: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [EquipId: int, LightningRisk: int ... 3 more fields]\nTABLE_NAME: String \u003d Models\nstoreModelToSnappy: (name: String, model: Any)Unit\ncreateDecisionTreeModel: ()Unit\ncreateRandomForestModel: ()Unit\nreadModelFromSnappy: (name: String)org.apache.spark.ml.PipelineModel\nres18: org.apache.spark.sql.DataFrame \u003d []\nres19: org.apache.spark.sql.DataFrame \u003d []\nstartTime: Long \u003d 1562705645223\nTime taken to train DecisionTree Model : 2962 ms\nstartTime: Long \u003d 1562705648246\nTime taken to train RandomForest Model : 4529 ms\nvalue: org.apache.spark.ml.PipelineModel \u003d pipeline_52e93c9636c1\nstartTime: Long \u003d 1562705652937\npredictions: org.apache.spark.sql.DataFrame \u003d [EquipId: int, LightningRisk: int ... 5 more fields]\nTime taken to predict using DecisionTree Model : 166 ms\nevaluator: org.apache.spark.ml.evaluation.RegressionEvaluator \u003d regEval_dce0a2058cee\nrmse: Double \u003d 2.6072163097366538E-14\nRoot Mean Squared Error (RMSE) on test data for DecisionTree model \u003d 2.6072163097366538E-14\nvalue: org.apache.spark.ml.PipelineModel \u003d pipeline_929206ac6519\nstartTime: Long \u003d 1562705654311\npredictions: org.apache.spark.sql.DataFrame \u003d [EquipId: int, LightningRisk: int ... 5 more fields]\nTime taken to predict using RandomForest Model : 172 ms\nevaluator: org.apache.spark.ml.evaluation.RegressionEvaluator \u003d regEval_134a818b2764\nrmse: Double \u003d 2.6134355636287384E-14\nRoot Mean Squared Error (RMSE) on test data for RandomForest model \u003d 2.6134355636287384E-14\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1562682940270_-1511806522",
+      "id": "20190709-143540_116185366",
+      "dateCreated": "Jul 9, 2019 2:35:40 PM",
+      "dateStarted": "Jul 9, 2019 8:54:00 PM",
+      "dateFinished": "Jul 9, 2019 8:54:15 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.log4j.Logger\nimport org.apache.spark.ml.Pipeline\nimport org.apache.spark.ml.feature.{VectorAssembler, VectorIndexer}\nimport org.apache.spark.ml.regression.LinearRegression\nimport org.apache.spark.mllib.evaluation.RegressionMetrics\nimport org.apache.spark.sql.{DataFrame, SparkSession}\n\nobject LinearRegressionPipeline {\n  @transient lazy val logger \u003d Logger.getLogger(getClass.getName)\n\n  def linearRegressionWithVectorFormat(vectorAssembler: VectorAssembler, vectorIndexer: VectorIndexer, dataFrame: DataFrame) \u003d {\n    val lr \u003d new LinearRegression()\n      .setFeaturesCol(\"features\")\n      .setLabelCol(\"label\")\n      .setRegParam(0.1)\n      .setElasticNetParam(1.0)\n      .setMaxIter(10)\n\n    val pipeline \u003d new Pipeline().setStages(Array(vectorAssembler, vectorIndexer, lr))\n\n    val Array(training, test) \u003d dataFrame.randomSplit(Array(0.8, 0.2), seed \u003d 12345)\n\n    val model \u003d pipeline.fit(training)\n\n    val fullPredictions \u003d model.transform(test).cache()\n    val predictions \u003d fullPredictions.select(\"prediction\").rdd.map(_.getDouble(0))\n    val labels \u003d fullPredictions.select(\"label\").rdd.map(_.getDouble(0))\n    val RMSE \u003d new RegressionMetrics(predictions.zip(labels)).rootMeanSquaredError\n    println(s\"  Root mean squared error (RMSE): $RMSE\")\n  }\n\n  def linearRegressionWithSVMFormat(spark: SparkSession) \u003d {\n    // Load training data\n    val training \u003d spark.read.format(\"libsvm\")\n      .load(\"./src/main/scala/org/sparksamples/regression/dataset/BikeSharing/lsvmHours.txt\")\n\n    val lr \u003d new LinearRegression()\n      .setMaxIter(10)\n      .setRegParam(0.3)\n      .setElasticNetParam(0.8)\n\n    // Fit the model\n    val lrModel \u003d lr.fit(training)\n\n    // Print the coefficients and intercept for linear regression\n    println(s\"Coefficients: ${lrModel.coefficients} Intercept: ${lrModel.intercept}\")\n\n    // Summarize the model over the training set and print out some metrics\n    val trainingSummary \u003d lrModel.summary\n    println(s\"numIterations: ${trainingSummary.totalIterations}\")\n    println(s\"objectiveHistory: ${trainingSummary.objectiveHistory.toList}\")\n    trainingSummary.residuals.show()\n    println(s\"RMSE: ${trainingSummary.rootMeanSquaredError}\")\n\n    println(s\"r2: ${trainingSummary.r2}\")\n  }\n} ",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2019 2:39:29 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.log4j.Logger\nimport org.apache.spark.ml.Pipeline\nimport org.apache.spark.ml.feature.{VectorAssembler, VectorIndexer}\nimport org.apache.spark.ml.regression.LinearRegression\nimport org.apache.spark.mllib.evaluation.RegressionMetrics\nimport org.apache.spark.sql.{DataFrame, SparkSession}\ndefined object LinearRegressionPipeline\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1562180127026_-1336169438",
+      "id": "20190703-185527_199740274",
+      "dateCreated": "Jul 3, 2019 6:55:27 PM",
+      "dateStarted": "Jul 9, 2019 2:39:29 PM",
+      "dateFinished": "Jul 9, 2019 2:39:36 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nDROP TABLE APP.CONSUMER_COMPLAINTS_EXTERNAL;",
+      "user": "anonymous",
+      "dateUpdated": "Jul 10, 2019 6:39:05 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1562180206127_127338757",
+      "id": "20190703-185646_1908072011",
+      "dateCreated": "Jul 3, 2019 6:56:46 PM",
+      "dateStarted": "Jul 10, 2019 6:39:05 PM",
+      "dateFinished": "Jul 10, 2019 6:39:07 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1562783917111_-1693463679",
+      "id": "20190710-183837_1608111364",
+      "dateCreated": "Jul 10, 2019 6:38:37 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "ComputeDB ML",
+  "id": "2EGWS1SFH",
+  "angularObjects": {
+    "2EA979ZH6:existing_process": [],
+    "2E8BS2UKF:shared_process": [],
+    "2EA2P371D:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

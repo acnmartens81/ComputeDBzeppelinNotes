@@ -1,0 +1,416 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark\nprintln(s\"\"\"%html\n\u003ch2\u003eAnalytical queries on 170 million NYC taxi trip records\u003c/h2\u003e\n\u003cp\u003eThe New York City Taxi \u0026 Limousine Commission has released the detailed historical dataset covering over 1.1 billion individual taxi trips in the city from January 2009 through June 2015. In this Analytics demo we only use data for Year 2013. Each trip contains information like the driver\u0027s license info, the pickup and dropoff times and their precise locations, etc. \nWe have uploaded the data set in parquet format in a public S3 bucket. \n\n\u003cp\u003e This simple benchmark runs adhoc analytical queries using Spark on the parquet data set. We load the data set into a Snappy Column table and run the exact same set of queries.  \n\"\"\")\n",
+      "dateUpdated": "Jul 2, 2018 8:43:26 AM",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false
+            }
+          }
+        ],
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch2\u003eAnalytical queries on 170 million NYC taxi trip records\u003c/h2\u003e\n\u003cp\u003eThe New York City Taxi \u0026 Limousine Commission has released the detailed historical dataset covering over 1.1 billion individual taxi trips in the city from January 2009 through June 2015. In this Analytics demo we only use data for Year 2013. Each trip contains information like the driver\u0027s license info, the pickup and dropoff times and their precise locations, etc. \nWe have uploaded the data set in parquet format in a public S3 bucket. \n\n\u003cp\u003e This simple benchmark runs adhoc analytical queries using Spark on the parquet data set. We load the data set into a Snappy Column table and run the exact same set of queries.  \n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1530521006955_1376312103",
+      "id": "20160925-172803_1684905446",
+      "dateCreated": "Jul 2, 2018 8:43:26 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Monitor the cluster, check memory consumption",
+      "text": "%spark\nprintln(s\"\"\"%html\n \u003cdiv\u003e \u003cspan style\u003d\"font-weight: bold;\"\u003e \u003ca href\u003d\"http://localhost:5050/dashboard/\" target\u003d\"_blank\"\u003eSnappyData Pulse UI\u003c/a\u003e \u003c/span\u003e \u003cspan\u003e\u003ch5\u003e The Dashboard tab in the SnappyData Pulse UI can be used to monitor the cluster and check the memory consumed by the samples.\u003c/h5\u003e\u003c/span\u003e\u003c/div\u003e\n\"\"\")\n",
+      "dateUpdated": "Jul 2, 2018 8:43:26 AM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "title": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false
+            }
+          }
+        ],
+        "enabled": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": " \u003cdiv\u003e \u003cspan style\u003d\"font-weight: bold;\"\u003e \u003ca href\u003d\"http://localhost:5050/dashboard/\" target\u003d\"_blank\"\u003eSnappyData Pulse UI\u003c/a\u003e \u003c/span\u003e \u003cspan\u003e\u003ch5\u003e The Dashboard tab in the SnappyData Pulse UI can be used to monitor the cluster and check the memory consumed by the samples.\u003c/h5\u003e\u003c/span\u003e\u003c/div\u003e\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1530521006956_1374388358",
+      "id": "20170324-134252_1246434891",
+      "dateCreated": "Jul 2, 2018 8:43:26 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Define a function to measure the timings",
+      "text": "%snappydata\ndef benchmark(name: String, times: Int \u003d 10, warmups: Int \u003d 6)(f: \u003d\u003e Unit) {\n          for (i \u003c- 1 to warmups) {\n            f\n          }\n          val startTime \u003d System.nanoTime\n          for (i \u003c- 1 to times) {\n            f\n          }\n          val endTime \u003d System.nanoTime\n          println(s\"Average time taken in $name for $times runs: \" +\n            (endTime - startTime).toDouble / (times * 1000000.0) + \" millis\")\n        }\n",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2019 4:37:09 PM",
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "benchmark: (name: String, times: Int, warmups: Int)(f: \u003d\u003e Unit)Unit\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1530521006956_1374388358",
+      "id": "20180702-043803_402706850",
+      "dateCreated": "Jul 2, 2018 8:43:26 AM",
+      "dateStarted": "Jun 12, 2019 4:37:09 PM",
+      "dateFinished": "Jun 12, 2019 4:37:09 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Load the snappy column table",
+      "text": "%snappydata\nimport org.apache.spark.sql._\n\n// WARNING: MAKE SURE YOU HAVE CONFIGURED ENOUGH MEMORY IN YOUR DATA STORE SERVERS. \n\nval snappySession \u003d new SnappySession(spark.sparkContext)\nval df1 \u003d snappySession.read.parquet(\"s3a://AKIAJ73BL2H66NACKJNQ:WdXRSski53xmmtQ3zZQnU1iTL+wqm5XCLSBAMrvf@zeppelindemo/nytaxitripdata_cleaned\")\ndf1.write.format(\"column\").saveAsTable(\"nyc_taxi_trip\")\ndf1.printSchema\n\n// You may want to set options like Number of buckets (\u0027buckets\u0027) and partitioning key ...\n// e.g. df1.write.format(\"column\").mode(\"overwrite\").option(\"buckets\", \"33\").option(\"partition_by\", \"medallion\").saveAsTable(\"nyc_taxi_trip\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2019 4:37:45 PM",
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql._\nsnappySession: org.apache.spark.sql.SnappySession \u003d org.apache.spark.sql.SnappySession@40e5f6b8\ncom.amazonaws.services.s3.model.AmazonS3Exception: Status Code: 403, AWS Service: Amazon S3, AWS Request ID: 98E3166DAFD8312C, AWS Error Code: null, AWS Error Message: Forbidden\n  at com.amazonaws.http.AmazonHttpClient.handleErrorResponse(AmazonHttpClient.java:798)\n  at com.amazonaws.http.AmazonHttpClient.executeHelper(AmazonHttpClient.java:421)\n  at com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:232)\n  at com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:3528)\n  at com.amazonaws.services.s3.AmazonS3Client.getObjectMetadata(AmazonS3Client.java:976)\n  at com.amazonaws.services.s3.AmazonS3Client.getObjectMetadata(AmazonS3Client.java:956)\n  at org.apache.hadoop.fs.s3a.S3AFileSystem.getFileStatus(S3AFileSystem.java:892)\n  at org.apache.hadoop.fs.s3a.S3AFileSystem.getFileStatus(S3AFileSystem.java:77)\n  at org.apache.hadoop.fs.FileSystem.exists(FileSystem.java:1425)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$14.apply(DataSource.scala:381)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$14.apply(DataSource.scala:370)\n  at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:241)\n  at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:241)\n  at scala.collection.immutable.List.foreach(List.scala:381)\n  at scala.collection.TraversableLike$class.flatMap(TraversableLike.scala:241)\n  at scala.collection.immutable.List.flatMap(List.scala:344)\n  at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:370)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:152)\n  at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:441)\n  at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:425)\n  ... 47 elided\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1530521006957_1374003609",
+      "id": "20180702-043929_1783065412",
+      "dateCreated": "Jul 2, 2018 8:43:26 AM",
+      "dateStarted": "Jun 12, 2019 4:37:45 PM",
+      "dateFinished": "Jun 12, 2019 4:37:46 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Lets run a few queries using Snappy Session",
+      "text": "%snappydata\nbenchmark(\"Q1\",1,0) { snappySession.sql(\"select count(*) from nyc_taxi_trip\").collect } \n\n//Number of rides per week\nbenchmark(\"Q2\",1,0){ snappySession.sql(\"select count(*) numOfRides, weekofyear(pickup_datetime) from nyc_taxi_trip group by weekofyear(pickup_datetime)\").collect }\n\n//Top 50 drivers\nbenchmark(\"Q3\",1,0){ snappySession.sql(\"select count(*) numOfRides, hack_license from nyc_taxi_trip group by hack_license order by count(*) desc limit 50\").collect }\n\n//Top 50 drivers by distance\nbenchmark(\"Q4\",1,0){ snappySession.sql(\"select sum(trip_distance) total_distance, hack_license from nyc_taxi_trip group by hack_license order by sum(trip_distance) desc limit 50\").collect }\n\n//------ Lets run it again ------\nprintln(\"\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d Second run \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\")\nbenchmark(\"Q1\",1,0) { snappySession.sql(\"select count(*) from nyc_taxi_trip\").collect } \n\n//Number of rides per week\nbenchmark(\"Q2\",1,0){ snappySession.sql(\"select count(*) numOfRides, weekofyear(pickup_datetime) from nyc_taxi_trip group by weekofyear(pickup_datetime)\").collect }\n\n//Top 50 drivers\nbenchmark(\"Q3\",1,0){ snappySession.sql(\"select count(*) numOfRides, hack_license from nyc_taxi_trip group by hack_license order by count(*) desc limit 50\").collect }\n\n//Top 50 drivers by distance\nbenchmark(\"Q4\",1,0){ snappySession.sql(\"select sum(trip_distance) total_distance, hack_license from nyc_taxi_trip group by hack_license order by sum(trip_distance) desc limit 50\").collect }\n\n",
+      "dateUpdated": "Jul 2, 2018 8:43:26 AM",
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1530521006957_1374003609",
+      "id": "20180702-044303_935075656",
+      "dateCreated": "Jul 2, 2018 8:43:26 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "NOW RUN USING SPARK ....",
+      "text": "%spark\nprintln(s\"\"\"%html\n\n\u003cp\u003eConfigure your Spark interpreter to point to the correct Spark master. By default it will use local[*] and may run out of memory.   \n\"\"\")",
+      "dateUpdated": "Jul 2, 2018 8:43:26 AM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\n\u003cp\u003eConfigure your Spark interpreter to point to the correct Spark master. By default it will use local[*] and may run out of memory.   \n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1530521006958_1375157856",
+      "id": "20180702-044752_2087842369",
+      "dateCreated": "Jul 2, 2018 8:43:26 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Define a function to measure the timings using Spark interpreter also",
+      "text": "%spark\ndef benchmark(name: String, times: Int \u003d 10, warmups: Int \u003d 6)(f: \u003d\u003e Unit) {\n          for (i \u003c- 1 to warmups) {\n            f\n          }\n          val startTime \u003d System.nanoTime\n          for (i \u003c- 1 to times) {\n            f\n          }\n          val endTime \u003d System.nanoTime\n          println(s\"Average time taken in $name for $times runs: \" +\n            (endTime - startTime).toDouble / (times * 1000000.0) + \" millis\")\n        }\n",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2019 4:38:51 PM",
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "benchmark: (name: String, times: Int, warmups: Int)(f: \u003d\u003e Unit)Unit\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1530521006958_1375157856",
+      "id": "20180702-045051_1560429760",
+      "dateCreated": "Jul 2, 2018 8:43:26 AM",
+      "dateStarted": "Jun 12, 2019 4:38:51 PM",
+      "dateFinished": "Jun 12, 2019 4:38:51 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Load the S3 parquet data set into Spark",
+      "text": "%spark\nimport org.apache.spark.sql._\n\nimport org.apache.spark.sql._\n\nval df1 \u003d spark.read.parquet(\"s3a://AKIAJ73BL2H66NACKJNQ:WdXRSski53xmmtQ3zZQnU1iTL+wqm5XCLSBAMrvf@zeppelindemo/nytaxitripdata_cleaned\")\ndf1.cache\ndf1.createOrReplaceTempView(\"nyc_taxi_trip\")\n",
+      "dateUpdated": "Jul 2, 2018 8:43:26 AM",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1530521006958_1375157856",
+      "id": "20180702-044550_1824705584",
+      "dateCreated": "Jul 2, 2018 8:43:26 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Lets run a few queries using Spark Session",
+      "text": "%spark\nbenchmark(\"Q1\",1,0) { spark.sql(\"select count(*) from nyc_taxi_trip\").collect } \n\n//Number of rides per week\nbenchmark(\"Q2\",1,0){ spark.sql(\"select count(*) numOfRides, weekofyear(pickup_datetime) from nyc_taxi_trip group by weekofyear(pickup_datetime)\").collect }\n\n//Top 50 drivers\nbenchmark(\"Q3\",1,0){ spark.sql(\"select count(*) numOfRides, hack_license from nyc_taxi_trip group by hack_license order by count(*) desc limit 50\").collect }\n\n//Top 50 drivers by distance\nbenchmark(\"Q4\",1,0){ spark.sql(\"select sum(trip_distance) total_distance, hack_license from nyc_taxi_trip group by hack_license order by sum(trip_distance) desc limit 50\").collect }\n\n//------ Lets run it again ------\nprintln(\"\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d Second run \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\")\nbenchmark(\"Q1\",1,0) { spark.sql(\"select count(*) from nyc_taxi_trip\").collect } \n\n//Number of rides per week\nbenchmark(\"Q2\",1,0){ spark.sql(\"select count(*) numOfRides, weekofyear(pickup_datetime) from nyc_taxi_trip group by weekofyear(pickup_datetime)\").collect }\n\n//Top 50 drivers\nbenchmark(\"Q3\",1,0){ spark.sql(\"select count(*) numOfRides, hack_license from nyc_taxi_trip group by hack_license order by count(*) desc limit 50\").collect }\n\n//Top 50 drivers by distance\nbenchmark(\"Q4\",1,0){ spark.sql(\"select sum(trip_distance) total_distance, hack_license from nyc_taxi_trip group by hack_license order by sum(trip_distance) desc limit 50\").collect }\n\n",
+      "dateUpdated": "Jul 2, 2018 8:43:26 AM",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1530521006959_1374773107",
+      "id": "20180702-044820_1788487692",
+      "dateCreated": "Jul 2, 2018 8:43:26 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nprintln(s\"\"\"%html\n\u003ch2\u003e Try your own queries below ....\u003c/h2\u003e\n\u003ch3\u003eYou can always share your thoughts/questions or just encourage us at \u003ca href\u003d\"http://www.snappydata.io/community\" target\u003d\"_blank\"\u003e http://www.snappydata.io/community \u003c/a\u003e\u003c/h3\u003e\n(You can use \u003ca href\u003d\"http://snappydata-slackin.herokuapp.com/\" target\u003d\"_blank\"\u003eslack\u003c/a\u003e,\u003ca href\u003d\"https://gitter.im/SnappyDataInc/snappydata\" target\u003d\"_blank\"\u003eGitter\u003c/a\u003e,\u003ca href\u003d\"http://stackoverflow.com/questions/tagged/snappydata\" target\u003d\"_blank\"\u003estackoverflow \u003c/a\u003e, or \u003ca href\u003d\"https://groups.google.com/forum/#!forum/snappydata-user\" target\u003d\"_blank\"\u003egoogle groups\u003c/a\u003e) \u003cbr\u003e Or, just send an email to chomp@snappydata.io\"\"\") ",
+      "dateUpdated": "Jul 2, 2018 8:43:26 AM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "editorHide": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false
+            }
+          }
+        ],
+        "enabled": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch2\u003e Try your own queries below ....\u003c/h2\u003e\n\u003ch3\u003eYou can always share your thoughts/questions or just encourage us at \u003ca href\u003d\"http://www.snappydata.io/community\" target\u003d\"_blank\"\u003e http://www.snappydata.io/community \u003c/a\u003e\u003c/h3\u003e\n(You can use \u003ca href\u003d\"http://snappydata-slackin.herokuapp.com/\" target\u003d\"_blank\"\u003eslack\u003c/a\u003e,\u003ca href\u003d\"https://gitter.im/SnappyDataInc/snappydata\" target\u003d\"_blank\"\u003eGitter\u003c/a\u003e,\u003ca href\u003d\"http://stackoverflow.com/questions/tagged/snappydata\" target\u003d\"_blank\"\u003estackoverflow \u003c/a\u003e, or \u003ca href\u003d\"https://groups.google.com/forum/#!forum/snappydata-user\" target\u003d\"_blank\"\u003egoogle groups\u003c/a\u003e) \u003cbr\u003e Or, just send an email to chomp@snappydata.io\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1530521006959_1374773107",
+      "id": "20170324-134332_252144791",
+      "dateCreated": "Jul 2, 2018 8:43:26 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%snappydata.sql\n",
+      "dateUpdated": "Jul 2, 2018 8:43:26 AM",
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "results": {},
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1530521006959_1374773107",
+      "id": "20160928-225219_1276473643",
+      "dateCreated": "Jul 2, 2018 8:43:26 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Demo1 - Compare Spark, Snappy Perf",
+  "id": "2DKKFJNZR",
+  "angularObjects": {
+    "2EA979ZH6:existing_process": [],
+    "2E8BS2UKF:shared_process": [],
+    "2EA2P371D:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

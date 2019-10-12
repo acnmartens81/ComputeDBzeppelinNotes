@@ -1,0 +1,240 @@
+{
+  "paragraphs": [
+    {
+      "title": "Create virtual tables on Big data sources",
+      "text": "%sql\nDROP TABLE IF EXISTS AIRLINE_LARGE_PARQUET;\nCREATE EXTERNAL TABLE AIRLINE_LARGE_PARQUET USING parquet OPTIONS(path \u0027/opt/TIB_compute_1.1.0_linux/data/airline/archive/large\u0027);\n-- Above SQL infers the schema from the parquet files and creates the table using the inferred types. \n\n-- The source could easily be S3, ADLS, or GCS (cloud storage options)\n-- CREATE EXTERNAL TABLE AIRLINE_LARGE_PARQUET USING parquet OPTIONS(path \u0027s3a://\u003cs3 access credentials\u003e@BUCKET_NAME/airline/archive/large\u0027);\n--  CREATE EXTERNAL TABLE AIRLINE_LARGE_PARQUET USING parquet OPTIONS(path \u0027gs://\u003cGoogle access credentials\u003e@BUCKET_NAME/airline/archive/large\u0027);\n\n-- Or, just HDFS\n--  CREATE EXTERNAL TABLE AIRLINE_LARGE_PARQUET USING parquet OPTIONS(path \u0027hdfs:/data/airline/archive/large\u0027);\n\n-- Or, NoSQL database: Elastic, Cassandra, Neo4J, etc\n--  CREATE EXTERNAL TABLE AIRLINE_LARGE_PARQUET USING cassandra OPTIONS(keyspace \u0027someSpace\u0027, table \u0027CassandraTablename\u0027);\n\n",
+      "dateUpdated": "Jul 7, 2019 10:52:14 PM",
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1562539934460_-814025873",
+      "id": "20190606-130659_697192739",
+      "dateCreated": "Jul 7, 2019 10:52:14 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Load data into memory using SQL - will auto overflow to disk when required",
+      "text": "%sql\nDROP TABLE IF EXISTS AIRLINE_LARGE;\nCREATE TABLE AIRLINE_LARGE USING COLUMN AS (SELECT * FROM AIRLINE_LARGE_PARQUET);",
+      "dateUpdated": "Jul 7, 2019 10:52:14 PM",
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1562539934465_-729765864",
+      "id": "20190628-154810_1085610049",
+      "dateCreated": "Jul 7, 2019 10:52:14 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Loading data set using Spark API",
+      "text": "%snappydata.spark\n\n// Acquire a session to ComputeDB store\nval snappySession \u003d new SnappySession(spark.sparkContext)\n\n//Acquire Spark Dataframe on external data set ... note Spark does lazy processing ... no data is actually copied\nval df1 \u003d snappySession.read.parquet(\"s3a://\u003cs3 access credentials\u003e@BUCKET_NAME/airline/archive/large\")\n\n// Now, load the data in parallel to our in-memory table\nval in_mem_dataframe \u003d df1.write.format(\"column\").saveAsTable(\"airline_large\")\n\n// You can apply rich transformations on the incoming data using Spark API or SQL\n/****\nval anotherDF \u003d df1.groupBy(\"uniquecarrier, flightnum\")\n  .pivot(\"year\")\n  .agg(round(avg(\"arrdelay\")/1000000,2))\n  \n// Register any dataframe as a table and expose to others\nanotherDF.createGlobalTempView(\"MyPivotedData\")\n//Now, you can run SQL queries from other tools also. \n\n// You can also prep your data for featurization relatively easily now ...\nval indexer \u003d new VectorIndexer()\n  .setInputCol(\"uniquecarrier\")\n  .setOutputCol(\"indexed_carrier\")\n  .setMaxCategories(10)\nval indexerModel \u003d indexer.fit(data)\n\n****/\n",
+      "dateUpdated": "Jul 8, 2019 3:53:19 PM",
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1562539934466_-728611617",
+      "id": "20190707-221808_356864771",
+      "dateCreated": "Jul 7, 2019 10:52:14 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nDROP TABLE IF EXISTS AIRLINE_CSV;\nCREATE EXTERNAL TABLE AIRLINE_CSV USING csv OPTIONS(path \u0027/opt/TIB_compute_1.1.0_linux/data/airline/archive/all_sorted.csv\u0027);",
+      "dateUpdated": "Jul 7, 2019 10:52:14 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1562539934466_-728611617",
+      "id": "20190628-165741_1278914032",
+      "dateCreated": "Jul 7, 2019 10:52:14 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nDROP TABLE IF EXISTS AIRLINE;\ncreate table AIRLINE\n(\nID LONG NOT NULL,\nYear INTEGER NOT NULL,\nMonth INTEGER NOT NULL,\nDayofMonth INTEGER NOT NULL,\nDayOfWeek INTEGER NOT NULL,\nDepTime INTEGER,\nCRSDepTime INTEGER,\nArrTime INTEGER,\nCRSArrTime INTEGER,\nUniqueCarrier VARCHAR(25),\nFlightNum INTEGER,\nTailNum VARCHAR(25),\nActualElapsedTime INTEGER,\nCRSElapsedTime INTEGER,\nAirTime INTEGER,\nArrDelay INTEGER,\nDepDelay INTEGER,\nOrigin VARCHAR(25),\nDest VARCHAR(25),\nDistance INTEGER,\nTaxiIn INTEGER,\nTaxiOut INTEGER,\nCancelled INTEGER,\nCancellationCode VARCHAR(25),\nDiverted INTEGER,\nCarrierDelay INTEGER,\nWeatherDelay INTEGER,\nNASDelay INTEGER,\nSecurityDelay INTEGER,\nLateAircraftDelay INTEGER\n)\n USING COLUMN OPTIONS (PARTITION_BY \u0027UNIQUECARRIER\u0027) AS SELECT * FROM AIRLINE_CSV;\n",
+      "dateUpdated": "Jul 7, 2019 10:52:14 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1562539934467_-728996366",
+      "id": "20190628-175756_1605833514",
+      "dateCreated": "Jul 7, 2019 10:52:14 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nDROP TABLE IF EXISTS AIRLINE_DESTINATION;\nCREATE EXTERNAL TABLE AIRLINE_DESTINATION USING csv OPTIONS (path \u0027/opt/TIB_compute_1.1.0_linux/data/airline/DestinationAirports_header.csv\u0027, header \u0027true\u0027, inferSchema \u0027true\u0027);",
+      "dateUpdated": "Jul 7, 2019 10:52:14 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1562539934467_-728996366",
+      "id": "20190628-180102_1864896073",
+      "dateCreated": "Jul 7, 2019 10:52:14 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nselect distinct year from airline_large;",
+      "dateUpdated": "Jul 7, 2019 10:52:14 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "YEAR\n1993\n1998\n1996\n1987\n1990\n2000\n1988\n2004\n2003\n1992\n2007\n1999\n1997\n2002\n1989\n2005\n2006\n2001\n1991\n2008\n1994\n1995\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 3067 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1562539934468_-730920111",
+      "id": "20190628-180632_492464752",
+      "dateCreated": "Jul 7, 2019 10:52:14 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\n",
+      "dateUpdated": "Jul 7, 2019 10:52:14 PM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1562539934468_-730920111",
+      "id": "20190705-232425_1005941757",
+      "dateCreated": "Jul 7, 2019 10:52:14 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "1) Example SQL, Spark to infer schema, load data",
+  "id": "2EE9QS8KK",
+  "angularObjects": {
+    "2EA979ZH6:existing_process": [],
+    "2E8BS2UKF:shared_process": [],
+    "2EA2P371D:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

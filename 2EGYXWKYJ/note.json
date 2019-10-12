@@ -1,0 +1,104 @@
+{
+  "paragraphs": [
+    {
+      "text": "%snappydata\nprintln()\nprintln(s\"\"\"%html\n\u003ch4\u003eWe stream aircraft position, speed, etc data for all commercial aircraft that have departed, continuously. The data arrives as nested JSON data. \nWe show two things: \n\u003cli\u003e How easy it is to ingest the data into our in-memory tables with exactly-once semantics \u003c/li\u003e\n\u003cli\u003e How one can use Spark SQL to apply transformations to incoming streaming data accessible to your application as Dataframes.\u003c/li\u003e \u003c/h4\u003e\n\"\"\")\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 7, 2019 10:51:18 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003ch4\u003eWe stream aircraft position, speed, etc data for all commercial aircraft that have departed, continuously. The data arrives as nested JSON data. \nWe show two things: \n\u003cli\u003e How easy it is to ingest the data into our in-memory tables with exactly-once semantics \u003c/li\u003e\n\u003cli\u003e How one can use Spark SQL to apply transformations to incoming streaming data accessible to your application as Dataframes.\u003c/li\u003e \u003c/h4\u003e\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1562539548739_-1198746293",
+      "id": "20190707-224548_1379794745",
+      "dateCreated": "Jul 7, 2019 10:45:48 PM",
+      "dateStarted": "Jul 7, 2019 10:51:12 PM",
+      "dateFinished": "Jul 7, 2019 10:51:12 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%snappydata\n// stream program to read JSON files and ingest into snappy \n\nimport org.apache.spark.sql._\nimport org.apache.spark.sql.streaming.OutputMode\nimport org.apache.spark.sql.streaming.ProcessingTime\n\nval checkpointDirectory \u003d \"/opt/computedb_110/checkpoint\"\n\nval snappy \u003d new SnappySession(sc)\n\n\n/********\n* Stream ingest from file folder source. Could also have been Kafka, etc. \n********/\n\nsnappy.sql(\"truncate table departedFlights\")\n\nval rawStream \u003d snappy.readStream.option(\"maxFilesPerTrigger\", 1).schema(schema).json(\"/home/centos/opensky\")\nrawStream.createOrReplaceTempView (\"rawStream\")\n\n// Apply transformations on data using SQL .... we use explode to flatten out JSON arrays\n\nval departedFlights \u003d snappy.sql(\"select c1[0] as icao, c1[1] as callsign, c1[2] as origin_country, timestamp(cast(c1[3] as bigint)) as time_position, cast(c1[5] as double) as longitude, cast(c1[6] as double) as latitude, cast(c1[7] as double) as altitude, cast(c1[8] as boolean) as on_ground, cast(c1[9] as double) as velocity, cast(time as timestamp) as time from (select explode(states) c1, time from rawstream) t1\")\n// val flightsQuery \u003d departedFlights.writeStream.format(\"console\").outputMode(OutputMode.Append()).start()\n\n// other transformations : remove null records, filter out rest of the world except USA geo boundary? \n\n// Now ingest using a streaming query into a ComputeDB table\nval flightsQuery \u003d departedFlights.writeStream.format(\"snappysink\").queryName(\"departedFlights\").trigger(ProcessingTime(\"5 seconds\")).option(\"tableName\", \"departedFlights\").option(\"checkpointLocation\", checkpointDirectory).start()\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2019 3:56:03 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1562539316234_1214846498",
+      "id": "20190707-224156_1750926195",
+      "dateCreated": "Jul 7, 2019 10:41:56 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%snappydata\n/*******\n* First part of the program simply reads a static file so we can infer the schema and create the column table. \n*******/\n\nval raw \u003d snappy.read.json(\"/home/centos/opensky/OpenskyAPI1562029882657.json\")\n\nval schema \u003d raw.schema\n\nraw.createOrReplaceTempView (\"raw\")\n\n// Apply transformations on data using SQL .... we use explode to flatten out JSON arrays\nval departedFlights \u003d snappy.sql(\"select c1[0] as icao, c1[1] as callsign, c1[2] as origin_country, timestamp(cast(c1[3] as bigint)) as time_position, cast(c1[5] as double) as longitude, cast(c1[6] as double) as latitude, cast(c1[7] as double) as altitude, cast(c1[8] as boolean) as on_ground, cast(c1[9] as double) as velocity, cast(time as timestamp) as time from (select explode(states) c1, time from raw) t1\")\n\n//Now just save the flattened dataframe. The schema for the table is obtained from the DataFrame. \ndepartedFlights.write.format(\"column\").mode(\"overwrite\").saveAsTable(\"departedFlights\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 7, 2019 10:54:16 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1562540047567_-1925660680",
+      "id": "20190707-225407_934363231",
+      "dateCreated": "Jul 7, 2019 10:54:07 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "2) Simple Stream Ingest example",
+  "id": "2EGYXWKYJ",
+  "angularObjects": {
+    "2EA979ZH6:existing_process": [],
+    "2E8BS2UKF:shared_process": [],
+    "2EA2P371D:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

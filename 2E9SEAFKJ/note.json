@@ -1,0 +1,101 @@
+{
+  "paragraphs": [
+    {
+      "text": "%sql\nSELECT * FROM FOODMART.SALES_FACT_1998 LIMIT 10;",
+      "user": "anonymous",
+      "dateUpdated": "Apr 26, 2019 2:04:55 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "PRODUCT_ID\tTIME_ID\tCUSTOMER_ID\tPROMOTION_ID\tSTORE_ID\tSTORE_SALES\tSTORE_COST\tUNIT_SALES\n173\t748\t2094\t54\t1\t4.2900\t1.8447\t3.0000\n1119\t748\t2094\t54\t1\t9.5100\t3.5187\t3.0000\n1242\t748\t2094\t54\t1\t7.9200\t2.8512\t4.0000\n460\t748\t2094\t54\t1\t6.4400\t2.7048\t4.0000\n104\t748\t2094\t54\t1\t11.6700\t3.9678\t3.0000\n27\t748\t2094\t54\t1\t7.9500\t3.8160\t3.0000\n67\t748\t1277\t54\t1\t7.4400\t2.9016\t4.0000\n217\t748\t1277\t54\t1\t2.7200\t0.8432\t4.0000\n666\t748\t1745\t54\t1\t2.6700\t1.3350\t3.0000\n1122\t748\t1745\t54\t1\t2.2200\t0.7770\t3.0000\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 1730 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1556287476731_300154828",
+      "id": "20190426-140436_999186249",
+      "dateCreated": "Apr 26, 2019 2:04:36 PM",
+      "dateStarted": "Apr 26, 2019 2:04:55 PM",
+      "dateFinished": "Apr 26, 2019 2:05:00 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n\nimport org.apache.spark.sql.SaveMode\nimport java.sql.DriverManager\nClass.forName(\"org.postgresql.Driver\")\n//com.microsoft.sqlserver.jdbc.SQLServerDriver\n//org.postgresql.Driver\nimport java.util.Properties\nval jdbcUsername \u003d \"postgres\"\nval jdbcPassword \u003d \"sfadmin\"\nval jdbcHostname \u003d \"34.229.27.18\"\nval jdbcPort \u003d \"5432\"\nval jdbcDatabase \u003d\"foodmart\"\n\nval jdbcUrl \u003d s\"jdbc:postgresql://${jdbcHostname}:${jdbcPort}/${jdbcDatabase}?user\u003d${jdbcUsername}\u0026password\u003d${jdbcPassword}\"\n\nval connectionProperties \u003d new Properties()\nconnectionProperties.put(\"user\", jdbcUsername)\nconnectionProperties.put(\"password\", jdbcPassword)\nval connection \u003d DriverManager.getConnection(jdbcUrl, jdbcUsername, jdbcPassword)\nconnection.isClosed()\n\nval tableName \u003d \"account\"\nval df\u003dsnc.read.jdbc(jdbcUrl, \"public.\" + tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").option(\"buckets\", \"12\").saveAsTable(jdbcDatabase + \".\" + tableName)\n\nval tables \u003d Vector(\"account\",\"agg_c_10_sales_fact_1997\",\"agg_c_14_sales_fact_1997\",\"agg_c_special_sales_fact_1997\",\"agg_g_ms_pcat_sales_fact_1997\",\"agg_l_03_sales_fact_1997\",\"agg_l_04_sales_fact_1997\",\"agg_l_05_sales_fact_1997\",\"agg_lc_06_sales_fact_1997\",\"agg_lc_100_sales_fact_1997\",\"agg_ll_01_sales_fact_1997\",\"agg_pl_01_sales_fact_1997\",\"category\",\"currency\",\"customer\",\"customer_sales\",\"days\",\"department\",\"employee\",\"employee_closure\",\"expense_fact\",\"inventory_fact_1997\",\"inventory_fact_1998\",\"monthly_profit\",\"position\",\"product\",\"product_class\",\"product_sales\",\"promotion\",\"promotion_sales\",\"region\",\"reserve_employee\",\"salary\",\"sales_fact_1997\",\"sales_fact_1998\",\"sales_fact_dec_1998\",\"store\",\"store_ragged\",\"time_by_day\",\"warehouse\",\"warehouse_class\")\n\nfor (tableName \u003c- tables) {\nval df\u003dsnc.read.jdbc(jdbcUrl, \"public.\" + tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").option(\"buckets\", \"12\").saveAsTable(jdbcDatabase + \".\" + tableName)\n}",
+      "user": "anonymous",
+      "dateUpdated": "Apr 25, 2019 6:56:20 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.SaveMode\nimport java.sql.DriverManager\nres88: Class[_] \u003d class org.postgresql.Driver\nimport java.util.Properties\njdbcUsername: String \u003d postgres\njdbcPassword: String \u003d sfadmin\njdbcHostname: String \u003d 34.229.27.18\njdbcPort: String \u003d 5432\njdbcDatabase: String \u003d foodmart\njdbcUrl: String \u003d jdbc:postgresql://34.229.27.18:5432/foodmart?user\u003dpostgres\u0026password\u003dsfadmin\nconnectionProperties: java.util.Properties \u003d {}\nres89: Object \u003d null\nres90: Object \u003d null\nconnection: java.sql.Connection \u003d org.postgresql.jdbc4.Jdbc4Connection@4877214d\nres91: Boolean \u003d false\ntableName: String \u003d account\ndf: org.apache.spark.sql.DataFrame \u003d [account_id: int, account_parent: int ... 4 more fields]\ntables: scala.collection.immutable.Vector[String] \u003d Vector(account, agg_c_10_sales_fact_1997, agg_c_14_sales_fact_1997, agg_c_special_sales_fact_1997, agg_g_ms_pcat_sales_fact_1997, agg_l_03_sales_fact_1997, agg_l_04_sales_fact_1997, agg_l_05_sales_fact_1997, agg_lc_06_sales_fact_1997, agg_lc_100_sales_fact_1997, agg_ll_01_sales_fact_1997, agg_pl_01_sales_fact_1997, category, currency, customer, customer_sales, days, department, employee, employee_closure, expense_fact, inventory_fact_1997, inventory_fact_1998, monthly_profit, position, product, product_class, product_sales, promotion, promotion_sales, region, reserve_employee, salary, sales_fact_1997, sales_fact_1998, sales_fact_dec_1998, store, store_ragged, time_by_day, warehouse, warehouse_class)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1556218165622_-376765610",
+      "id": "20190425-184925_1742509310",
+      "dateCreated": "Apr 25, 2019 6:49:25 PM",
+      "dateStarted": "Apr 25, 2019 6:56:20 PM",
+      "dateFinished": "Apr 25, 2019 6:56:42 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 25, 2019 6:53:34 PM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1556218414620_1974417950",
+      "id": "20190425-185334_693305372",
+      "dateCreated": "Apr 25, 2019 6:53:34 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Foodmart",
+  "id": "2E9SEAFKJ",
+  "angularObjects": {
+    "2EA979ZH6:existing_process": [],
+    "2E8BS2UKF:shared_process": [],
+    "2EA2P371D:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

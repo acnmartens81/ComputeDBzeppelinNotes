@@ -1,0 +1,2071 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark\nprintln(s\"\"\"%html\n\u003cp\u003eThe U.S. Department of Transportation\u0027s (DOT) Bureau of Transportation Statistics (BTS) tracks the on-time performance of domestic flights operated by large air carriers.\u003cbr\u003e\nSummary information on the number of on-time, delayed, canceled and diverted flights is available for the last 20 years.\u003cbr\u003e\nIn this example we used the 2009-2015 data set (40 million records) and show simple analytic queries on \"exact\" as well as \"sampled\" data.You will be able to compare the response times and be able to inspect the accuracy differences.\u003cbr\u003e \n\u003ch5\u003e The data set used here is relatively small (few GB of Parquet formatted data). The interesting thing about using stratified sampling is that the error rate drops exponentially with the size of the sample. The exponential error drop off implies with larger data sets, the sampling fraction can also keep getting smaller. e.g. you may need a 2 million sample for a data set with 200 million records, but, may only need a 3 million sample for a data set with a billion records to achieve the same level of accuracy.\u003c/h5\u003e\n\n\u003cimg src\u003d\"https://drive.google.com/uc?export\u003dview\u0026id\u003d0B7_m-QBIIyBQX2xhazR3MkI2UGs\" alt\u003d\"OnTimePerformance\"\u003e\n\n\u003ch3\u003eYou can always share your thoughts/questions or just encourage us at \u003ca href\u003d\"http://www.snappydata.io/community\" target\u003d\"_blank\"\u003e http://www.snappydata.io/community \u003c/a\u003e\u003c/h3\u003e\n(You can use \u003ca href\u003d\"http://snappydata-slackin.herokuapp.com/\" target\u003d\"_blank\"\u003eslack\u003c/a\u003e,\u003ca href\u003d\"https://gitter.im/SnappyDataInc/snappydata\" target\u003d\"_blank\"\u003eGitter\u003c/a\u003e,\u003ca href\u003d\"http://stackoverflow.com/questions/tagged/snappydata\" target\u003d\"_blank\"\u003estackoverflow \u003c/a\u003e, or \u003ca href\u003d\"https://groups.google.com/forum/#!forum/snappydata-user\" target\u003d\"_blank\"\u003egoogle groups\u003c/a\u003e) \u003cbr\u003e Or, just send an email to chomp@snappydata.io\"\"\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 9, 2019 1:57:57 PM",
+      "config": {
+        "enabled": false,
+        "tableHide": false,
+        "editorMode": "ace/mode/text",
+        "editorHide": true,
+        "colWidth": 12.0,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false
+            }
+          }
+        ],
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eThe U.S. Department of Transportation\u0027s (DOT) Bureau of Transportation Statistics (BTS) tracks the on-time performance of domestic flights operated by large air carriers.\u003cbr\u003e\nSummary information on the number of on-time, delayed, canceled and diverted flights is available for the last 20 years.\u003cbr\u003e\nIn this example we used the 2009-2015 data set (40 million records) and show simple analytic queries on \"exact\" as well as \"sampled\" data.You will be able to compare the response times and be able to inspect the accuracy differences.\u003cbr\u003e \n\u003ch5\u003e The data set used here is relatively small (few GB of Parquet formatted data). The interesting thing about using stratified sampling is that the error rate drops exponentially with the size of the sample. The exponential error drop off implies with larger data sets, the sampling fraction can also keep getting smaller. e.g. you may need a 2 million sample for a data set with 200 million records, but, may only need a 3 million sample for a data set with a billion records to achieve the same level of accuracy.\u003c/h5\u003e\n\n\u003cimg src\u003d\"https://drive.google.com/uc?export\u003dview\u0026id\u003d0B7_m-QBIIyBQX2xhazR3MkI2UGs\" alt\u003d\"OnTimePerformance\"\u003e\n\n\u003ch3\u003eYou can always share your thoughts/questions or just encourage us at \u003ca href\u003d\"http://www.snappydata.io/community\" target\u003d\"_blank\"\u003e http://www.snappydata.io/community \u003c/a\u003e\u003c/h3\u003e\n(You can use \u003ca href\u003d\"http://snappydata-slackin.herokuapp.com/\" target\u003d\"_blank\"\u003eslack\u003c/a\u003e,\u003ca href\u003d\"https://gitter.im/SnappyDataInc/snappydata\" target\u003d\"_blank\"\u003eGitter\u003c/a\u003e,\u003ca href\u003d\"http://stackoverflow.com/questions/tagged/snappydata\" target\u003d\"_blank\"\u003estackoverflow \u003c/a\u003e, or \u003ca href\u003d\"https://groups.google.com/forum/#!forum/snappydata-user\" target\u003d\"_blank\"\u003egoogle groups\u003c/a\u003e) \u003cbr\u003e Or, just send an email to chomp@snappydata.io\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490362897197_-1871951604",
+      "id": "20170324-134137_844449647",
+      "dateCreated": "Mar 24, 2017 1:41:37 PM",
+      "dateStarted": "Mar 24, 2017 1:41:50 PM",
+      "dateFinished": "Mar 24, 2017 1:41:51 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Monitor the cluster, check memory consumption",
+      "text": "%spark\n\nprintln(s\"\"\"%html\n \u003cdiv\u003e \u003cspan style\u003d\"font-weight: bold;\"\u003e \u003ca href\u003d\"http://localhost:5050\" target\u003d\"_blank\"\u003eSnappyData Pulse UI\u003c/a\u003e \u003c/span\u003e \u003cspan\u003e\u003ch5\u003e The Dashboard tab in the SnappyData Pulse UI can be used to monitor the cluster and check the memory consumed by the samples.\u003c/h5\u003e\u003c/span\u003e\u003c/div\u003e\n\"\"\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 9, 2019 1:57:57 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "editorMode": "ace/mode/text",
+        "editorHide": true,
+        "title": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false
+            }
+          }
+        ],
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": " \u003cdiv\u003e \u003cspan style\u003d\"font-weight: bold;\"\u003e \u003ca href\u003d\"http://localhost:5050\" target\u003d\"_blank\"\u003eSnappyData Pulse UI\u003c/a\u003e \u003c/span\u003e \u003cspan\u003e\u003ch5\u003e The Dashboard tab in the SnappyData Pulse UI can be used to monitor the cluster and check the memory consumed by the samples.\u003c/h5\u003e\u003c/span\u003e\u003c/div\u003e\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490362791981_-885576373",
+      "id": "20170324-133951_971888384",
+      "dateCreated": "Mar 24, 2017 1:39:51 PM",
+      "dateStarted": "Oct 11, 2017 7:59:39 PM",
+      "dateFinished": "Oct 11, 2017 7:59:39 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Load data from Parquet files into Exact and Sample Table",
+      "text": "%spark\nimport org.apache.spark.sql.SaveMode\n// \u0027snc\u0027 - SnappyContext. Already created for notebook. Extends Spark\u0027s SQL Context with support for Streaming using SQL, stratified samples, etc.\nsnc.sql(\"DROP TABLE IF EXISTS AIRLINE_SAMPLE\")\nsnc.sql(\"DROP TABLE IF EXISTS AIRLINE\")\n\n\nval dataFolder \u003d \"s3a://AKIAJ73BL2H66NACKJNQ:WdXRSski53xmmtQ3zZQnU1iTL+wqm5XCLSBAMrvf@zeppelindemo/airlinedata_cleaned\"\n\n//Use the parquet source to create DataFrame\nval df1 \u003d snc.read.parquet(dataFolder)\n\n//snc.createExternalTable(\"AIRLINE\", \"parquet\", Map(\"path\" -\u003e dataFolder))\n\n// If you prefer to manage the data in-memory as a column table in snappyData store....\n//snc.createTable(\"AIRLINE\", \"column\",df1.schema, Map(\"buckets\" -\u003e \"11\"))\n\ndf1.write.format(\"column\").mode(\"overwrite\").option(\"buckets\", \"11\").option(\"partition_by\", \"UniqueCarrier\").saveAsTable(\"AIRLINE\")\n\n// Or, if you rather have this table be a Row table ...\n// snc.createTable(\"AIRLINE\", \"row\", df1.schema, Map(\"partition_by\"-\u003e\"UniqueCarrier\",\"buckets\" -\u003e \"11\"))\n\n//val df1 \u003d snappySession.read.parquet(\"s3a://AKIAJ73BL2H66NACKJNQ:WdXRSski53xmmtQ3zZQnU1iTL+wqm5XCLSBAMrvf@zeppelindemo/nytaxitripdata_cleaned\")\n//df1.write.format(\"column\").saveAsTable(\"nyc_taxi_trip\")\n//df1.printSchema\n\n// You may want to set options like Number of buckets (\u0027buckets\u0027) and partitioning key ...\n// e.g. df1.write.format(\"column\").mode(\"overwrite\").option(\"buckets\", \"33\").option(\"partition_by\", \"medallion\").saveAsTable(\"nyc_taxi_trip\")\n\n// show a few lines from this table\nsnc.table(\"AIRLINE\").show \nsnc.sql(\"select * from airline\").show\n\n// NEXT, ADD A STRATIFIED SAMPLE TABLE WITH 1% OF THE FULL DATA\nsnc.sql(\"CREATE SAMPLE TABLE AIRLINE_SAMPLE ON AIRLINE\" +\n  \" OPTIONS(\" +\n  \"buckets \u00277\u0027, \" +\n  \"qcs \u0027UniqueCarrier, Year_, Month_\u0027,\" +\n  \"fraction \u00270.01\u0027,persistent \u0027sync\u0027) \" +\n  \"AS (SELECT * FROM AIRLINE)\" )\n\n\nsnc.sql(\"select count(*) from airline with error\").show\n\n// Create Reference data table and load data  (Airline code to Name Reference)\nsnc.sql(\"DROP TABLE IF EXISTS STAGING_AIRLINEREF\")\nsnc.sql(\"DROP TABLE IF EXISTS AIRLINEREF\")\n\n//----- CREATE TEMPORARY STAGING TABLE TO LOAD PARQUET FORMATTED DATA -----\n\nsnc.sql(s\"CREATE external TABLE STAGING_AIRLINEREF  USING parquet OPTIONS( path  \u0027s3a://AKIAJ73BL2H66NACKJNQ:WdXRSski53xmmtQ3zZQnU1iTL+wqm5XCLSBAMrvf@zeppelindemo/airportdata\u0027 )\") \n\n//----- CREATE ROW TABLE -----\n\nsnc.sql(\"CREATE TABLE AIRLINEREF USING row OPTIONS() AS (SELECT CODE, DESCRIPTION FROM STAGING_AIRLINEREF)\")\n// DONE\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 21, 2019 7:33:24 PM",
+      "config": {
+        "enabled": false,
+        "tableHide": true,
+        "title": true,
+        "editorMode": "ace/mode/text",
+        "editorHide": false,
+        "colWidth": 12.0,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false
+            }
+          }
+        ],
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.SaveMode\nres8: org.apache.spark.sql.DataFrame \u003d []\nres9: org.apache.spark.sql.DataFrame \u003d []\ndataFolder: String \u003d s3a://AKIAJ73BL2H66NACKJNQ:WdXRSski53xmmtQ3zZQnU1iTL+wqm5XCLSBAMrvf@zeppelindemo/airlinedata_cleaned\ndf1: org.apache.spark.sql.DataFrame \u003d [Year_: int, Month_: int ... 28 more fields]\n+-----+------+----------+---------+-------+----------+-------+----------+-------------+---------+-------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+----------------+--------+------------+------------+--------+-------------+-----------------+------------+\n|YEAR_|MONTH_|DAYOFMONTH|DAYOFWEEK|DEPTIME|CRSDEPTIME|ARRTIME|CRSARRTIME|UNIQUECARRIER|FLIGHTNUM|TAILNUM|ACTUALELAPSEDTIME|CRSELAPSEDTIME|AIRTIME|ARRDELAY|DEPDELAY|ORIGIN|DEST|DISTANCE|TAXIIN|TAXIOUT|CANCELLED|CANCELLATIONCODE|DIVERTED|CARRIERDELAY|WEATHERDELAY|NASDELAY|SECURITYDELAY|LATEAIRCRAFTDELAY|ARRDELAYSLOT|\n+-----+------+----------+---------+-------+----------+-------+----------+-------------+---------+-------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+----------------+--------+------------+------------+--------+-------------+-----------------+------------+\n| 2008|     7|        20|        7|   1656|      1700|   1841|      1901|           AS|      329| N972AS|              105|           121|     92|     -20|      -4|   SJC| SEA|     697|     5|      8|        0|                |       0|        null|        null|    null|         null|             null|           2|\n| 2008|     7|        20|        7|    923|       930|   1129|      1137|           AS|      342| N944AS|              126|           127|    105|      -8|      -7|   SEA| OAK|     671|     7|     14|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        20|        7|   1952|      1930|   2057|      2042|           AS|      695| N796AS|               65|            72|     41|      15|      22|   GEG| SEA|     224|     9|     15|        0|                |       0|           0|           0|       0|            0|               15|           1|\n| 2008|     7|        20|        7|   1432|      1430|   1844|      1901|           AS|       92| N546AS|              192|           211|    180|     -17|       2|   ANC| SEA|    1449|     5|      7|        0|                |       0|        null|        null|    null|         null|             null|           1|\n| 2008|     7|        20|        7|    952|      1000|   1141|      1151|           AS|      361| N773AS|              109|           111|     85|     -10|      -8|   SMF| SEA|     605|     8|     16|        0|                |       0|        null|        null|    null|         null|             null|           1|\n| 2008|     7|        21|        1|    552|       600|   1025|      1045|           AS|      126| N785AS|              213|           225|    202|     -20|      -8|   FAI| SEA|    1533|     2|      9|        0|                |       0|        null|        null|    null|         null|             null|           2|\n| 2008|     7|        21|        1|    929|       925|   1210|      1156|           AS|       97| N315AS|              161|           151|    127|      14|       4|   LAS| SEA|     866|    10|     24|        0|                |       0|        null|        null|    null|         null|             null|           1|\n| 2008|     7|        21|        1|    751|       755|    920|       926|           AS|       61| N774AS|              149|           151|    128|      -6|      -4|   SEA| JNU|     909|     2|     19|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        21|        1|   1530|      1530|   1812|      1758|           AS|      520| N797AS|              162|           148|    141|      14|       0|   SEA| BUR|     937|     8|     13|        0|                |       0|        null|        null|    null|         null|             null|           1|\n| 2008|     7|        22|        2|   2041|      2030|     55|        50|           AS|      102| N302AS|              194|           200|    170|       5|      11|   ANC| SEA|    1449|     4|     20|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        22|        2|   1950|      1955|   2220|      2224|           AS|      578| N649AS|              150|           149|    129|      -4|      -5|   PDX| SAN|     933|     4|     17|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        22|        2|   2115|      2125|   2318|      2336|           AS|      625| N619AS|              123|           131|    105|     -18|     -10|   LAS| PDX|     762|     6|     12|        0|                |       0|        null|        null|    null|         null|             null|           1|\n| 2008|     7|        22|        2|    725|       730|    815|       834|           AS|       65| N797AS|              110|           124|     94|     -19|      -5|   SEA| KTN|     680|     4|     12|        0|                |       0|        null|        null|    null|         null|             null|           1|\n| 2008|     7|        22|        2|   1532|      1530|   1759|      1758|           AS|      520| N609AS|              147|           148|    128|       1|       2|   SEA| BUR|     937|     6|     13|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        23|        3|   2357|      2345|    220|       221|           AS|      121| N764AS|              203|           216|    184|      -1|      12|   SEA| ANC|    1449|     4|     15|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        23|        3|   1234|      1230|   1342|      1340|           AS|      512| N553AS|               68|            70|     44|       2|       4|   GEG| SEA|     224|    11|     13|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        23|        3|   1242|      1235|   1429|      1420|           AS|      375| N975AS|              107|           105|     90|       9|       7|   SMF| SEA|     605|     4|     13|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        23|        3|    633|       630|    904|       905|           AS|      477| N613AS|              151|           155|    132|      -1|       3|   LAX| SEA|     954|     6|     13|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        23|        3|    733|       737|    849|       844|           AS|       55| N793AS|               76|            67|     57|       5|      -4|   FAI| SCC|     373|     4|     15|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        24|        4|   2018|      2009|   2102|      2054|           AS|      153| N713AS|               44|            45|     34|       8|       9|   OTZ| OME|     183|     6|      4|        0|                |       0|        null|        null|    null|         null|             null|           0|\n+-----+------+----------+---------+-------+----------+-------+----------+-------------+---------+-------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+----------------+--------+------------+------------+--------+-------------+-----------------+------------+\nonly showing top 20 rows\n\n+-----+------+----------+---------+-------+----------+-------+----------+-------------+---------+-------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+----------------+--------+------------+------------+--------+-------------+-----------------+------------+\n|YEAR_|MONTH_|DAYOFMONTH|DAYOFWEEK|DEPTIME|CRSDEPTIME|ARRTIME|CRSARRTIME|UNIQUECARRIER|FLIGHTNUM|TAILNUM|ACTUALELAPSEDTIME|CRSELAPSEDTIME|AIRTIME|ARRDELAY|DEPDELAY|ORIGIN|DEST|DISTANCE|TAXIIN|TAXIOUT|CANCELLED|CANCELLATIONCODE|DIVERTED|CARRIERDELAY|WEATHERDELAY|NASDELAY|SECURITYDELAY|LATEAIRCRAFTDELAY|ARRDELAYSLOT|\n+-----+------+----------+---------+-------+----------+-------+----------+-------------+---------+-------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+----------------+--------+------------+------------+--------+-------------+-----------------+------------+\n| 2008|     7|        20|        7|   1656|      1700|   1841|      1901|           AS|      329| N972AS|              105|           121|     92|     -20|      -4|   SJC| SEA|     697|     5|      8|        0|                |       0|        null|        null|    null|         null|             null|           2|\n| 2008|     7|        20|        7|    923|       930|   1129|      1137|           AS|      342| N944AS|              126|           127|    105|      -8|      -7|   SEA| OAK|     671|     7|     14|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        20|        7|   1952|      1930|   2057|      2042|           AS|      695| N796AS|               65|            72|     41|      15|      22|   GEG| SEA|     224|     9|     15|        0|                |       0|           0|           0|       0|            0|               15|           1|\n| 2008|     7|        20|        7|   1432|      1430|   1844|      1901|           AS|       92| N546AS|              192|           211|    180|     -17|       2|   ANC| SEA|    1449|     5|      7|        0|                |       0|        null|        null|    null|         null|             null|           1|\n| 2008|     7|        20|        7|    952|      1000|   1141|      1151|           AS|      361| N773AS|              109|           111|     85|     -10|      -8|   SMF| SEA|     605|     8|     16|        0|                |       0|        null|        null|    null|         null|             null|           1|\n| 2008|     7|        21|        1|    552|       600|   1025|      1045|           AS|      126| N785AS|              213|           225|    202|     -20|      -8|   FAI| SEA|    1533|     2|      9|        0|                |       0|        null|        null|    null|         null|             null|           2|\n| 2008|     7|        21|        1|    929|       925|   1210|      1156|           AS|       97| N315AS|              161|           151|    127|      14|       4|   LAS| SEA|     866|    10|     24|        0|                |       0|        null|        null|    null|         null|             null|           1|\n| 2008|     7|        21|        1|    751|       755|    920|       926|           AS|       61| N774AS|              149|           151|    128|      -6|      -4|   SEA| JNU|     909|     2|     19|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        21|        1|   1530|      1530|   1812|      1758|           AS|      520| N797AS|              162|           148|    141|      14|       0|   SEA| BUR|     937|     8|     13|        0|                |       0|        null|        null|    null|         null|             null|           1|\n| 2008|     7|        22|        2|   2041|      2030|     55|        50|           AS|      102| N302AS|              194|           200|    170|       5|      11|   ANC| SEA|    1449|     4|     20|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        22|        2|   1950|      1955|   2220|      2224|           AS|      578| N649AS|              150|           149|    129|      -4|      -5|   PDX| SAN|     933|     4|     17|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        22|        2|   2115|      2125|   2318|      2336|           AS|      625| N619AS|              123|           131|    105|     -18|     -10|   LAS| PDX|     762|     6|     12|        0|                |       0|        null|        null|    null|         null|             null|           1|\n| 2008|     7|        22|        2|    725|       730|    815|       834|           AS|       65| N797AS|              110|           124|     94|     -19|      -5|   SEA| KTN|     680|     4|     12|        0|                |       0|        null|        null|    null|         null|             null|           1|\n| 2008|     7|        22|        2|   1532|      1530|   1759|      1758|           AS|      520| N609AS|              147|           148|    128|       1|       2|   SEA| BUR|     937|     6|     13|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        23|        3|   2357|      2345|    220|       221|           AS|      121| N764AS|              203|           216|    184|      -1|      12|   SEA| ANC|    1449|     4|     15|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        23|        3|   1234|      1230|   1342|      1340|           AS|      512| N553AS|               68|            70|     44|       2|       4|   GEG| SEA|     224|    11|     13|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        23|        3|   1242|      1235|   1429|      1420|           AS|      375| N975AS|              107|           105|     90|       9|       7|   SMF| SEA|     605|     4|     13|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        23|        3|    633|       630|    904|       905|           AS|      477| N613AS|              151|           155|    132|      -1|       3|   LAX| SEA|     954|     6|     13|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        23|        3|    733|       737|    849|       844|           AS|       55| N793AS|               76|            67|     57|       5|      -4|   FAI| SCC|     373|     4|     15|        0|                |       0|        null|        null|    null|         null|             null|           0|\n| 2008|     7|        24|        4|   2018|      2009|   2102|      2054|           AS|      153| N713AS|               44|            45|     34|       8|       9|   OTZ| OME|     183|     6|      4|        0|                |       0|        null|        null|    null|         null|             null|           0|\n+-----+------+----------+---------+-------+----------+-------+----------+-------------+---------+-------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+----------------+--------+------------+------------+--------+-------------+-----------------+------------+\nonly showing top 20 rows\n\nres13: org.apache.spark.sql.DataFrame \u003d []\n+---------+\n| count(1)|\n+---------+\n|210938723|\n+---------+\n\nres15: org.apache.spark.sql.DataFrame \u003d []\nres16: org.apache.spark.sql.DataFrame \u003d []\nres17: org.apache.spark.sql.DataFrame \u003d []\nres18: org.apache.spark.sql.DataFrame \u003d []\n"
+          }
+        ]
+      },
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "\nimport org.apache.spark.sql.SaveMode\n\nres11: org.apache.spark.sql.DataFrame \u003d []\n\ndataFolder: String \u003d s3a://AKIAJ73BL2H66NACKJNQ:WdXRSski53xmmtQ3zZQnU1iTL+wqm5XCLSBAMrvf@zeppelindemo/airlinedata_cleaned\n\ndf1: org.apache.spark.sql.DataFrame \u003d [Year_: int, Month_: int ... 28 more fields]\n\nres12: org.apache.spark.sql.DataFrame \u003d [Year_: int, Month_: int ... 28 more fields]\n+-----+------+----------+---------+-------+----------+-------+----------+-------------+---------+-------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+----------------+--------+------------+------------+--------+-------------+-----------------+------------+\n|Year_|Month_|DayOfMonth|DayOfWeek|DepTime|CRSDepTime|ArrTime|CRSArrTime|UniqueCarrier|FlightNum|TailNum|ActualElapsedTime|CRSElapsedTime|AirTime|ArrDelay|DepDelay|Origin|Dest|Distance|TaxiIn|TaxiOut|Cancelled|CancellationCode|Diverted|CarrierDelay|WeatherDelay|NASDelay|SecurityDelay|LateAircraftDelay|ArrDelaySlot|\n+-----+------+----------+---------+-------+----------+-------+----------+-------------+---------+-------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+----------------+--------+------------+------------+--------+-------------+-----------------+------------+\n| 2014|     1|         6|        1|   1455|      1145|   1818|      1505|           MQ|     3673| N526MQ|              143|           140|    120|     193|     190|   LAX| DEN|     862|     8|     15|        0|               0|       0|          18|           0|       3|            0|              172|          19|\n| 2014|     1|        19|        7|   1003|      1010|   1123|      1145|           MQ|     3675| N800MQ|              140|           155|    109|     -22|      -7|   LGA| BNA|     764|    12|     19|        0|               0|       0|           0|           0|       0|            0|                0|           2|\n| 2014|     1|        10|        5|   1210|      1125|   1409|      1325|           MQ|     3746| N851MQ|               59|            60|     38|      44|      45|   ORD| TVC|     224|     3|     18|        0|               0|       0|           0|           0|      23|            0|               21|           4|\n| 2014|     1|        24|        5|   1235|      1235|   1540|      1535|           MQ|     3748| N8EGMQ|              125|           120|     91|       5|       0|   ORD| EWR|     719|     6|     28|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|         2|        4|   1449|      1435|   1753|      1745|           MQ|     3753| N617MQ|              124|           130|    105|       8|      14|   DFW| GSP|     862|     3|     16|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|        13|        1|   1620|      1625|   1820|      1835|           MQ|     3756| N671MQ|              120|           130|    100|     -15|      -5|   MIA| CLT|     650|     9|     11|        0|               0|       0|           0|           0|       0|            0|                0|           1|\n| 2014|     1|        20|        1|   1147|      1150|   1328|      1345|           MQ|     3765| N627MQ|              101|           115|     83|     -17|      -3|   FAR| ORD|     557|     9|      9|        0|               0|       0|           0|           0|       0|            0|                0|           1|\n| 2014|     1|        27|        1|   1001|      1015|   1200|      1220|           MQ|     3766| N922MQ|              119|           125|     98|     -20|     -14|   PNS| DFW|     604|    11|     10|        0|               0|       0|           0|           0|       0|            0|                0|           2|\n| 2014|     1|        24|        5|   1736|      1730|   1941|      1940|           MQ|     3772| N905MQ|              125|           130|    108|       1|       6|   MGM| DFW|     622|    11|      6|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|         1|        3|   1415|      1425|   1514|      1515|           MQ|     3777| N687MQ|               59|            50|     30|      -1|     -10|   GRK| DFW|     134|    13|     16|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|        13|        1|   1354|      1405|   1442|      1450|           MQ|     3252| N604MQ|               48|            45|     25|      -8|     -11|   TYR| DFW|     102|    16|      7|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|        23|        4|    825|       825|    947|       940|           MQ|     3254| N835MQ|               82|            75|     51|       7|       0|   DFW| LFT|     351|     7|     24|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|         6|        1|   2303|      2040|     48|      2220|           MQ|     3257| N849MQ|              105|           100|     84|     148|     143|   LGA| RDU|     431|     3|     18|        0|               0|       0|           0|           0|       5|            0|              143|          14|\n| 2014|     1|        16|        4|    650|       655|    856|       910|           MQ|     3261| N668MQ|               66|            75|     50|     -14|      -5|   ORD| CLE|     315|     6|     10|        0|               0|       0|           0|           0|       0|            0|                0|           1|\n| 2014|     1|        13|        1|   1444|      1450|   1530|      1545|           MQ|     3320| N809MQ|               46|            55|     33|     -15|      -6|   CLL| DFW|     164|     7|      6|        0|               0|       0|           0|           0|       0|            0|                0|           1|\n| 2014|     1|        29|        3|   1921|      1925|   2037|      2035|           MQ|     3322| N835MQ|               76|            70|     56|       2|      -4|   DFW| JLN|     327|     5|     15|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|         8|        3|   1041|      1050|   1155|      1205|           MQ|     3326| N605MQ|               74|            75|     56|     -10|      -9|   DFW| BTR|     383|     6|     12|        0|               0|       0|           0|           0|       0|            0|                0|           1|\n| 2014|     1|        15|        3|    604|       610|    653|       655|           MQ|     3328| N928MQ|               49|            45|     28|      -2|      -6|   ACT| DFW|      89|     5|     16|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|        22|        3|   1303|      1300|   1435|      1435|           MQ|     3330| N836MQ|              152|           155|    122|       0|       3|   LEX| DFW|     785|     9|     21|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|        29|        3|   1438|      1435|   1630|      1630|           MQ|     3336| N907MQ|              112|           115|     99|       0|       3|   DFW| CID|     685|     5|      8|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n+-----+------+----------+---------+-------+----------+-------+----------+-------------+---------+-------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+----------------+--------+------------+------------+--------+-------------+-----------------+------------+\nonly showing top 20 rows\n\n+-----+------+----------+---------+-------+----------+-------+----------+-------------+---------+-------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+----------------+--------+------------+------------+--------+-------------+-----------------+------------+\n|Year_|Month_|DayOfMonth|DayOfWeek|DepTime|CRSDepTime|ArrTime|CRSArrTime|UniqueCarrier|FlightNum|TailNum|ActualElapsedTime|CRSElapsedTime|AirTime|ArrDelay|DepDelay|Origin|Dest|Distance|TaxiIn|TaxiOut|Cancelled|CancellationCode|Diverted|CarrierDelay|WeatherDelay|NASDelay|SecurityDelay|LateAircraftDelay|ArrDelaySlot|\n+-----+------+----------+---------+-------+----------+-------+----------+-------------+---------+-------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+----------------+--------+------------+------------+--------+-------------+-----------------+------------+\n| 2014|     1|         6|        1|   1455|      1145|   1818|      1505|           MQ|     3673| N526MQ|              143|           140|    120|     193|     190|   LAX| DEN|     862|     8|     15|        0|               0|       0|          18|           0|       3|            0|              172|          19|\n| 2014|     1|        19|        7|   1003|      1010|   1123|      1145|           MQ|     3675| N800MQ|              140|           155|    109|     -22|      -7|   LGA| BNA|     764|    12|     19|        0|               0|       0|           0|           0|       0|            0|                0|           2|\n| 2014|     1|        10|        5|   1210|      1125|   1409|      1325|           MQ|     3746| N851MQ|               59|            60|     38|      44|      45|   ORD| TVC|     224|     3|     18|        0|               0|       0|           0|           0|      23|            0|               21|           4|\n| 2014|     1|        24|        5|   1235|      1235|   1540|      1535|           MQ|     3748| N8EGMQ|              125|           120|     91|       5|       0|   ORD| EWR|     719|     6|     28|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|         2|        4|   1449|      1435|   1753|      1745|           MQ|     3753| N617MQ|              124|           130|    105|       8|      14|   DFW| GSP|     862|     3|     16|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|        13|        1|   1620|      1625|   1820|      1835|           MQ|     3756| N671MQ|              120|           130|    100|     -15|      -5|   MIA| CLT|     650|     9|     11|        0|               0|       0|           0|           0|       0|            0|                0|           1|\n| 2014|     1|        20|        1|   1147|      1150|   1328|      1345|           MQ|     3765| N627MQ|              101|           115|     83|     -17|      -3|   FAR| ORD|     557|     9|      9|        0|               0|       0|           0|           0|       0|            0|                0|           1|\n| 2014|     1|        27|        1|   1001|      1015|   1200|      1220|           MQ|     3766| N922MQ|              119|           125|     98|     -20|     -14|   PNS| DFW|     604|    11|     10|        0|               0|       0|           0|           0|       0|            0|                0|           2|\n| 2014|     1|        24|        5|   1736|      1730|   1941|      1940|           MQ|     3772| N905MQ|              125|           130|    108|       1|       6|   MGM| DFW|     622|    11|      6|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|         1|        3|   1415|      1425|   1514|      1515|           MQ|     3777| N687MQ|               59|            50|     30|      -1|     -10|   GRK| DFW|     134|    13|     16|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|        13|        1|   1354|      1405|   1442|      1450|           MQ|     3252| N604MQ|               48|            45|     25|      -8|     -11|   TYR| DFW|     102|    16|      7|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|        23|        4|    825|       825|    947|       940|           MQ|     3254| N835MQ|               82|            75|     51|       7|       0|   DFW| LFT|     351|     7|     24|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|         6|        1|   2303|      2040|     48|      2220|           MQ|     3257| N849MQ|              105|           100|     84|     148|     143|   LGA| RDU|     431|     3|     18|        0|               0|       0|           0|           0|       5|            0|              143|          14|\n| 2014|     1|        16|        4|    650|       655|    856|       910|           MQ|     3261| N668MQ|               66|            75|     50|     -14|      -5|   ORD| CLE|     315|     6|     10|        0|               0|       0|           0|           0|       0|            0|                0|           1|\n| 2014|     1|        13|        1|   1444|      1450|   1530|      1545|           MQ|     3320| N809MQ|               46|            55|     33|     -15|      -6|   CLL| DFW|     164|     7|      6|        0|               0|       0|           0|           0|       0|            0|                0|           1|\n| 2014|     1|        29|        3|   1921|      1925|   2037|      2035|           MQ|     3322| N835MQ|               76|            70|     56|       2|      -4|   DFW| JLN|     327|     5|     15|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|         8|        3|   1041|      1050|   1155|      1205|           MQ|     3326| N605MQ|               74|            75|     56|     -10|      -9|   DFW| BTR|     383|     6|     12|        0|               0|       0|           0|           0|       0|            0|                0|           1|\n| 2014|     1|        15|        3|    604|       610|    653|       655|           MQ|     3328| N928MQ|               49|            45|     28|      -2|      -6|   ACT| DFW|      89|     5|     16|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|        22|        3|   1303|      1300|   1435|      1435|           MQ|     3330| N836MQ|              152|           155|    122|       0|       3|   LEX| DFW|     785|     9|     21|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n| 2014|     1|        29|        3|   1438|      1435|   1630|      1630|           MQ|     3336| N907MQ|              112|           115|     99|       0|       3|   DFW| CID|     685|     5|      8|        0|               0|       0|           0|           0|       0|            0|                0|           0|\n+-----+------+----------+---------+-------+----------+-------+----------+-------------+---------+-------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+----------------+--------+------------+------------+--------+-------------+-----------------+------------+\nonly showing top 20 rows\n\n+---------+\n| count(1)|\n+---------+\n|210938724|\n+---------+\n\n\nres16: org.apache.spark.sql.DataFrame \u003d []\n\nres17: org.apache.spark.sql.DataFrame \u003d []\n\nres18: org.apache.spark.sql.DataFrame \u003d []\n\nres19: org.apache.spark.sql.DataFrame \u003d []\n"
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367555_273157020",
+      "id": "20160225-135643_869801451",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 11, 2019 2:33:57 PM",
+      "dateFinished": "Apr 11, 2019 2:41:06 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nDROP TABLE IF EXISTS AIRLINE_SAMPLE;\nDROP TABLE IF EXISTS AIRLINE;\nCREATE EXTERNAL TABLE airline USING PARQUET OPTIONS( path \u0027s3a://AKIAJ73BL2H66NACKJNQ:WdXRSski53xmmtQ3zZQnU1iTL+wqm5XCLSBAMrvf@zeppelindemo/airlinedata_cleaned_1b\u0027);\nCREATE SAMPLE TABLE airline_sample ON airline OPTIONS(\n    buckets \u00277\u0027, qcs \u0027UniqueCarrier, Year_, Month_\u0027,\n    fraction \u00270.01\u0027, \n    strataReservoirSize \u002750\u0027, persistent \u0027sync\u0027) \n  AS (SELECT * FROM airline);",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2019 2:54:20 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text",
+        "tableHide": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1555875278593_-1773750642",
+      "id": "20190421-193438_139053295",
+      "dateCreated": "Apr 21, 2019 7:34:38 PM",
+      "dateStarted": "Apr 23, 2019 10:10:01 PM",
+      "dateFinished": "Apr 23, 2019 10:14:03 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Alternatively, load program using SQL (Run the above para or this one, NOT BOTH)",
+      "text": "%sql\n-- DROP TABLE IF EXISTS AIRLINE;\n-- DROP TABLE IF EXISTS AIRLINE_SAMPLE\n-- CREATE EXTERNAL TABLE AIRLINE USING PARQUET OPTIONS( path \u0027/data/largedata/airlineParquetData_2007-15-large\u0027)\n-- CREATE EXTERNAL TABLE AIRLINE USING PARQUET OPTIONS( path \u0027s3a://AKIAJ73BL2H66NACKJNQ:WdXRSski53xmmtQ3zZQnU1iTL+wqm5XCLSBAMrvf@zeppelindemo/airlinedata_cleaned\u0027);\n-- CREATE SAMPLE TABLE AIRLINE_SAMPLE ON AIRLINE OPTIONS(\n--    buckets \u00277\u0027, qcs \u0027UniqueCarrier, Year_, Month_\u0027,\n--    fraction \u00270.01\u0027, \n--    strataReservoirSize \u002750\u0027, persistent \u0027sync\u0027) \n--  AS (SELECT * FROM AIRLINE)\n\n\n\n-- Create Reference data table and load data  (Airline code to Name Reference)\n-- DROP TABLE IF EXISTS STAGING_AIRLINEREF;\n-- DROP TABLE IF EXISTS AIRLINEREF;\n\n--- CREATE TEMPORARY STAGING TABLE TO LOAD PARQUET FORMATTED DATA -----\n\n-- CREATE external TABLE STAGING_AIRLINEREF  USING parquet OPTIONS( path  \u0027s3a://AKIAJ73BL2H66NACKJNQ:WdXRSski53xmmtQ3zZQnU1iTL+wqm5XCLSBAMrvf@zeppelindemo/airportdata\u0027 );\n\n---- CREATE ROW TABLE -----\n\n-- CREATE TABLE AIRLINEREF USING row OPTIONS() AS (SELECT CODE, DESCRIPTION FROM STAGING_AIRLINEREF);",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2019 2:54:15 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "editorMode": "ace/mode/text",
+        "tableHide": true,
+        "title": true,
+        "editorHide": true,
+        "results": [],
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Unexpected end of input, expected select, insert, put, update, delete, ctes, dmlOperation or ddl (line 1, column 32):\n-- DROP TABLE IF EXISTS AIRLINE\n                               ^;\nclass org.apache.spark.sql.ParseException\norg.apache.spark.sql.SnappyParser.parseSQLOnly(SnappyParser.scala:1225)\norg.apache.spark.sql.SnappyParser.parseSQL(SnappyParser.scala:1233)\norg.apache.spark.sql.SnappyParser.parse(SnappyParser.scala:1216)\norg.apache.spark.sql.SnappySqlParser.parsePlan(SnappySqlParser.scala:61)\norg.apache.spark.sql.SnappySession$.sqlPlan(SnappySession.scala:2012)\norg.apache.spark.sql.SnappySession$$anonfun$sqInternal$1.apply(SnappySession.scala:189)\norg.apache.spark.sql.SnappySession$$anonfun$sqInternal$1.apply(SnappySession.scala:189)\norg.apache.spark.sql.execution.SnappyContextAQPFunctions.sql(SnappyContextAQPFunctions.scala:466)\norg.apache.spark.sql.SnappySession.sqInternal(SnappySession.scala:189)\norg.apache.spark.sql.SnappySession.sql(SnappySession.scala:178)\norg.apache.spark.sql.SQLContext.sql(SQLContext.scala:700)\norg.apache.zeppelin.interpreter.SnappyDataSqlZeppelinInterpreter.executeSql(SnappyDataSqlZeppelinInterpreter.java:314)\norg.apache.zeppelin.interpreter.SnappyDataSqlZeppelinInterpreter.interpret(SnappyDataSqlZeppelinInterpreter.java:254)\norg.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:97)\norg.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:498)\norg.apache.zeppelin.scheduler.Job.run(Job.java:175)\norg.apache.zeppelin.scheduler.ParallelScheduler$JobRunner.run(ParallelScheduler.java:162)\njava.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\njava.util.concurrent.FutureTask.run(FutureTask.java:266)\njava.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\njava.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\njava.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\njava.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\njava.lang.Thread.run(Thread.java:748)"
+          }
+        ]
+      },
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "apps": [],
+      "jobName": "paragraph_1474077983285_-967587971",
+      "id": "20160917-020623_88535189",
+      "dateCreated": "Sep 17, 2016 7:36:23 AM",
+      "dateStarted": "Apr 21, 2019 7:34:25 PM",
+      "dateFinished": "Apr 21, 2019 7:34:25 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nprintln(s\"\"\"%html\n\u003ch4\u003e Now, lets do some analytics - queries on the left paragraphs go against the full(\"exact\") data. The right side paras run against the stratified sample created above.  While the difference in performance is 5-10X (left vs right paragraphs) larger volume or concurrency makes the difference more stark. For example, you can RUN several of the left paragraphs concurrently and try the same on the right paragraphs to see the effect of concurrency on response time. \u003c/h4\u003e\"\"\") \n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 9, 2019 1:57:57 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "tableHide": false,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false
+            }
+          }
+        ],
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch4\u003e Now, lets do some analytics - queries on the left paragraphs go against the full(\"exact\") data. The right side paras run against the stratified sample created above.  While the difference in performance is 5-10X (left vs right paragraphs) larger volume or concurrency makes the difference more stark. For example, you can RUN several of the left paragraphs concurrently and try the same on the right paragraphs to see the effect of concurrency on response time. \u003c/h4\u003e\n"
+          }
+        ]
+      },
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch4\u003e Now, lets do some analytics - queries on the left paragraphs go against the full(\"exact\") data. The right side paras run against the stratified sample created above.  While the difference in performance is 5-10X (left vs right paragraphs) larger volume or concurrency makes the difference more stark. For example, you can RUN several of the left paragraphs concurrently and try the same on the right paragraphs to see the effect of concurrency on response time. \u003c/h4\u003e\n"
+      },
+      "apps": [],
+      "jobName": "paragraph_1475081883220_-880088063",
+      "id": "20160928-165803_51665032",
+      "dateCreated": "Sep 28, 2016 10:28:03 AM",
+      "dateStarted": "Nov 19, 2016 8:28:17 AM",
+      "dateFinished": "Nov 19, 2016 8:28:31 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "How many records do we have?",
+      "text": "%sql\nselect count(*) from AIRLINE\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 21, 2019 7:48:58 PM",
+      "config": {
+        "enabled": true,
+        "title": true,
+        "tableHide": false,
+        "graph": {
+          "mode": "table",
+          "height": 101.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "count(1)",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "count(1)",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "colWidth": 6.0,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "count(1)\n1004070574\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 33517 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367556_271233276",
+      "id": "20160224-214604_417762107",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 21, 2019 7:48:58 PM",
+      "dateFinished": "Apr 21, 2019 7:49:31 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "How many records in the synopsis table?",
+      "text": "%sql\n-- sets the error limit on the count query to be under 10%\nselect count(*) rowCount, count(*) as sample_count from AIRLINE with error 0.1;",
+      "user": "anonymous",
+      "dateUpdated": "Apr 21, 2019 7:48:52 PM",
+      "config": {
+        "enabled": true,
+        "title": true,
+        "graph": {
+          "mode": "table",
+          "height": 112.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "ROWCOUNT",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "SAMPLE_COUNT",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "ROWCOUNT",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "SAMPLE_COUNT",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "colWidth": 6.0,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "ROWCOUNT\tSAMPLE_COUNT\n1004070574\t10068000\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 1348 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367556_271233276",
+      "id": "20160224-214604_1203690306",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 21, 2019 7:48:52 PM",
+      "dateFinished": "Apr 21, 2019 7:48:54 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "what is the best time of day to travel?",
+      "text": "%sql\n\nselect  round(DepTime/100)  hourofDay, AVG(ArrDelay) avgDelay from airline_large\ngroup by round(DepTime/100)\norder by hourOfDay",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2019 5:07:18 PM",
+      "config": {
+        "enabled": true,
+        "title": true,
+        "graph": {
+          "mode": "lineChart",
+          "height": 280.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "HOUROFDAY",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "AVGDELAY",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "HOUROFDAY",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "AVGDELAY",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "editorHide": false,
+        "colWidth": 6.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "lineChart",
+              "height": 300.0,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "HOUROFDAY\tAVGDELAY\nnull\tnull\n0.0\t37.78186902337142\n1.0\t28.620672503922112\n2.0\t44.17130151869575\n3.0\t68.8950790619891\n4.0\t45.085357780046905\n5.0\t-3.0078515025998818\n6.0\t-1.924492418134989\n7.0\t0.16509121054267673\n8.0\t1.2901371706483133\n9.0\t2.903753041766873\n10.0\t4.111000517411739\n11.0\t4.211612871863617\n12.0\t4.869837548144627\n13.0\t5.602228231288021\n14.0\t6.958210096582838\n15.0\t7.828620993197302\n16.0\t8.810970703945724\n17.0\t8.78538033826382\n18.0\t10.634343144280859\n19.0\t12.041369800057922\n20.0\t13.423986335490907\n21.0\t16.99991049578355\n22.0\t22.50204412084371\n23.0\t31.602031945150323\n24.0\t28.637130193188373\n25.0\t152.55143540669857\n26.0\t228.26153846153846\n27.0\t298.3333333333333\n28.0\t392.25\n29.0\t442.0\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 20344 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367560_269694280",
+      "id": "20160224-214604_1795051693",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Jun 12, 2019 5:07:18 PM",
+      "dateFinished": "Jun 12, 2019 5:07:38 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "what is the best time of day to travel?   (Use Synopsis)",
+      "text": "%sql\n\nselect  round(DepTime/100)  hourOfDay, AVG(ArrDelay) avgDelay, absolute_error(avgDelay) ,\nrelative_error(avgDelay), count(*) sample_count from airline_large\ngroup by round(DepTime/100) order by hourOfDay with error",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2019 5:02:34 PM",
+      "config": {
+        "enabled": true,
+        "title": true,
+        "graph": {
+          "mode": "lineChart",
+          "height": 282.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "HOUROFDAY",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "AVGDELAY",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "HOUROFDAY",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "AVGDELAY",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "editorHide": false,
+        "colWidth": 6.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "lineChart",
+              "height": 300.0,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "HOUROFDAY\tAVGDELAY\tAbsolute_Error(AVGDELAY)\tRelative_Error(AVGDELAY)\tSAMPLE_COUNT\nnull\tnull\tnull\tnull\t91406\n0.0\t38.64114425476733\t1.5990022045569896\t0.04138081921214622\t18111\n1.0\t27.763146520078116\t1.6045288194135712\t0.05779347878502125\t16578\n2.0\t45.4224220013667\t4.003747441334747\t0.08814473700266974\t5204\n3.0\t70.14196530440091\t10.554473840028283\t0.1504730270134884\t1093\n4.0\t46.93336147748428\t12.21688735688748\t0.2603028415671523\t712\n5.0\t-2.797809880055797\t0.47946379516616355\t0.17137111373579164\t21019\n6.0\t-1.792990247196119\t0.08868884823050065\t0.049464211179727505\t248890\n7.0\t0.1805042624175584\t0.07061895183785219\t0.0598210053839462\t348297\n8.0\t1.3194332554266133\t0.07886300151140217\t0.05977036063556193\t337328\n9.0\t2.9504040810206313\t0.08920650896079499\t0.030235353026605034\t332486\n10.0\t4.09806764289549\t0.10266942708160118\t0.025053131384883652\t301067\n11.0\t4.187267422038276\t0.09938229309293006\t0.023734403150337317\t307304\n12.0\t4.887395260982996\t0.10186215199686588\t0.02084180766185432\t317990\n13.0\t5.552302109829883\t0.10384411986458937\t0.018702894368939706\t331082\n14.0\t7.02207908908695\t0.12218367458119915\t0.017399928572591192\t297278\n15.0\t7.696281915408481\t0.12005087239804486\t0.015598554434147588\t304894\n16.0\t8.699338282948906\t0.12948340956653817\t0.014884282614958366\t295815\n17.0\t8.765003470935293\t0.12361276544642956\t0.014102991043452391\t337706\n18.0\t10.671995618981168\t0.14255062144611216\t0.013357447522989254\t306201\n19.0\t12.073938782887872\t0.15384364989954338\t0.012741794758607075\t293787\n20.0\t13.323603634397932\t0.1805363647033145\t0.013550115243387948\t245164\n21.0\t16.87607751662172\t0.239954695252491\t0.014218629596608152\t185518\n22.0\t22.464176715666568\t0.3880037958833984\t0.01727211287528751\t105854\n23.0\t31.876132091258327\t0.7587061141222036\t0.023801699401611847\t51976\n24.0\t27.169860145384362\t1.8800014758437285\t0.06919437442018282\t8836\n25.0\t152.92941833203085\t43.5852631257223\t0.2850024776207066\t55\n26.0\t217.71616926503344\t129.0454620567113\t0.592723372326195\t14\n27.0\t396.0\t5012.992210116204\t12.659071237667181\t1\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 1239 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367560_269694280",
+      "id": "20160224-214604_1583531195",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Jun 12, 2019 5:02:34 PM",
+      "dateFinished": "Jun 12, 2019 5:02:35 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Which airline has the most flights?",
+      "text": "%sql\n\nselect  count(*)  cnt, description airlineName from AIRLINE, AIRLINEREF\nwhere airline.UniqueCarrier \u003d airlineref.Code \ngroup by description  order by cnt desc limit 8\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 11, 2019 3:09:57 PM",
+      "config": {
+        "enabled": true,
+        "title": true,
+        "graph": {
+          "mode": "pieChart",
+          "height": 290.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "AIRLINENAME",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "CNT",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "CNT",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "AIRLINENAME",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "colWidth": 6.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "pieChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "pieChart": {}
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "AIRLINENAME",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "CNT",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "CNT\tAIRLINENAME\n37676772\tSouthwest Airlines Co.\n20995968\tDelta Air Lines Inc.\n19395412\tSkyWest Airlines Inc.\n18400596\tAmerican Airlines Inc.\n15136840\tExpressJet Airlines Inc.\n14863584\tEnvoy Air\n14304240\tUnited Air Lines Inc.\n13855676\tUS Airways Inc.\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 1887 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367557_270848527",
+      "id": "20160224-214604_1127018202",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 11, 2019 3:09:57 PM",
+      "dateFinished": "Apr 11, 2019 3:09:59 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Which airline has the most flights?   (Use Synopsis)",
+      "text": "%sql\n\nselect  count(*)  cnt, description airlineName from AIRLINE, AIRLINEREF\nwhere airline.UniqueCarrier \u003d airlineref.Code \ngroup by description  order by cnt desc limit 8 with error 0.01\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 11, 2019 3:10:20 PM",
+      "config": {
+        "enabled": true,
+        "title": true,
+        "graph": {
+          "mode": "pieChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "AIRLINENAME",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "CNT",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "CNT",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "AIRLINENAME",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "colWidth": 6.0,
+        "tableHide": false,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "pieChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "pieChart": {}
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "AIRLINENAME",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "CNT",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "CNT\tAIRLINENAME\n37676772\tSouthwest Airlines Co.\n20995968\tDelta Air Lines Inc.\n19395412\tSkyWest Airlines Inc.\n18400596\tAmerican Airlines Inc.\n15136840\tExpressJet Airlines Inc.\n14863584\tEnvoy Air\n14304240\tUnited Air Lines Inc.\n13855676\tUS Airways Inc.\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 965 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367557_270848527",
+      "id": "20160608-185741_1797279368",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 11, 2019 3:10:20 PM",
+      "dateFinished": "Apr 11, 2019 3:10:21 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Which airlines arrive on schedule?",
+      "text": "%sql\n\nselect AVG(ArrDelay) arrivalDelay, UniqueCarrier carrier from airline group by UniqueCarrier\norder by UniqueCarrier\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 11, 2019 3:10:29 PM",
+      "config": {
+        "enabled": true,
+        "title": true,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 285.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "CARRIER",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "ARRIVALDELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "ARRIVALDELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "CARRIER",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "colWidth": 6.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "multiBarChart": {}
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "CARRIER",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "ARRIVALDELAY",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "ARRIVALDELAY\tCARRIER\n3.9894994213705144\t9E\n7.914516059716782\tAA\n-1.5950957940010053\tAQ\n0.9863668510468558\tAS\n8.304958662302287\tB6\n7.676926492597038\tCO\n3.300033687282277\tDL\n9.66366790177997\tEV\n8.2747899795872\tF9\n5.117801596524285\tFL\n0.46133753554128526\tHA\n8.320583049093496\tMQ\n13.49233602661597\tNK\n8.655506823312866\tNW\n11.040092474806633\tOH\n6.004144109192868\tOO\n5.461848591569124\tUA\n3.340647116306384\tUS\n4.774866966844044\tVX\n5.157513859289128\tWN\n8.716433774769778\tXE\n7.051805149524326\tYV\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 1367 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367557_270848527",
+      "id": "20160224-214604_1048333091",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 11, 2019 3:10:29 PM",
+      "dateFinished": "Apr 11, 2019 3:10:30 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Which airlines arrive on schedule?   (Use Synopsis)",
+      "text": "%sql\n\nselect AVG(ArrDelay) arrivalDelay, UniqueCarrier carrier from airline group by UniqueCarrier\norder by UniqueCarrier with error 0.1 confidence 0.8 behavior \u0027do_nothing\u0027;\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 11, 2019 3:10:49 PM",
+      "config": {
+        "enabled": true,
+        "tableHide": false,
+        "title": true,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 296.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "CARRIER",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "ARRIVALDELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "ARRIVALDELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "CARRIER",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "colWidth": 6.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "multiBarChart": {}
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "CARRIER",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "ARRIVALDELAY",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "ARRIVALDELAY\tCARRIER\n4.566442465833536\t9E\n7.913534917214442\tAA\n-1.6814413827293755\tAQ\n1.0727757915592908\tAS\n8.325253702367789\tB6\n7.947164151436601\tCO\n3.182416674287304\tDL\n9.548864898376744\tEV\n8.492312412032959\tF9\n5.072693570417756\tFL\n0.4054402016268939\tHA\n8.408814340555637\tMQ\n12.915748574144473\tNK\n8.494549639313597\tNW\n11.314210752926062\tOH\n5.946191011201481\tOO\n5.377372696280033\tUA\n3.332880181760949\tUS\n4.912494184131582\tVX\n5.149772826492669\tWN\n8.845728612056424\tXE\n7.35915145276835\tYV\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 124 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367558_272002774",
+      "id": "20160224-214604_1378420449",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 11, 2019 3:10:49 PM",
+      "dateFinished": "Apr 11, 2019 3:10:49 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "Apr 9, 2019 1:57:58 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "results": [],
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "apps": [],
+      "jobName": "paragraph_1474080837315_-998416916",
+      "id": "20160917-025357_739939696",
+      "dateCreated": "Sep 17, 2016 8:23:57 AM",
+      "dateStarted": "Oct 13, 2016 9:59:38 AM",
+      "dateFinished": "Oct 13, 2016 9:59:39 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "How is arrival delay trending over the years?",
+      "text": "%sql\n\nSELECT AVG(ArrDelay) ArrivalDelay, UniqueCarrier, Year_\n\t   FROM airline GROUP BY UniqueCarrier, Year_ ORDER BY\n\t        Year_,UniqueCarrier desc limit 100",
+      "user": "anonymous",
+      "dateUpdated": "Jun 12, 2019 4:34:52 PM",
+      "config": {
+        "enabled": true,
+        "title": true,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 293.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "YEAR_",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "ARRIVALDELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [
+            {
+              "name": "UNIQUECARRIER",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "scatter": {
+            "xAxis": {
+              "name": "ARRIVALDELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "UNIQUECARRIER",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "editorHide": false,
+        "colWidth": 6.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "multiBarChart": {}
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "YEAR_",
+                  "index": 2.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [
+                {
+                  "name": "UNIQUECARRIER",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "values": [
+                {
+                  "name": "ARRIVALDELAY",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Status Code: 403, AWS Service: Amazon S3, AWS Request ID: 56354D01601CB2B4, AWS Error Code: null, AWS Error Message: Forbidden\nclass com.amazonaws.services.s3.model.AmazonS3Exception\ncom.amazonaws.http.AmazonHttpClient.handleErrorResponse(AmazonHttpClient.java:798)\ncom.amazonaws.http.AmazonHttpClient.executeHelper(AmazonHttpClient.java:421)\ncom.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:232)\ncom.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:3528)\ncom.amazonaws.services.s3.AmazonS3Client.getObjectMetadata(AmazonS3Client.java:976)\ncom.amazonaws.services.s3.AmazonS3Client.getObjectMetadata(AmazonS3Client.java:956)\norg.apache.hadoop.fs.s3a.S3AFileSystem.getFileStatus(S3AFileSystem.java:892)\norg.apache.hadoop.fs.s3a.S3AFileSystem.listStatus(S3AFileSystem.java:734)\norg.apache.spark.sql.execution.datasources.PartitioningAwareFileIndex$.org$apache$spark$sql$execution$datasources$PartitioningAwareFileIndex$$listLeafFiles(PartitioningAwareFileIndex.scala:394)\norg.apache.spark.sql.execution.datasources.PartitioningAwareFileIndex$$anonfun$org$apache$spark$sql$execution$datasources$PartitioningAwareFileIndex$$bulkListLeafFiles$1.apply(PartitioningAwareFileIndex.scala:302)\norg.apache.spark.sql.execution.datasources.PartitioningAwareFileIndex$$anonfun$org$apache$spark$sql$execution$datasources$PartitioningAwareFileIndex$$bulkListLeafFiles$1.apply(PartitioningAwareFileIndex.scala:301)\nscala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\nscala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\nscala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\nscala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\nscala.collection.TraversableLike$class.map(TraversableLike.scala:234)\nscala.collection.AbstractTraversable.map(Traversable.scala:104)\norg.apache.spark.sql.execution.datasources.PartitioningAwareFileIndex$.org$apache$spark$sql$execution$datasources$PartitioningAwareFileIndex$$bulkListLeafFiles(PartitioningAwareFileIndex.scala:301)\norg.apache.spark.sql.execution.datasources.PartitioningAwareFileIndex.listLeafFiles(PartitioningAwareFileIndex.scala:253)\norg.apache.spark.sql.execution.datasources.InMemoryFileIndex.refresh0(InMemoryFileIndex.scala:74)\norg.apache.spark.sql.execution.datasources.InMemoryFileIndex.\u003cinit\u003e(InMemoryFileIndex.scala:50)\norg.apache.spark.sql.execution.datasources.DataSource.tempFileIndex$lzycompute$1(DataSource.scala:133)\norg.apache.spark.sql.execution.datasources.DataSource.org$apache$spark$sql$execution$datasources$DataSource$$tempFileIndex$1(DataSource.scala:124)\norg.apache.spark.sql.execution.datasources.DataSource.org$apache$spark$sql$execution$datasources$DataSource$$getOrInferFileFormatSchema(DataSource.scala:138)\norg.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:387)\norg.apache.spark.sql.execution.datasources.FindDataSourceTable.org$apache$spark$sql$execution$datasources$FindDataSourceTable$$readDataSourceTable(DataSourceStrategy.scala:302)\norg.apache.spark.sql.execution.datasources.FindDataSourceTable$$anonfun$apply$2.applyOrElse(DataSourceStrategy.scala:313)\norg.apache.spark.sql.execution.datasources.FindDataSourceTable$$anonfun$apply$2.applyOrElse(DataSourceStrategy.scala:307)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:268)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:268)\norg.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)\norg.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:267)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$4.apply(TreeNode.scala:307)\norg.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:188)\norg.apache.spark.sql.catalyst.trees.TreeNode.mapChildren(TreeNode.scala:305)\norg.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$4.apply(TreeNode.scala:307)\norg.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:188)\norg.apache.spark.sql.catalyst.trees.TreeNode.mapChildren(TreeNode.scala:305)\norg.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$4.apply(TreeNode.scala:307)\norg.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:188)\norg.apache.spark.sql.catalyst.trees.TreeNode.mapChildren(TreeNode.scala:305)\norg.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$4.apply(TreeNode.scala:307)\norg.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:188)\norg.apache.spark.sql.catalyst.trees.TreeNode.mapChildren(TreeNode.scala:305)\norg.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$4.apply(TreeNode.scala:307)\norg.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:188)\norg.apache.spark.sql.catalyst.trees.TreeNode.mapChildren(TreeNode.scala:305)\norg.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:273)\norg.apache.spark.sql.catalyst.trees.TreeNode.transform(TreeNode.scala:257)\norg.apache.spark.sql.execution.datasources.FindDataSourceTable.apply(DataSourceStrategy.scala:307)\norg.apache.spark.sql.execution.datasources.FindDataSourceTable.apply(DataSourceStrategy.scala:286)\norg.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1$$anonfun$apply$1.apply(RuleExecutor.scala:85)\norg.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1$$anonfun$apply$1.apply(RuleExecutor.scala:82)\nscala.collection.LinearSeqOptimized$class.foldLeft(LinearSeqOptimized.scala:124)\nscala.collection.immutable.List.foldLeft(List.scala:84)\norg.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1.apply(RuleExecutor.scala:82)\norg.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1.apply(RuleExecutor.scala:74)\nscala.collection.immutable.List.foreach(List.scala:381)\norg.apache.spark.sql.catalyst.rules.RuleExecutor.execute(RuleExecutor.scala:74)\norg.apache.spark.sql.internal.AQPQueryAnalyzer.org$apache$spark$sql$internal$AQPQueryAnalyzer$$super$execute(SnappyAQPSessionState.scala:221)\norg.apache.spark.sql.internal.AQPQueryAnalyzer$$anonfun$5.apply(SnappyAQPSessionState.scala:221)\norg.apache.spark.sql.internal.AQPQueryAnalyzer$$anonfun$5.apply(SnappyAQPSessionState.scala:221)\nscala.util.Try$.apply(Try.scala:192)\norg.apache.spark.sql.internal.AQPQueryAnalyzer.execute(SnappyAQPSessionState.scala:221)\norg.apache.spark.sql.internal.AQPQueryAnalyzer.execute(SnappyAQPSessionState.scala:207)\norg.apache.spark.sql.execution.QueryExecution.analyzed$lzycompute(QueryExecution.scala:69)\norg.apache.spark.sql.execution.QueryExecution.analyzed(QueryExecution.scala:67)\norg.apache.spark.sql.execution.QueryExecution.assertAnalyzed(QueryExecution.scala:50)\norg.apache.spark.sql.SnappySession.executePlan(SnappySession.scala:213)\norg.apache.spark.sql.SnappySession$.sqlPlan(SnappySession.scala:2079)\norg.apache.spark.sql.SnappySession$$anonfun$sqInternal$1.apply(SnappySession.scala:187)\norg.apache.spark.sql.SnappySession$$anonfun$sqInternal$1.apply(SnappySession.scala:187)\norg.apache.spark.sql.execution.SnappyContextAQPFunctions.sql(SnappyContextAQPFunctions.scala:466)\norg.apache.spark.sql.SnappySession.sqInternal(SnappySession.scala:187)\norg.apache.spark.sql.SnappySession.sql(SnappySession.scala:176)\norg.apache.spark.sql.SQLContext.sql(SQLContext.scala:700)\norg.apache.zeppelin.interpreter.SnappyDataSqlZeppelinInterpreter.executeSql(SnappyDataSqlZeppelinInterpreter.java:314)\norg.apache.zeppelin.interpreter.SnappyDataSqlZeppelinInterpreter.interpret(SnappyDataSqlZeppelinInterpreter.java:261)\norg.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:97)\norg.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:498)\norg.apache.zeppelin.scheduler.Job.run(Job.java:175)\norg.apache.zeppelin.scheduler.ParallelScheduler$JobRunner.run(ParallelScheduler.java:162)\njava.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\njava.util.concurrent.FutureTask.run(FutureTask.java:266)\njava.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\njava.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\njava.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\njava.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\njava.lang.Thread.run(Thread.java:748)"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367558_272002774",
+      "id": "20160224-214604_58902507",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Jun 12, 2019 4:34:52 PM",
+      "dateFinished": "Jun 12, 2019 4:34:53 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "How is arrival delay trending over the years?   (Use Synopsis)",
+      "text": "%sql \n\nSELECT AVG(ArrDelay) ArrivalDelay, UniqueCarrier, Year_\n\t   FROM airline_sample GROUP BY UniqueCarrier, Year_ ORDER BY\n\t         Year_,UniqueCarrier desc limit 100 ",
+      "user": "anonymous",
+      "dateUpdated": "Apr 11, 2019 3:11:04 PM",
+      "config": {
+        "enabled": true,
+        "title": true,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 295.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "YEAR_",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "ARRIVALDELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [
+            {
+              "name": "UNIQUECARRIER",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "scatter": {
+            "xAxis": {
+              "name": "ARRIVALDELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "UNIQUECARRIER",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "editorHide": false,
+        "colWidth": 6.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "multiBarChart": {}
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "YEAR_",
+                  "index": 2.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [
+                {
+                  "name": "UNIQUECARRIER",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "values": [
+                {
+                  "name": "ARRIVALDELAY",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "ARRIVALDELAY\tUNIQUECARRIER\tYEAR_\n11.465275767114441\tYV\t2007\n10.294748581875957\tXE\t2007\n5.187610134838396\tWN\t2007\n11.570645379283103\tUS\t2007\n12.551251332669844\tUA\t2007\n8.402088718897806\tOO\t2007\n13.557380600685368\tOH\t2007\n12.202902985807109\tNW\t2007\n13.059827418812485\tMQ\t2007\n-0.8391065810028039\tHA\t2007\n7.983157100313304\tFL\t2007\n7.377085974878615\tF9\t2007\n16.81304709491285\tEV\t2007\n7.156095983797568\tDL\t2007\n10.565743067137559\tCO\t2007\n13.79630236136247\tB6\t2007\n9.299040841589072\tAS\t2007\n-1.4108813222885876\tAQ\t2007\n14.44798134012193\tAA\t2007\n8.597808622310167\t9E\t2007\n11.94135447746435\tYV\t2008\n10.32483322780647\tXE\t2008\n5.131110495956574\tWN\t2008\n2.927218695339285\tUS\t2008\n11.384164415816358\tUA\t2008\n6.3183048586611585\tOO\t2008\n12.55224060996277\tOH\t2008\n7.20397770178136\tNW\t2008\n9.959671385317941\tMQ\t2008\n0.973383022966074\tHA\t2008\n8.650876700415907\tFL\t2008\n6.123826666378617\tF9\t2008\n10.293317745484792\tEV\t2008\n7.580720956362404\tDL\t2008\n10.834416258312629\tCO\t2008\n10.965108114321007\tB6\t2008\n5.12631635064642\tAS\t2008\n-3.286984219618699\tAQ\t2008\n13.087062520439458\tAA\t2008\n4.693496346620144\t9E\t2008\n7.249513554364924\tYV\t2009\n5.883858221468411\tXE\t2009\n2.475213029250179\tWN\t2009\n2.7223778642782355\tUS\t2009\n1.0902418591435779\tUA\t2009\n3.6616091856413404\tOO\t2009\n10.292114459657123\tOH\t2009\n4.870544036324809\tNW\t2009\n6.841421881471548\tMQ\t2009\n0.6075611629182667\tHA\t2009\n8.378933635622378\tFL\t2009\n6.934313131545367\tF9\t2009\n11.332515969899665\tEV\t2009\n4.759124677478015\tDL\t2009\n6.9642176914227285\tCO\t2009\n5.335141790507163\tB6\t2009\n1.5743231965744746\tAS\t2009\n5.731955050516953\tAA\t2009\n1.8495485277956292\t9E\t2009\n3.424499676767908\tYV\t2010\n7.388005710546203\tXE\t2010\n4.847028559838101\tWN\t2010\n0.2913121482838833\tUS\t2010\n-4.0414328054696504\tUA\t2010\n6.330599596411061\tOO\t2010\n7.359943068284192\tOH\t2010\n6.163935101698949\tMQ\t2010\n0.6917006903280167\tHA\t2010\n3.022922815097009\tFL\t2010\n4.558769977795672\tF9\t2010\n4.456924381331642\tEV\t2010\n5.4454603511998405\tDL\t2010\n3.1544233108065747\tCO\t2010\n6.339855064189759\tB6\t2010\n-2.244924096385542\tAS\t2010\n3.457776206505805\tAA\t2010\n3.9920934979568723\t9E\t2010\n2.26209773700071\tYV\t2011\n9.647589949816833\tXE\t2011\n4.176773482752842\tWN\t2011\n3.413466745084229\tUS\t2011\n3.2085784020753265\tUA\t2011\n5.17356104819433\tOO\t2011\n5.52810971310506\tMQ\t2011\n0.35638357806412957\tHA\t2011\n2.3748695632943715\tFL\t2011\n7.283848569924548\tF9\t2011\n9.183270264911773\tEV\t2011\n1.0524681689928006\tDL\t2011\n6.806931839489968\tCO\t2011\n10.00236917164421\tB6\t2011\n-2.0425910064984762\tAS\t2011\n5.132190674478195\tAA\t2011\n0.8252763927867676\tYV\t2012\n2.6178231005624553\tWN\t2012\n3.9747700395798136\tVX\t2012\n-1.1751175734314112\tUS\t2012\n5.088472514251113\tUA\t2012\n3.8705071581660073\tOO\t2012\n2.9505583125501964\tMQ\t2012\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 238 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367558_272002774",
+      "id": "20160224-214604_2131957529",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 11, 2019 3:11:04 PM",
+      "dateFinished": "Apr 11, 2019 3:11:05 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Number of Flights that Taxi-in for a long time (outliers)",
+      "text": "%sql show-instant-results-first\n-- THIS IS AN EXAMPLE OF A QUERY ON OUTLIERS (TOO MUCH TIME TAXIING) BUT WE WANT TO VISUALIZE ASAP AND THEN REPLACE WITH FINAL ACCURATE ANSWER\nselect taxiin, count(*) numFlights, uniqueCarrier from airline where taxiin \u003e ${taxiin} and uniqueCarrier in (\u0027UA\u0027,\u0027DL\u0027,\u0027AA\u0027,\u0027WN\u0027) group by taxiin, uniqueCarrier order by taxiin desc",
+      "user": "anonymous",
+      "dateUpdated": "Apr 11, 2019 3:11:30 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "scatterChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "TAXIIN",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "NUMFLIGHTS",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "TAXIIN",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "NUMFLIGHTS",
+              "index": 1.0,
+              "aggr": "sum"
+            },
+            "group": {
+              "name": "UNIQUECARRIER",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          },
+          "forceY": true
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/text",
+        "tableHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "scatterChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "scatterChart": {
+                  "xAxis": {
+                    "name": "TAXIIN",
+                    "index": 0.0,
+                    "aggr": "sum"
+                  },
+                  "yAxis": {
+                    "name": "NUMFLIGHTS",
+                    "index": 1.0,
+                    "aggr": "sum"
+                  },
+                  "group": {
+                    "name": "UNIQUECARRIER",
+                    "index": 2.0,
+                    "aggr": "sum"
+                  }
+                }
+              }
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {
+          "taxiin": "50"
+        },
+        "forms": {
+          "taxiin": {
+            "name": "taxiin",
+            "defaultValue": "",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "TAXIIN\tNUMFLIGHTS\tUNIQUECARRIER\n277\t4\tWN\n261\t4\tWN\n252\t4\tDL\n248\t4\tDL\n248\t4\tWN\n246\t4\tWN\n241\t4\tWN\n237\t4\tWN\n230\t4\tWN\n230\t4\tAA\n227\t4\tWN\n224\t4\tWN\n223\t4\tWN\n219\t4\tAA\n217\t4\tUA\n216\t8\tWN\n215\t4\tWN\n213\t8\tWN\n211\t4\tWN\n210\t8\tWN\n207\t4\tWN\n207\t4\tUA\n202\t4\tAA\n201\t4\tDL\n200\t4\tDL\n199\t8\tDL\n199\t4\tUA\n198\t4\tUA\n197\t4\tAA\n196\t8\tWN\n196\t8\tUA\n193\t4\tUA\n192\t4\tWN\n192\t4\tAA\n191\t4\tAA\n190\t4\tAA\n189\t4\tUA\n189\t8\tAA\n189\t4\tDL\n187\t4\tUA\n186\t4\tDL\n184\t4\tAA\n184\t4\tUA\n183\t4\tAA\n183\t4\tUA\n181\t8\tAA\n180\t4\tDL\n180\t8\tWN\n180\t8\tAA\n179\t16\tAA\n179\t4\tUA\n178\t4\tAA\n178\t4\tUA\n177\t12\tAA\n177\t8\tUA\n177\t4\tDL\n176\t20\tAA\n176\t8\tWN\n175\t8\tDL\n175\t8\tWN\n175\t12\tAA\n174\t16\tAA\n174\t4\tUA\n174\t4\tDL\n174\t8\tWN\n173\t4\tUA\n173\t8\tWN\n173\t8\tDL\n172\t4\tUA\n172\t12\tAA\n171\t8\tDL\n171\t4\tUA\n171\t16\tAA\n170\t12\tAA\n170\t8\tWN\n169\t4\tAA\n169\t8\tUA\n168\t8\tUA\n168\t4\tDL\n168\t4\tAA\n167\t4\tDL\n167\t12\tUA\n167\t12\tAA\n166\t8\tDL\n166\t20\tAA\n165\t8\tWN\n165\t4\tDL\n165\t16\tAA\n164\t12\tAA\n163\t8\tUA\n163\t4\tWN\n163\t4\tDL\n163\t12\tAA\n162\t4\tDL\n162\t4\tWN\n162\t16\tAA\n161\t16\tUA\n161\t8\tAA\n161\t4\tDL\n161\t8\tWN\n160\t8\tAA\n160\t4\tUA\n160\t12\tWN\n160\t8\tDL\n159\t4\tDL\n159\t8\tUA\n159\t12\tAA\n158\t4\tWN\n158\t8\tAA\n158\t8\tUA\n158\t4\tDL\n157\t36\tAA\n157\t12\tUA\n157\t4\tWN\n157\t4\tDL\n156\t24\tAA\n156\t4\tUA\n156\t8\tDL\n156\t12\tWN\n155\t12\tAA\n155\t8\tDL\n155\t4\tUA\n154\t8\tAA\n154\t4\tWN\n154\t8\tDL\n153\t24\tAA\n153\t20\tUA\n152\t20\tAA\n152\t4\tDL\n152\t12\tUA\n151\t4\tWN\n151\t12\tDL\n151\t12\tAA\n151\t4\tUA\n150\t16\tDL\n150\t24\tAA\n149\t12\tUA\n149\t8\tDL\n149\t8\tWN\n149\t12\tAA\n148\t8\tDL\n148\t24\tUA\n148\t16\tAA\n148\t8\tWN\n147\t4\tUA\n147\t24\tAA\n147\t16\tDL\n146\t28\tAA\n146\t8\tUA\n146\t4\tDL\n145\t12\tUA\n145\t8\tAA\n145\t4\tDL\n145\t12\tWN\n144\t12\tWN\n144\t24\tAA\n144\t8\tUA\n143\t8\tWN\n143\t12\tDL\n143\t12\tAA\n143\t20\tUA\n142\t20\tUA\n142\t8\tDL\n142\t12\tAA\n142\t8\tWN\n141\t16\tDL\n141\t4\tWN\n141\t8\tAA\n140\t12\tWN\n140\t8\tDL\n140\t24\tAA\n140\t16\tUA\n139\t32\tUA\n139\t4\tWN\n139\t20\tDL\n139\t12\tAA\n138\t32\tAA\n138\t12\tDL\n138\t8\tWN\n138\t12\tUA\n137\t8\tWN\n137\t24\tAA\n137\t8\tDL\n137\t12\tUA\n136\t12\tDL\n136\t12\tUA\n136\t8\tWN\n136\t36\tAA\n135\t4\tWN\n135\t20\tUA\n135\t24\tDL\n135\t12\tAA\n134\t28\tUA\n134\t16\tDL\n134\t24\tAA\n133\t20\tWN\n133\t16\tDL\n133\t24\tAA\n133\t28\tUA\n132\t20\tDL\n132\t28\tUA\n132\t24\tAA\n131\t16\tDL\n131\t32\tAA\n131\t4\tUA\n130\t56\tAA\n130\t8\tWN\n130\t20\tDL\n130\t12\tUA\n129\t12\tUA\n129\t40\tDL\n129\t12\tWN\n129\t24\tAA\n128\t8\tWN\n128\t48\tAA\n128\t20\tDL\n128\t12\tUA\n127\t40\tAA\n127\t8\tWN\n127\t24\tDL\n127\t24\tUA\n126\t16\tAA\n126\t12\tWN\n126\t32\tUA\n126\t16\tDL\n125\t40\tUA\n125\t28\tAA\n125\t8\tWN\n125\t12\tDL\n124\t60\tAA\n124\t20\tWN\n124\t44\tDL\n124\t36\tUA\n123\t44\tUA\n123\t52\tAA\n123\t16\tDL\n122\t24\tUA\n122\t64\tAA\n122\t12\tWN\n122\t12\tDL\n121\t12\tUA\n121\t8\tWN\n121\t40\tAA\n121\t40\tDL\n120\t52\tAA\n120\t28\tUA\n120\t24\tDL\n120\t16\tWN\n119\t40\tAA\n119\t48\tUA\n119\t24\tWN\n119\t32\tDL\n118\t24\tUA\n118\t56\tDL\n118\t48\tAA\n118\t24\tWN\n117\t12\tWN\n117\t56\tAA\n117\t44\tDL\n117\t44\tUA\n116\t52\tAA\n116\t20\tUA\n116\t16\tWN\n116\t24\tDL\n115\t36\tUA\n115\t20\tWN\n115\t68\tAA\n115\t60\tDL\n114\t40\tDL\n114\t56\tUA\n114\t60\tAA\n114\t8\tWN\n113\t44\tDL\n113\t52\tAA\n113\t56\tUA\n113\t16\tWN\n112\t56\tUA\n112\t68\tAA\n112\t32\tDL\n112\t4\tWN\n111\t20\tWN\n111\t36\tDL\n111\t52\tAA\n111\t32\tUA\n110\t64\tAA\n110\t4\tUA\n110\t32\tDL\n110\t48\tWN\n109\t100\tAA\n109\t36\tUA\n109\t36\tWN\n109\t76\tDL\n108\t28\tUA\n108\t76\tAA\n108\t36\tDL\n108\t28\tWN\n107\t28\tUA\n107\t52\tAA\n107\t44\tDL\n107\t16\tWN\n106\t16\tWN\n106\t76\tAA\n106\t40\tUA\n106\t64\tDL\n105\t36\tWN\n105\t36\tAA\n105\t76\tDL\n105\t40\tUA\n104\t76\tAA\n104\t28\tUA\n104\t48\tDL\n104\t40\tWN\n103\t28\tWN\n103\t72\tAA\n103\t52\tUA\n103\t120\tDL\n102\t96\tAA\n102\t28\tWN\n102\t24\tUA\n102\t72\tDL\n101\t92\tAA\n101\t56\tWN\n101\t28\tUA\n101\t72\tDL\n100\t68\tUA\n100\t80\tAA\n100\t80\tDL\n100\t40\tWN\n99\t96\tDL\n99\t32\tWN\n99\t100\tAA\n99\t28\tUA\n98\t92\tDL\n98\t48\tUA\n98\t108\tAA\n98\t40\tWN\n97\t60\tUA\n97\t124\tAA\n97\t36\tWN\n97\t104\tDL\n96\t108\tAA\n96\t32\tWN\n96\t72\tUA\n96\t108\tDL\n95\t32\tWN\n95\t124\tAA\n95\t124\tDL\n95\t76\tUA\n94\t136\tDL\n94\t64\tUA\n94\t164\tAA\n94\t24\tWN\n93\t112\tDL\n93\t68\tWN\n93\t128\tAA\n93\t68\tUA\n92\t72\tUA\n92\t192\tAA\n92\t120\tDL\n92\t24\tWN\n91\t148\tAA\n91\t40\tWN\n91\t76\tUA\n91\t140\tDL\n90\t100\tUA\n90\t48\tWN\n90\t116\tAA\n90\t124\tDL\n89\t44\tUA\n89\t64\tWN\n89\t144\tDL\n89\t124\tAA\n88\t68\tUA\n88\t148\tAA\n88\t44\tWN\n88\t160\tDL\n87\t84\tUA\n87\t48\tWN\n87\t176\tDL\n87\t144\tAA\n86\t72\tUA\n86\t192\tDL\n86\t120\tAA\n86\t84\tWN\n85\t196\tDL\n85\t64\tWN\n85\t116\tUA\n85\t156\tAA\n84\t60\tWN\n84\t188\tDL\n84\t136\tAA\n84\t96\tUA\n83\t172\tAA\n83\t52\tWN\n83\t108\tUA\n83\t196\tDL\n82\t184\tAA\n82\t80\tUA\n82\t68\tWN\n82\t200\tDL\n81\t92\tUA\n81\t196\tDL\n81\t88\tWN\n81\t208\tAA\n80\t276\tDL\n80\t140\tUA\n80\t272\tAA\n80\t64\tWN\n79\t120\tUA\n79\t220\tDL\n79\t92\tWN\n79\t212\tAA\n78\t144\tUA\n78\t100\tWN\n78\t264\tDL\n78\t272\tAA\n77\t84\tUA\n77\t388\tDL\n77\t240\tAA\n77\t104\tWN\n76\t92\tWN\n76\t276\tAA\n76\t108\tUA\n76\t296\tDL\n75\t152\tUA\n75\t300\tDL\n75\t260\tAA\n75\t104\tWN\n74\t172\tUA\n74\t364\tAA\n74\t320\tDL\n74\t136\tWN\n73\t352\tAA\n73\t156\tWN\n73\t364\tDL\n73\t160\tUA\n72\t404\tDL\n72\t132\tWN\n72\t180\tUA\n72\t420\tAA\n71\t180\tUA\n71\t164\tWN\n71\t496\tAA\n71\t456\tDL\n70\t200\tUA\n70\t424\tDL\n70\t356\tAA\n70\t176\tWN\n69\t136\tWN\n69\t536\tDL\n69\t360\tAA\n69\t240\tUA\n68\t184\tWN\n68\t532\tDL\n68\t488\tAA\n68\t232\tUA\n67\t520\tDL\n67\t244\tWN\n67\t476\tAA\n67\t216\tUA\n66\t260\tWN\n66\t676\tDL\n66\t268\tUA\n66\t524\tAA\n65\t708\tDL\n65\t668\tAA\n65\t308\tUA\n65\t324\tWN\n64\t232\tUA\n64\t316\tWN\n64\t684\tAA\n64\t744\tDL\n63\t820\tDL\n63\t744\tAA\n63\t300\tWN\n63\t316\tUA\n62\t368\tUA\n62\t336\tWN\n62\t720\tDL\n62\t716\tAA\n61\t352\tUA\n61\t756\tAA\n61\t920\tDL\n61\t360\tWN\n60\t472\tUA\n60\t972\tAA\n60\t424\tWN\n60\t1116\tDL\n59\t368\tWN\n59\t908\tAA\n59\t484\tUA\n59\t1140\tDL\n58\t464\tWN\n58\t456\tUA\n58\t1028\tAA\n58\t1216\tDL\n57\t500\tWN\n57\t1244\tAA\n57\t1320\tDL\n57\t536\tUA\n56\t1304\tDL\n56\t660\tUA\n56\t1168\tAA\n56\t480\tWN\n55\t1320\tDL\n55\t760\tUA\n55\t600\tWN\n55\t1364\tAA\n54\t708\tUA\n54\t1752\tDL\n54\t576\tWN\n54\t1504\tAA\n53\t632\tWN\n53\t768\tUA\n53\t1816\tDL\n53\t1544\tAA\n52\t920\tUA\n52\t2112\tDL\n52\t1644\tAA\n52\t776\tWN\n51\t1984\tAA\n51\t2136\tDL\n51\t764\tWN\n51\t888\tUA\n\u003c!--TABLE_COMMENT--\u003e\n\u003cfont color\u003dred\u003eTime required to execute query on sample table : 131 millis.\u003c/font\u003e\u003cbr\u003e\n\u003cfont color\u003dred\u003eTime required to execute query on base table : 1649 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1474148058311_589801287",
+      "id": "20160917-213418_1713253938",
+      "dateCreated": "Sep 17, 2016 3:04:18 AM",
+      "dateStarted": "Apr 11, 2019 3:11:30 PM",
+      "dateFinished": "Apr 11, 2019 3:11:32 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Which are the worst airports?",
+      "text": "%sql\n\nselect avg(DepDelay) delay, Origin, count(*) AS cnt \nfrom airline group by Origin having cnt \u003e 500000 order by delay desc limit 10\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 11, 2019 3:11:48 PM",
+      "config": {
+        "enabled": true,
+        "title": true,
+        "graph": {
+          "mode": "table",
+          "height": 324.0,
+          "optionOpen": true,
+          "keys": [
+            {
+              "name": "ORIGIN",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "DELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "DELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "ORIGIN",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "colWidth": 6.0,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "DELAY\tORIGIN\tCNT\n15.3720587083913\tEWR\t4026668\n14.041025373793987\tORD\t10488880\n13.590914373812382\tMDW\t2867008\n12.661893591735177\tHOU\t1807388\n12.482464383257385\tSFO\t4937772\n12.39138159277629\tJFK\t3606668\n11.94180200468127\tIAD\t2410728\n11.581465925571958\tMIA\t2392148\n11.29588058273534\tDFW\t9063648\n11.26079199413712\tDAL\t1590852\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 1139 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367559_271618025",
+      "id": "20160224-214604_1674672602",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 11, 2019 3:11:48 PM",
+      "dateFinished": "Apr 11, 2019 3:11:49 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Which are the worst airports? (Query Synopsis table directly )",
+      "text": "%sql \n\nselect avg(DepDelay) delay, Origin, count(*) as cnt, count(*) as sample_count, absolute_error(delay)\nfrom airline_sample group by Origin having cnt \u003e 500000 order by delay desc limit 10\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 11, 2019 3:11:53 PM",
+      "config": {
+        "enabled": true,
+        "title": true,
+        "graph": {
+          "mode": "table",
+          "height": 314.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "DELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "ORIGIN",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "DELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "ORIGIN",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "colWidth": 6.0,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "DELAY\tORIGIN\tCNT\tSAMPLE_COUNT\tAbsolute_Error(DELAY)\n15.290757933636435\tEWR\t4003651\t36323\t0.5660506266455354\n14.033059982756726\tORD\t10529347\t97767\t0.3056482675591918\n13.442375637104835\tMDW\t2863208\t21053\t0.5802311302072483\n12.556670236049277\tHOU\t1837613\t12601\t0.6322781961142117\n12.212827646047936\tIAD\t2413493\t32554\t0.6234494017716233\n12.1059841834798\tJFK\t3583979\t46001\t0.4872486633148737\n12.033082356054265\tSFO\t4957129\t80623\t0.397748633403565\n11.476232190855578\tBWI\t3335864\t27700\t0.528847047891303\n11.438857224118314\tMIA\t2422244\t17237\t0.649093345001429\n11.293851423981412\tPHL\t2850470\t38772\t0.5450030823733036\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 143 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367559_271618025",
+      "id": "20160224-214604_1301744232",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 11, 2019 3:11:53 PM",
+      "dateFinished": "Apr 11, 2019 3:11:53 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "Apr 9, 2019 1:57:58 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/text",
+        "tableHide": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474082049883_-2022851116",
+      "id": "20160917-031409_245116974",
+      "dateCreated": "Sep 17, 2016 8:44:09 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "what is the best day of the week to travel?",
+      "text": "%sql\nselect  DayOfWeek, AVG(ArrDelay) avgDelay from airline\ngroup by DayOfWeek\norder by  avgDelay desc",
+      "user": "anonymous",
+      "dateUpdated": "Apr 11, 2019 3:12:15 PM",
+      "config": {
+        "enabled": true,
+        "title": true,
+        "graph": {
+          "mode": "stackedAreaChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "DAYOFWEEK",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "AVGDELAY",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "DAYOFWEEK",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "AVGDELAY",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "editorHide": false,
+        "colWidth": 6.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "stackedAreaChart",
+              "height": 300.0,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "DAYOFWEEK\tAVGDELAY\n5\t7.946065589020608\n4\t7.674332133514795\n1\t6.77865506485997\n7\t5.986865089585739\n3\t5.5876556137668425\n2\t4.932181114596774\n6\t3.2024472753666546\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 1945 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367561_269309531",
+      "id": "20160224-214604_643957094",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 11, 2019 3:12:15 PM",
+      "dateFinished": "Apr 11, 2019 3:12:17 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "what is the best day of the week to travel?   (Use Synopsis)",
+      "text": "%sql\n\nselect  DayOfWeek, AVG(ArrDelay) avgDelay from airline_sample\ngroup by DayOfWeek\norder by  avgDelay desc",
+      "user": "anonymous",
+      "dateUpdated": "Apr 11, 2019 3:12:20 PM",
+      "config": {
+        "enabled": true,
+        "title": true,
+        "graph": {
+          "mode": "stackedAreaChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "DAYOFWEEK",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "AVGDELAY",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "DAYOFWEEK",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "AVGDELAY",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "editorHide": false,
+        "colWidth": 6.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "stackedAreaChart",
+              "height": 300.0,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "DAYOFWEEK\tAVGDELAY\n5\t7.9490675191409474\n4\t7.615465418088302\n1\t6.682335058335551\n7\t6.07407769807242\n3\t5.569502411054245\n2\t5.072730549693398\n6\t3.2339750309242206\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 114 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367561_269309531",
+      "id": "20160224-214604_1816781625",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 11, 2019 3:12:20 PM",
+      "dateFinished": "Apr 11, 2019 3:12:20 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "Apr 9, 2019 1:57:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1476395135725_-661253796",
+      "id": "20161013-214535_328039313",
+      "dateCreated": "Oct 13, 2016 3:15:35 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Most popular flight routes in USA",
+      "text": "%sql\nselect concat(origin,\u0027_\u0027,dest) as flight, count(*) count from airline group by concat(origin,\u0027_\u0027,dest)  \norder by count desc limit 10;\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 11, 2019 3:12:41 PM",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "lineChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "FLIGHT",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "COUNT",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "yAxis": {
+              "name": "COUNT",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "colWidth": 6.0,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "lineChart",
+              "height": 300.0,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "FLIGHT\tCOUNT\nSFO_LAX\t451312\nLAX_SFO\t447240\nOGG_HNL\t403496\nHNL_OGG\t396488\nLAX_LAS\t381636\nLAS_LAX\t378260\nLAX_SAN\t345780\nSAN_LAX\t345688\nLGA_ORD\t331340\nORD_LGA\t326660\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 7370 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367560_269694280",
+      "id": "20160608-181802_1852587172",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 11, 2019 3:12:41 PM",
+      "dateFinished": "Apr 11, 2019 3:12:49 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Most popular flight routes in USA   (Use Synopsis)",
+      "text": "%sql\nselect concat(origin,\u0027_\u0027,dest) as flight, count(*) count from airline group by concat(origin,\u0027_\u0027,dest)  \norder by count desc limit 10 with error 0.1;\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 11, 2019 3:13:08 PM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "lineChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "FLIGHT",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "COUNT",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "FLIGHT",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "COUNT",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/text",
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "lineChart",
+              "height": 300.0,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "FLIGHT\tCOUNT\nSFO_LAX\t451729\nLAX_SFO\t445815\nOGG_HNL\t405184\nHNL_OGG\t397349\nLAS_LAX\t386796\nLAX_LAS\t375384\nLAX_SAN\t345239\nSAN_LAX\t343900\nLGA_ORD\t336337\nATL_LGA\t329313\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 306 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1475079171634_943728469",
+      "id": "20160928-161251_835125952",
+      "dateCreated": "Sep 28, 2016 9:42:51 AM",
+      "dateStarted": "Apr 11, 2019 3:13:08 PM",
+      "dateFinished": "Apr 11, 2019 3:13:08 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\n\nselect avg(DepDelay) delay, description, count(*) AS cnt from airline, AIRLINEREF\nwhere airline.UniqueCarrier \u003d airlineref.Code and DepDelay \u003e 30 \ngroup by description having cnt \u003e 50000 order by delay desc limit 100\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 11, 2019 3:13:22 PM",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 314.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "DESCRIPTION",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "DELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "DELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "editorHide": false,
+        "colWidth": 6.0,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "DELAY\tDESCRIPTION\tCNT\n94.95026446672456\tHawaiian Airlines Inc.\t50668\n94.55448091367424\tVirgin America\t77752\n88.20885050574319\tExpressJet Airlines Inc. (1)\t933280\n87.7274342156974\tExpressJet Airlines Inc.\t2290060\n87.49473550031867\tMesa Airlines Inc.\t627600\n87.3719227612565\tJetBlue Airways\t979612\n85.80980840217964\tEndeavor Air Inc.\t500632\n84.67145471997142\tDelta Air Lines Inc.\t1791960\n84.42084017589858\tUnited Air Lines Inc.\t1829236\n83.7901021909112\tContinental Air Lines Inc.\t620016\n83.25084101370184\tPSA Airlines Inc.\t374548\n82.90018582200263\tAmerican Airlines Inc.\t2348484\n81.63016581199746\tAirTran Airways Corporation\t648204\n81.45364575027907\tNorthwest Airlines Inc.\t401344\n80.43105083591246\tSkyWest Airlines Inc.\t2020068\n80.2538993748192\tEnvoy Air\t1811316\n78.87729922206346\tAlaska Airlines Inc.\t352728\n78.50355502782507\tFrontier Airlines Inc.\t279604\n76.47030766586455\tUS Airways Inc.\t1117056\n69.90392928137854\tSouthwest Airlines Co.\t4358456\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 974 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367561_269309531",
+      "id": "20160224-214604_713912881",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 11, 2019 3:13:22 PM",
+      "dateFinished": "Apr 11, 2019 3:13:23 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nselect avg(DepDelay) delay, description, count(*) AS cnt from airline_sample, AIRLINEREF\nwhere airline_sample.UniqueCarrier \u003d airlineref.Code and DepDelay \u003e 30 \ngroup by description having cnt \u003e 50000 order by delay desc limit 100\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 11, 2019 3:13:34 PM",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 320.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "DELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "DESCRIPTION",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "DELAY",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/text",
+        "colWidth": 6.0,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "DELAY\tDESCRIPTION\tCNT\n95.34864223178513\tHawaiian Airlines Inc.\t50677\n94.80444119519831\tVirgin America\t78580\n88.32363685214037\tMesa Airlines Inc.\t640322\n87.85646011043463\tExpressJet Airlines Inc. (1)\t941005\n87.7940317773082\tEndeavor Air Inc.\t524234\n87.4747320021446\tExpressJet Airlines Inc.\t2277299\n86.39261536753206\tJetBlue Airways\t987017\n84.26806071386234\tDelta Air Lines Inc.\t1771508\n84.04002551639162\tUnited Air Lines Inc.\t1828157\n83.28888392206302\tPSA Airlines Inc.\t383432\n83.18551205915206\tContinental Air Lines Inc.\t636145\n82.36900492734111\tAirTran Airways Corporation\t640661\n82.36505864521705\tAmerican Airlines Inc.\t2369431\n81.15823072865378\tEnvoy Air\t1797343\n80.75439968694211\tNorthwest Airlines Inc.\t408921\n80.251163061438\tSkyWest Airlines Inc.\t2018582\n79.71793654761167\tAlaska Airlines Inc.\t357826\n79.10120414951409\tFrontier Airlines Inc.\t283790\n76.45774351631374\tUS Airways Inc.\t1121460\n69.46119909321116\tSouthwest Airlines Co.\t4370224\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 504 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1471844367562_270463778",
+      "id": "20160312-184107_109108266",
+      "dateCreated": "Aug 22, 2016 11:09:27 AM",
+      "dateStarted": "Apr 11, 2019 3:13:34 PM",
+      "dateFinished": "Apr 11, 2019 3:13:35 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nprintln(s\"\"\"%html\n\u003ch2\u003e Try your own queries below ....\u003c/h2\u003e\n\u003ch3\u003eYou can always share your thoughts/questions or just encourage us at \u003ca href\u003d\"http://www.snappydata.io/community\" target\u003d\"_blank\"\u003e http://www.snappydata.io/community \u003c/a\u003e\u003c/h3\u003e\n(You can use \u003ca href\u003d\"http://snappydata-slackin.herokuapp.com/\" target\u003d\"_blank\"\u003eslack\u003c/a\u003e,\u003ca href\u003d\"https://gitter.im/SnappyDataInc/snappydata\" target\u003d\"_blank\"\u003eGitter\u003c/a\u003e,\u003ca href\u003d\"http://stackoverflow.com/questions/tagged/snappydata\" target\u003d\"_blank\"\u003estackoverflow \u003c/a\u003e, or \u003ca href\u003d\"https://groups.google.com/forum/#!forum/snappydata-user\" target\u003d\"_blank\"\u003egoogle groups\u003c/a\u003e) \u003cbr\u003e Or, just send an email to chomp@snappydata.io\"\"\") ",
+      "user": "anonymous",
+      "dateUpdated": "Apr 9, 2019 1:57:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "editorMode": "ace/mode/text",
+        "editorHide": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false
+            }
+          }
+        ],
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch2\u003e Try your own queries below ....\u003c/h2\u003e\n\u003ch3\u003eYou can always share your thoughts/questions or just encourage us at \u003ca href\u003d\"http://www.snappydata.io/community\" target\u003d\"_blank\"\u003e http://www.snappydata.io/community \u003c/a\u003e\u003c/h3\u003e\n(You can use \u003ca href\u003d\"http://snappydata-slackin.herokuapp.com/\" target\u003d\"_blank\"\u003eslack\u003c/a\u003e,\u003ca href\u003d\"https://gitter.im/SnappyDataInc/snappydata\" target\u003d\"_blank\"\u003eGitter\u003c/a\u003e,\u003ca href\u003d\"http://stackoverflow.com/questions/tagged/snappydata\" target\u003d\"_blank\"\u003estackoverflow \u003c/a\u003e, or \u003ca href\u003d\"https://groups.google.com/forum/#!forum/snappydata-user\" target\u003d\"_blank\"\u003egoogle groups\u003c/a\u003e) \u003cbr\u003e Or, just send an email to chomp@snappydata.io\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490362933246_-1168584642",
+      "id": "20170324-134213_1005356681",
+      "dateCreated": "Mar 24, 2017 1:42:13 PM",
+      "dateStarted": "Mar 24, 2017 1:42:22 PM",
+      "dateFinished": "Mar 24, 2017 1:42:22 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Join Long and Lat to Airline Data",
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "Apr 9, 2019 2:55:29 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/text",
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "title": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1475102307956_-452997041",
+      "id": "20160928-223827_544082382",
+      "dateCreated": "Sep 28, 2016 4:08:27 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Demo2 - Airline on-time analytics",
+  "id": "airlineanalytics",
+  "angularObjects": {
+    "2EA979ZH6:existing_process": [],
+    "2E8BS2UKF:shared_process": [],
+    "2EA2P371D:shared_process": []
+  },
+  "config": {
+    "looknfeel": "default"
+  },
+  "info": {}
+}

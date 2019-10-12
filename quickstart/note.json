@@ -1,0 +1,830 @@
+{
+  "paragraphs": [
+    {
+      "title": "Monitor the Cluster, check memory consumption",
+      "text": "%spark\n\nprintln(s\"\"\"%html\n \u003cdiv\u003e \u003cspan style\u003d\"font-weight: bold;\"\u003e \u003ca href\u003d\"http://localhost:5050\" target\u003d\"_blank\"\u003eSnappyData Pulse UI\u003c/a\u003e \u003c/span\u003e \u003cspan\u003e\u003ch5\u003e The Dashboard tab in the SnappyData Pulse UI can be used to monitor the cluster and check the memory consumed by the samples.\u003c/h5\u003e\u003c/span\u003e\u003c/div\u003e\n\"\"\")\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 8:01:49 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text",
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": " \u003cdiv\u003e \u003cspan style\u003d\"font-weight: bold;\"\u003e \u003ca href\u003d\"http://localhost:5050\" target\u003d\"_blank\"\u003eSnappyData Pulse UI\u003c/a\u003e \u003c/span\u003e \u003cspan\u003e\u003ch5\u003e The Dashboard tab in the SnappyData Pulse UI can be used to monitor the cluster and check the memory consumed by the samples.\u003c/h5\u003e\u003c/span\u003e\u003c/div\u003e\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1506077285122_-2053261010",
+      "id": "20170922-104805_1250526305",
+      "dateCreated": "Sep 22, 2017 10:48:05 AM",
+      "dateStarted": "Oct 11, 2017 8:01:45 PM",
+      "dateFinished": "Oct 11, 2017 8:01:45 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Getting started using Spark Scala APIs",
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "Oct 10, 2017 7:15:42 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/text",
+        "title": true,
+        "editorHide": true,
+        "tableHide": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1506074822734_-1207119914",
+      "id": "20170922-100702_196427913",
+      "dateCreated": "Sep 22, 2017 10:07:02 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Create a SnappySession: A SnappySession extends SparkSession so you can mutate data, get much higher performance, etc.",
+      "text": "%snappydata.spark\nval snappy \u003d new org.apache.spark.sql.SnappySession(spark.sparkContext)\nimport snappy.implicits._\n\nprintln(s\"\"\"%html\n \u003cdiv\u003e \u003cspan style\u003d\"font-weight: bold;\"\u003e \u003ca href\u003d\"http://snappydatainc.github.io/snappydata/programming_guide/sparksession_snappysession_and_snappystreamingcontext/#create-a-snappysession\" target\u003d\"_blank\"\u003eKnow more about creating SnappySession\u003c/a\u003e \u003c/span\u003e\u003c/div\u003e\n\"\"\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 3:23:22 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/text",
+        "title": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nsnappy: org.apache.spark.sql.SnappySession \u003d org.apache.spark.sql.SnappySession@30619f1c\n\nimport snappy.implicits._\n"
+          },
+          {
+            "type": "HTML",
+            "data": " \u003cdiv\u003e \u003cspan style\u003d\"font-weight: bold;\"\u003e \u003ca href\u003d\"http://snappydatainc.github.io/snappydata/programming_guide/sparksession_snappysession_and_snappystreamingcontext/#create-a-snappysession\" target\u003d\"_blank\"\u003eKnow more about creating SnappySession\u003c/a\u003e \u003c/span\u003e\u003c/div\u003e\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1481197069297_912157480",
+      "id": "20161208-170749_309851033",
+      "dateCreated": "Dec 8, 2016 5:07:49 AM",
+      "dateStarted": "Oct 11, 2017 3:18:21 PM",
+      "dateFinished": "Oct 11, 2017 3:18:23 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Create a small Dataset using Spark\u0027s APIs",
+      "text": "%snappydata.spark\nval ds \u003d Seq((1,\"a\"), (2, \"b\"), (3, \"c\")).toDS()",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 3:18:25 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "title": true,
+        "editorMode": "ace/mode/text",
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nds: org.apache.spark.sql.Dataset[(Int, String)] \u003d [_1: int, _2: string]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1481197129959_881655048",
+      "id": "20161208-170849_1484935950",
+      "dateCreated": "Dec 8, 2016 5:08:49 AM",
+      "dateStarted": "Oct 11, 2017 3:18:25 PM",
+      "dateFinished": "Oct 11, 2017 3:18:27 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Define a schema for the table",
+      "text": "%snappydata.spark\nimport org.apache.spark.sql.types._\nval tableSchema \u003d StructType(Array(StructField(\"CustKey\", IntegerType, false),StructField(\"CustName\", StringType, false)))",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 3:18:29 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "title": true,
+        "editorMode": "ace/mode/text",
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nimport org.apache.spark.sql.types._\n\ntableSchema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(CustKey,IntegerType,false), StructField(CustName,StringType,false))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1481197156009_-552658203",
+      "id": "20161208-170916_1389427753",
+      "dateCreated": "Dec 8, 2016 5:09:16 AM",
+      "dateStarted": "Oct 11, 2017 3:18:29 PM",
+      "dateFinished": "Oct 11, 2017 3:18:30 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Create a column table with a simple schema [String, Int] and default options",
+      "text": "%snappydata.spark\n//Column tables manage data is columnar form and offer superior performance for analytic class queries\nsnappy.createTable(tableName \u003d \"colTable\",\n        provider \u003d \"column\", // Create a SnappyData Column table\n        schema \u003d tableSchema,\n        options \u003d Map.empty[String, String], // Map for options.\n        allowExisting \u003d false)\n\nprintln(s\"\"\"%html\n \u003cdiv\u003e \u003cspan style\u003d\"font-weight: bold;\"\u003e \u003ca href\u003d\"http://snappydatainc.github.io/snappydata/reference/sql_reference/create-table/\" target\u003d\"_blank\"\u003eKnow more about creating tables\u003c/a\u003e \u003c/span\u003e\u003c/div\u003e\n\"\"\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 7:38:42 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "title": true,
+        "editorMode": "ace/mode/text",
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nres53: org.apache.spark.sql.DataFrame \u003d [CUSTKEY: int, CUSTNAME: string]\n"
+          },
+          {
+            "type": "HTML",
+            "data": " \u003cdiv\u003e \u003cspan style\u003d\"font-weight: bold;\"\u003e \u003ca href\u003d\"http://snappydatainc.github.io/snappydata/reference/sql_reference/create-table/\" target\u003d\"_blank\"\u003eKnow more about creating tables\u003c/a\u003e \u003c/span\u003e\u003c/div\u003e\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1481197201569_707287175",
+      "id": "20161208-171001_2043244436",
+      "dateCreated": "Dec 8, 2016 5:10:01 AM",
+      "dateStarted": "Oct 11, 2017 3:18:34 PM",
+      "dateFinished": "Oct 11, 2017 3:18:37 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Insert the created Dataset to the column table \"colTable\"",
+      "text": "%snappydata.spark\n ds.write.insertInto(\"colTable\")\n// Check the total row count.\nsnappy.table(\"colTable\").count",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 3:18:51 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "title": true,
+        "editorMode": "ace/mode/text",
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nres57: Long \u003d 3\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1481197273003_1377763302",
+      "id": "20161208-171113_1309022749",
+      "dateCreated": "Dec 8, 2016 5:11:13 AM",
+      "dateStarted": "Oct 11, 2017 3:18:49 PM",
+      "dateFinished": "Oct 11, 2017 3:18:50 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Create a Row object using Spark\u0027s API and insert the row to the table",
+      "text": "%snappydata.spark\n// Unlike Spark DataFrames SnappyData column tables are mutable. You can insert new rows to a column table.\n// Insert a new record\nimport org.apache.spark.sql.Row\nsnappy.insert(\"colTable\", Row(10, \"f\"))\n// Check the total row count after inserting the row\nsnappy.table(\"colTable\").count",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 3:19:00 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "title": true,
+        "editorMode": "ace/mode/text",
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nimport org.apache.spark.sql.Row\n\nres60: Int \u003d 1\n\nres61: Long \u003d 4\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1481197322137_-1445646721",
+      "id": "20161208-171202_1752690573",
+      "dateCreated": "Dec 8, 2016 5:12:02 AM",
+      "dateStarted": "Oct 11, 2017 3:18:58 PM",
+      "dateFinished": "Oct 11, 2017 3:18:59 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Create a \"row\" table with a simple schema [String, Int] and default options",
+      "text": "%snappydata.spark\n//Row formatted tables are better when datasets constantly change or access is selective (like based on a key)\nsnappy.createTable(tableName \u003d \"rowTable\",\n          provider \u003d \"row\",\n          schema \u003d tableSchema,\n          options \u003d Map.empty[String, String],\n          allowExisting \u003d false)\n\nprintln(s\"\"\"%html\n \u003cdiv\u003e \u003cspan style\u003d\"font-weight: bold;\"\u003e \u003ca href\u003d\"http://snappydatainc.github.io/snappydata/reference/sql_reference/create-table/\" target\u003d\"_blank\"\u003eKnow more about creating tables\u003c/a\u003e \u003c/span\u003e\u003c/div\u003e\n\"\"\")",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 3:19:09 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "title": true,
+        "editorMode": "ace/mode/text",
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nres64: org.apache.spark.sql.DataFrame \u003d [CUSTKEY: int, CUSTNAME: string]\n"
+          },
+          {
+            "type": "HTML",
+            "data": " \u003cdiv\u003e \u003cspan style\u003d\"font-weight: bold;\"\u003e \u003ca href\u003d\"http://snappydatainc.github.io/snappydata/reference/sql_reference/create-table/\" target\u003d\"_blank\"\u003eKnow more about creating tables\u003c/a\u003e \u003c/span\u003e\u003c/div\u003e\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1481197323985_1508485983",
+      "id": "20161208-171203_1700628662",
+      "dateCreated": "Dec 8, 2016 5:12:03 AM",
+      "dateStarted": "Oct 11, 2017 3:19:05 PM",
+      "dateFinished": "Oct 11, 2017 3:19:06 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Insert the created Dataset to the row table \"rowTable\"",
+      "text": "%snappydata.spark\nds.write.insertInto(\"rowTable\")\n//Check the row count\nsnappy.table(\"rowTable\").count",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 3:19:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/text",
+        "title": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nres68: Long \u003d 3\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1481197325497_-1792290156",
+      "id": "20161208-171205_113212829",
+      "dateCreated": "Dec 8, 2016 5:12:05 AM",
+      "dateStarted": "Oct 11, 2017 3:19:15 PM",
+      "dateFinished": "Oct 11, 2017 3:19:17 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Insert a new record and check the row count",
+      "text": "%snappydata.spark\nsnappy.insert(\"rowTable\", Row(4, \"d\"))\n//Check the row count now\nsnappy.table(\"rowTable\").count\n",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 3:19:30 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/text",
+        "title": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nres70: Int \u003d 1\n\nres71: Long \u003d 4\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1481197519546_969315380",
+      "id": "20161208-171519_1330495797",
+      "dateCreated": "Dec 8, 2016 5:15:19 AM",
+      "dateStarted": "Oct 11, 2017 3:19:25 PM",
+      "dateFinished": "Oct 11, 2017 3:19:26 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Change some data in a row table",
+      "text": "%snappydata.spark\n//Updating a row for customer with custKey \u003d 1\nsnappy.update(tableName \u003d \"rowTable\", filterExpr \u003d \"CUSTKEY\u003d1\",\n                newColumnValues \u003d Row(\"d\"), updateColumns \u003d \"CUSTNAME\")\n\nsnappy.table(\"rowTable\").orderBy(\"CUSTKEY\").show\n\n//Delete the row for customer with custKey \u003d 1\nsnappy.delete(tableName \u003d \"rowTable\", filterExpr \u003d \"CUSTKEY\u003d1\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2019 5:10:29 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/text",
+        "title": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nres74: Int \u003d 1\n+-------+--------+\n|CUSTKEY|CUSTNAME|\n+-------+--------+\n|      1|       d|\n|      2|       b|\n|      3|       c|\n|      4|       d|\n+-------+--------+\n\n\nres76: Int \u003d 1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1481197532385_-832463720",
+      "id": "20161208-171532_68055712",
+      "dateCreated": "Dec 8, 2016 5:15:32 AM",
+      "dateStarted": "Oct 11, 2017 3:19:36 PM",
+      "dateFinished": "Oct 11, 2017 3:19:37 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Drop existing tables",
+      "text": "%snappydata.spark\n//Drop the existing tables\nsnappy.dropTable(\"rowTable\", ifExists \u003d true)\nsnappy.dropTable(\"colTable\", ifExists \u003d true)\nprintln(\"Tables dropped successfully!!\")",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 3:18:04 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/text",
+        "title": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Tables dropped successfully!!\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1481197599231_-104610746",
+      "id": "20161208-171639_1221484380",
+      "dateCreated": "Dec 8, 2016 5:16:39 AM",
+      "dateStarted": "Oct 11, 2017 3:18:04 PM",
+      "dateFinished": "Oct 11, 2017 3:18:12 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Querying Snappydata from snappy-shell",
+      "text": "%snappydata.spark\nprintln(s\"\"\"%html\n\u003ch4\u003eThe SnappyData Shell (snappy-shell) provides a simple command line interface to interact with the SnappyData cluster.\u003cbr\u003eTo query SnappyData from snappy-shell:\u003c/h4\u003e\n\u003ch5\u003e\n\u003col\u003e\n\u003cli\u003e Login to this the virtual machine using SSH : \u003cbr\u003e\u003cb\u003e\u003ci\u003essh -i \u0026lt; key-pair \u0026gt; localhost \u003c/i\u003e\u003c/b\u003e\u003cbr\u003e\u003cbr\u003e\u003c/li\u003e\n\u003cli\u003e In the command prompt, go to the SnappyData home directory: \u003cbr\u003e \u003cb\u003e\u003ci\u003ecd /snappydata/downloads/snappydata-1.0.0-bin/bin \u003c/i\u003e\u003c/b\u003e\u003cbr\u003e\u003cbr\u003e\u003c/li\u003e\n\u003cli\u003e Start the snappy-shell: \u003cbr\u003e \u003cb\u003e\u003ci\u003e./snappy-shell\u003c/i\u003e\u003c/b\u003e\u003cbr\u003e\u003cbr\u003e\u003c/li\u003e\n\u003cli\u003e Connect to the SnappyData cluster from snappy-shell:\u003cbr\u003e\n\u003cb\u003e\u003ci\u003esnappy\u003e connect client \u0027localhost:1527\u0027;\u003c/i\u003e\u003c/b\u003e\u003c/li\u003e\n\u003c/ol\u003e\n\u003c/h5\u003e\"\"\")",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 3:20:02 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "editorMode": "ace/mode/text",
+        "title": true,
+        "editorHide": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ],
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch4\u003eThe SnappyData Shell (snappy-shell) provides a simple command line interface to interact with the SnappyData cluster.\u003cbr\u003eTo query SnappyData from snappy-shell:\u003c/h4\u003e\n\u003ch5\u003e\n\u003col\u003e\n\u003cli\u003e Login to this the virtual machine using SSH : \u003cbr\u003e\u003cb\u003e\u003ci\u003essh -i \u0026lt; key-pair \u0026gt; localhost \u003c/i\u003e\u003c/b\u003e\u003cbr\u003e\u003cbr\u003e\u003c/li\u003e\n\u003cli\u003e In the command prompt, go to the SnappyData home directory: \u003cbr\u003e \u003cb\u003e\u003ci\u003ecd /snappydata/downloads/snappydata-1.0.0-bin/bin \u003c/i\u003e\u003c/b\u003e\u003cbr\u003e\u003cbr\u003e\u003c/li\u003e\n\u003cli\u003e Start the snappy-shell: \u003cbr\u003e \u003cb\u003e\u003ci\u003e./snappy-shell\u003c/i\u003e\u003c/b\u003e\u003cbr\u003e\u003cbr\u003e\u003c/li\u003e\n\u003cli\u003e Connect to the SnappyData cluster from snappy-shell:\u003cbr\u003e\n\u003cb\u003e\u003ci\u003esnappy\u003e connect client \u0027localhost:1527\u0027;\u003c/i\u003e\u003c/b\u003e\u003c/li\u003e\n\u003c/ol\u003e\n\u003c/h5\u003e\n"
+          }
+        ]
+      },
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch4\u003eThe SnappyData Shell (snappy-shell) provides a simple command line interface to interact with the SnappyData cluster.\u003cbr\u003eTo query SnappyData from snappy-shell:\u003c/h4\u003e\n\u003ch5\u003e\n\u003col\u003e\n\u003cli\u003e Login to this the virtual machine using SSH : \u003cbr\u003e\u003cb\u003e\u003ci\u003essh -i \u0026lt; key-pair \u0026gt; localhost \u003c/i\u003e\u003c/b\u003e\u003cbr\u003e\u003cbr\u003e\u003c/li\u003e\n\u003cli\u003e In the command prompt, go to the SnappyData home directory: \u003cbr\u003e \u003cb\u003e\u003ci\u003ecd /snappydata/downloads/snappydata-0.7-bin/bin \u003c/i\u003e\u003c/b\u003e\u003cbr\u003e\u003cbr\u003e\u003c/li\u003e\n\u003cli\u003e Start the snappy-shell: \u003cbr\u003e \u003cb\u003e\u003ci\u003e./snappy-shell\u003c/i\u003e\u003c/b\u003e\u003cbr\u003e\u003cbr\u003e\u003c/li\u003e\n\u003cli\u003e Connect to the SnappyData cluster from snappy-shell:\u003cbr\u003e\n\u003cb\u003e\u003ci\u003esnappy\u003e connect client \u0027localhost:1527\u0027;\u003c/i\u003e\u003c/b\u003e\u003c/li\u003e\n\u003c/ol\u003e\n\u003c/h5\u003e\n"
+      },
+      "apps": [],
+      "jobName": "paragraph_1482322764828_-1487844485",
+      "id": "20161221-174924_2076607781",
+      "dateCreated": "Dec 21, 2016 5:49:24 AM",
+      "dateStarted": "Oct 11, 2017 3:19:55 PM",
+      "dateFinished": "Oct 11, 2017 3:19:55 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Using Java Application (JDBC) to connect to SnappyData cluster:",
+      "text": "%snappydata.spark\nprintln(s\"\"\"%html\n\u003ch4\u003eJDBC enables you to connect the SnappyData cluster from your application or any third party BI tools. \u003cbr\u003e\u003cbr\u003eTo connect with the SnappyData Cluster: \u003c/h4\u003e\n\u003ch5\u003e\n\u003cul\u003e\n\u003cli\u003eDownload the SnappyData JDBC Client driver (*.jar). (provide hyperlink) \u003c/i\u003e\u003c/b\u003e\u003c/li\u003e\n\u003cli\u003eConnect to the SnappyData cluster, use the following JDBC URI : \u003cbr\u003e\u003cb\u003e\u003ci\u003ejdbc:snappydata://localhost:1527 \u003c/i\u003e\u003c/b\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/h5\u003e\"\"\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Oct 10, 2017 7:17:45 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "editorMode": "ace/mode/text",
+        "title": true,
+        "editorHide": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ],
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch4\u003eJDBC enables you to connect the SnappyData cluster from your application or any third party BI tools. \u003cbr\u003e\u003cbr\u003eTo connect with the SnappyData Cluster: \u003c/h4\u003e\n\u003ch5\u003e\n\u003cul\u003e\n\u003cli\u003eDownload the SnappyData JDBC Client driver (*.jar). (provide hyperlink) \u003c/i\u003e\u003c/b\u003e\u003c/li\u003e\n\u003cli\u003eConnect to the SnappyData cluster, use the following JDBC URI : \u003cbr\u003e\u003cb\u003e\u003ci\u003ejdbc:snappydata://localhost:1527 \u003c/i\u003e\u003c/b\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/h5\u003e\n"
+          }
+        ]
+      },
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch4\u003eJDBC enables you to connect the SnappyData cluster from your application or any third party BI tools. \u003cbr\u003e\u003cbr\u003eTo connect with the SnappyData Cluster: \u003c/h4\u003e\n\u003ch5\u003e\n\u003cul\u003e\n\u003cli\u003eDownload the SnappyData JDBC Client driver (*.jar). (provide hyperlink) \u003c/i\u003e\u003c/b\u003e\u003c/li\u003e\n\u003cli\u003eConnect to the SnappyData cluster, use the following JDBC URI : \u003cbr\u003e\u003cb\u003e\u003ci\u003ejdbc:snappydata://localhost:1527 \u003c/i\u003e\u003c/b\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/h5\u003e\n"
+      },
+      "apps": [],
+      "jobName": "paragraph_1482322804804_-810809015",
+      "id": "20161221-175004_1385228292",
+      "dateCreated": "Dec 21, 2016 5:50:04 AM",
+      "dateStarted": "Oct 10, 2017 7:17:40 PM",
+      "dateFinished": "Oct 10, 2017 7:17:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%snappydata.spark\nprintln(s\"\"\"%html\n\u003ch2\u003eCongratulations! You have completed this tutorial.\u003c/h2\u003e\n\u003ch3\u003eNow What?\u003c/h3\u003e\n\u003ch4\u003eYou can take a look at the performance demo \u003cb\u003e\u003ca href\u003d\u0027http://localhost:8080/#/notebook/performance\u0027\u003ehere\u003c/a\u003e\u003c/b\u003e\u003c/h4\u003e\n\u003ch4\u003eLearn more about SnappyData from \u003cb\u003e\u003ca href\u003d\u0027http://snappydatainc.github.io/snappydata/\u0027\u003ehere\u003c/a\u003e\u003c/b\u003e\u003c/h4\u003e\n\u003ch4\u003eIf you\u0027re curious to try out more \u003cb\u003e\u003ca href\u003d\u0027http://snappydatainc.github.io/snappydata/howto/\u0027\u003eexamples\u003c/a\u003e\u003c/b\u003e \u003c/h4\u003e\"\"\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Oct 10, 2017 7:17:32 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "editorMode": "ace/mode/text",
+        "editorHide": true,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ],
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch2\u003eCongratulations! You have completed this tutorial.\u003c/h2\u003e\n\u003ch3\u003eNow What?\u003c/h3\u003e\n\u003ch4\u003eYou can take a look at the performance demo \u003cb\u003e\u003ca href\u003d\u0027http://localhost:8080/#/notebook/performance\u0027\u003ehere\u003c/a\u003e\u003c/b\u003e\u003c/h4\u003e\n\u003ch4\u003eLearn more about SnappyData from \u003cb\u003e\u003ca href\u003d\u0027http://snappydatainc.github.io/snappydata/\u0027\u003ehere\u003c/a\u003e\u003c/b\u003e\u003c/h4\u003e\n\u003ch4\u003eIf you\u0027re curious to try out more \u003cb\u003e\u003ca href\u003d\u0027http://snappydatainc.github.io/snappydata/howto/\u0027\u003eexamples\u003c/a\u003e\u003c/b\u003e \u003c/h4\u003e\n"
+          }
+        ]
+      },
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch2\u003eCongratulations! You have completed this tutorial.\u003c/h2\u003e\n\u003ch3\u003eNow What?\u003c/h3\u003e\n\u003ch4\u003eYou can take a look at the performance demo \u003cb\u003e\u003ca href\u003d\u0027http://localhost:8080/#/notebook/performance\u0027\u003ehere\u003c/a\u003e\u003c/b\u003e\u003c/h4\u003e\n\u003ch4\u003eLearn more about SnappyData from \u003cb\u003e\u003ca href\u003d\u0027http://snappydatainc.github.io/snappydata/\u0027\u003ehere\u003c/a\u003e\u003c/b\u003e\u003c/h4\u003e\n\u003ch4\u003eIf you\u0027re curious to try out more \u003cb\u003e\u003ca href\u003d\u0027http://snappydatainc.github.io/howto\u0027\u003eexamples\u003c/a\u003e\u003c/b\u003e \u003c/h4\u003e\n"
+      },
+      "apps": [],
+      "jobName": "paragraph_1481197666402_-2029201365",
+      "id": "20161208-171746_2054680233",
+      "dateCreated": "Dec 8, 2016 5:17:46 AM",
+      "dateStarted": "Oct 10, 2017 7:17:24 PM",
+      "dateFinished": "Oct 10, 2017 7:17:24 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "Oct 10, 2017 7:12:18 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorHide": false,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1481198404650_1693501466",
+      "id": "20161208-173004_1789568635",
+      "dateCreated": "Dec 8, 2016 5:30:04 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "SnappyData Quickstart",
+  "id": "quickstart",
+  "angularObjects": {},
+  "config": {
+    "looknfeel": "default"
+  },
+  "info": {}
+}

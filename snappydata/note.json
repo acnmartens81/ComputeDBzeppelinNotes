@@ -1,0 +1,249 @@
+{
+  "paragraphs": [
+    {
+      "title": "SNAPPYDATA OVERVIEW",
+      "text": "%spark\nprintln(s\"\"\"%html\n\u003ch2\u003eSNAPPYDATA OVERVIEW\u003c/h2\u003e\n\u003cp\u003eSnappyData is an in-memory database that runs Spark’s compute engine directly in the database, and offers Spark\u0027s API and SQL as its interface and computational engine. The fusion with Spark allows SnappyData to work with a large number of data sources like HDFS, NoSQL etc. through bespoke Spark connectors. \nWhile the SnappyData engine (that builds on Spark Catalyst SQL engine) is primarily designed for SQL processing, applications can also work with Objects through Spark RDDs and the Spark Datasets API.\u003c/p\u003e\n\u003cp\u003eAny Spark DataFrame can be easily managed as a SnappyData table or conversely any table can be accessed as a DataFrame.\u003c/p\u003e\n\u003ch3\u003eKey Features\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e100% compatible with Spark\u003c/li\u003e\n\u003cli\u003eIn-memory row and column stores\u003c/li\u003e\n\u003cli\u003eSQL standard compliance\u003c/li\u003e\n\u003cli\u003eSQL based extensions for streaming processing\u003c/li\u003e\n\u003cli\u003eNot-Only SQL\u003c/li\u003e\n\u003cli\u003eMutate, transact on data in Spark\u003c/li\u003e\n\u003cli\u003eOptimizations - Indexing\u003c/li\u003e\n\u003cli\u003eOptimizations - colocation\u003c/li\u003e\n\u003cli\u003eHigh availability not just Fault tolerance\u003c/li\u003e\n\u003cli\u003eDurability and recovery\u003c/li\u003e\n\u003cli\u003eInteractive analytics using Synopsis Data Engine (SDE)\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eKnow more about \u003ca href\u003d\"http://snappydatainc.github.io/snappydata/\" target\u003d\"_blank\"\u003eSnappyData Product here\u003c/a\u003e.\u003c/h3\u003e\n\"\"\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 7:54:39 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text",
+        "title": false,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch2\u003eSNAPPYDATA OVERVIEW\u003c/h2\u003e\n\u003cp\u003eSnappyData is an in-memory database that runs Spark’s compute engine directly in the database, and offers Spark\u0027s API and SQL as its interface and computational engine. The fusion with Spark allows SnappyData to work with a large number of data sources like HDFS, NoSQL etc. through bespoke Spark connectors. \nWhile the SnappyData engine (that builds on Spark Catalyst SQL engine) is primarily designed for SQL processing, applications can also work with Objects through Spark RDDs and the Spark Datasets API.\u003c/p\u003e\n\u003cp\u003eAny Spark DataFrame can be easily managed as a SnappyData table or conversely any table can be accessed as a DataFrame.\u003c/p\u003e\n\u003ch3\u003eKey Features\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e100% compatible with Spark\u003c/li\u003e\n\u003cli\u003eIn-memory row and column stores\u003c/li\u003e\n\u003cli\u003eSQL standard compliance\u003c/li\u003e\n\u003cli\u003eSQL based extensions for streaming processing\u003c/li\u003e\n\u003cli\u003eNot-Only SQL\u003c/li\u003e\n\u003cli\u003eMutate, transact on data in Spark\u003c/li\u003e\n\u003cli\u003eOptimizations - Indexing\u003c/li\u003e\n\u003cli\u003eOptimizations - colocation\u003c/li\u003e\n\u003cli\u003eHigh availability not just Fault tolerance\u003c/li\u003e\n\u003cli\u003eDurability and recovery\u003c/li\u003e\n\u003cli\u003eInteractive analytics using Synopsis Data Engine (SDE)\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eKnow more about \u003ca href\u003d\"http://snappydatainc.github.io/snappydata/\" target\u003d\"_blank\"\u003eSnappyData Product here\u003c/a\u003e.\u003c/h3\u003e\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1507633269974_-1707294075",
+      "id": "20171010-163109_1940702249",
+      "dateCreated": "Oct 10, 2017 4:31:09 PM",
+      "dateStarted": "Oct 11, 2017 7:54:35 PM",
+      "dateFinished": "Oct 11, 2017 7:54:35 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "SnappyData Quickstart",
+      "text": "%spark\nprintln(s\"\"\"%html\n    \u003ch2\u003eSNAPPYDATA QUICKSTART\u003c/h2\u003e\n\u003cp\u003eThe SnappyData Quickstart notebook runs you through quick examples on how to get started with the product quickly.\u003c/p\u003e\n\u003cp\u003eIt illustrates the following capabilities.\u003c/p\u003e\n  \u003cul\u003e\n  \u003cli\u003eCreating Snappy Session\u003c/li\u003e \n  \u003cli\u003eUsing sparks scala apis \u003c/li\u003e\n  \u003cli\u003eDefining schema and creating SQL tables\u003c/li\u003e\n  \u003cli\u003eCreating and inserting Dataset into Data Tables\u003c/li\u003e\n  \u003cli\u003eUsing SnappyData Shell\u003c/li\u003e\n  \u003cli\u003eUsing Java Application (JDBC) to connect to SnappyData cluster\u003c/li\u003e\n  \u003c/ul\u003e\n\u003ch3\u003eVisit \u003ca href\u003d\"http://localhost:8080/#/notebook/quickstart\" target\u003d\"_blank\"\u003eSnappyData Quickstart Notebook\u003c/a\u003e\u003c/h3\u003e\n\"\"\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 8:03:54 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text",
+        "title": false,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "    \u003ch2\u003eSNAPPYDATA QUICKSTART\u003c/h2\u003e\n\u003cp\u003eThe SnappyData Quickstart notebook runs you through quick examples on how to get started with the product quickly.\u003c/p\u003e\n\u003cp\u003eIt illustrates the following capabilities.\u003c/p\u003e\n  \u003cul\u003e\n  \u003cli\u003eCreating Snappy Session\u003c/li\u003e \n  \u003cli\u003eUsing sparks scala apis \u003c/li\u003e\n  \u003cli\u003eDefining schema and creating SQL tables\u003c/li\u003e\n  \u003cli\u003eCreating and inserting Dataset into Data Tables\u003c/li\u003e\n  \u003cli\u003eUsing SnappyData Shell\u003c/li\u003e\n  \u003cli\u003eUsing Java Application (JDBC) to connect to SnappyData cluster\u003c/li\u003e\n  \u003c/ul\u003e\n\u003ch3\u003eVisit \u003ca href\u003d\"http://localhost:8080/#/notebook/quickstart\" target\u003d\"_blank\"\u003eSnappyData Quickstart Notebook\u003c/a\u003e\u003c/h3\u003e\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1507633303353_-1567584252",
+      "id": "20171010-163143_1683499553",
+      "dateCreated": "Oct 10, 2017 4:31:43 PM",
+      "dateStarted": "Oct 11, 2017 8:01:14 PM",
+      "dateFinished": "Oct 11, 2017 8:01:15 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "SnappyData Quickstart",
+      "text": "%spark\nprintln(s\"\"\"%html\n    \u003ch2\u003eSNAPPYDATA PERFORMANCE BENCHMARK\u003c/h2\u003e\n\u003cp\u003eThe SnappyData Performance Benchmark notebook showcases the performance of SnappyData over Apache Spark 2.1.1.\u003c/p\u003e\n\u003ch3\u003eVisit \u003ca href\u003d\"http://localhost:8080/#/notebook/performance\" target\u003d\"_blank\"\u003eSnappyData Performance Benchmark Notebook\u003c/a\u003e\u003c/h3\u003e\n\"\"\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 7:55:13 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text",
+        "title": false,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "    \u003ch2\u003eSNAPPYDATA PERFORMANCE BENCHMARK\u003c/h2\u003e\n\u003cp\u003eThe SnappyData Performance Benchmark notebook showcases the performance of SnappyData over Apache Spark 2.1.1.\u003c/p\u003e\n\u003ch3\u003eVisit \u003ca href\u003d\"http://localhost:8080/#/notebook/performance\" target\u003d\"_blank\"\u003eSnappyData Performance Benchmark Notebook\u003c/a\u003e\u003c/h3\u003e\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1507637179600_1209345762",
+      "id": "20171010-173619_1841792198",
+      "dateCreated": "Oct 10, 2017 5:36:19 PM",
+      "dateStarted": "Oct 11, 2017 7:55:03 PM",
+      "dateFinished": "Oct 11, 2017 7:55:04 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "SnappyData Quickstart",
+      "text": "%spark\nprintln(s\"\"\"%html\n\u003ch2\u003eImmediate inSight using Snappy Data Synopses\u003c/h2\u003e\n\n\u003cp\u003eWith these SDE notebooks, users immediately get their almost-perfect answer to analytical queries within a couple of seconds while the full answer is computed in the background. Depending on the immediate answer, users can opt to cancel the full execution early, if they are either satisfied with the almost-perfect initial answer and if they are no longer interested in seeing the final results based on the initial results. This can lead to dramatically higher productivity and significantly less resource consumption in multi-tenant and concurrent workloads on shared clusters. \u003c/p\u003e\n\n\u003cp\u003eWhile in-memory analytics can be fast, it is still expensive and cumbersome to provision large clusters. Instead, SDE allows you to retain your data in existing databases and disparate sources and only caches a fraction of the data using stratified sampling and other techniques. In many cases, data explorers can use their laptops and run high speed interactive analytics over billions of records. Unlike existing optimization techniques based on OLAP cubes or in-memory extracts that can consume a lot of resources and work for apriori known queries, the SnappyData Synopses data structures are designed to work for any ad-hoc query. \u003c/p\u003e\n\n\u003ch3\u003e Detailed documentation can be found \u003ca href\u003d\"http://snappydatainc.github.io/snappydata/aqp/\" target\u003d\"_blank\"\u003e here \u003c/a\u003e  \u003c/h3\u003e\n\n\u003ch2\u003eHow does it work?\u003c/h2\u003e\n\n\u003cp\u003eRather than treating a sample (or other statistically generated structures) as an explicit target for a query, sampling is deeply integrated into a general purpose SQL query engine and treated the same as how databases treat indexes - a optimizer decides if and where the sample can be used in lieu of the \"exact\" table to return an answer within the user specified accuracy constraint (offered through simple SQL extensions). When a sample cannot be used, the query is automatically evaluated on in-memory columnar or row tables or, if absent, directly go to the source (e.g. a RDBMS, Hadoop, NoSQL, CSV, JSON, S3, etc) to evaluate the query. Users use a simple knob they can turn to tradeoff accuracy for speed. Interestingly, as we will show through the demo notebooks, the imperfections in the answers in many cases make zero difference to your visualized result.\u003c/p\u003e\n\n\u003cp\u003eFigure(1) provides an illustration of how samples are managed in-memory. Figure(2) illustrates the query engine design with Synopses.\u003c/p\u003e\n\n\u003cp\u003e\u003cimg src\u003d\"https://docs.google.com/uc?id\u003d0B7_m-QBIIyBQSktkQW1rTUpFUG8\" border\u003d\"10\" width\u003d\"640\" height\u003d\"480\" style\u003d\"border:2px solid black\"\u003e\u003c/img\u003e\u003c/p\u003e\n\n\u003cp\u003e\u003cimg src\u003d\"https://docs.google.com/uc?id\u003d0B7_m-QBIIyBQWkxjVmhRS20xdnM\" border\u003d\"10\" width\u003d\"640\" height\u003d\"480\" style\u003d\"border:2px solid black\"\u003e\u003c/img\u003e\u003c/p\u003e\n\n\u003cp\u003eRandom, Uniform sampling is nothing new in the data mining world but they mostly only work for static data sets. Snappydata supports streaming data like IoT time series and continuously adapts its sampling fraction by over-sampling data groups(i.e dimensions) that have low representation in the input data and under-sampling when the data group is heavily represented in the input (See \u003ca href\u003d\"http://snappydatainc.github.io/snappydata/aqp/\" target\u003d\"_blank\"\u003e Docs \u003c/a\u003e for more details). The end result is far more accurate answers than a random sample while still consuming fewer resources. \u003c/p\u003e\n\n\u003cp\u003eSampling is rather intuitive and we can all easily imagine being able to compute an answer much more efficiently working with a small fraction of the data. While this is simple, it is quite challenging to compute an error estimate with high confidence for adhoc queries without having to scan the full data set. In other words it is the ability to tell you how good your answer is without looking through the entire data is where the power lies. While the \u003ca href\u003d\"http://snappydatainc.github.io/snappydata/aqp/\" target\u003d\"_blank\"\u003e docs \u003c/a\u003e and literature goes through a range of statistical algorithms, a common statistical approach is to use the \u003ca href\u003d\"https://en.wikipedia.org/wiki/Bootstrapping_(statistics)\" target\u003d\"_blank\"\u003e \u0027Bootstrap\u0027 \u003c/a\u003e algorithm. Unfortunately, this computation requires re-executing the query hundreds of times over the resamples of the sample table which can be very expensive. Instead, we use single pass algorithms so error computation execute in a fraction of a second.\u003c/p\u003e\n\n\u003ch2\u003eNYC TAXI ANALYTICS DEMO\u003c/h2\u003e\n\u003cp\u003eNYC TAXI Analytics Demo showcases the following: \u003c/p\u003e\n\n1)  Execute the query on the exact data noting the time it takes to parse parquet data and execute the query using Spark parallel processing  (LEFT PARAGRAPHS)\u003cbr\u003e\n2)  Execute the same query using Synopses data engine noting both the accuracy and response time of the answer. (RIGHT PARAGRAPHS)\u003cbr\u003e\n3)  We illustrate various features: constraining the error in query responses, Automatically swapping the approximate visualized plot with an exact response, projecting error rates as part of the query response and automatic query re-routing to underlying data source when error constraints cannot be satisfied.\n\n\u003ch3\u003eVisit \u003ca href\u003d\"http://localhost:8080/#/notebook/nyctaxianalytics\" target\u003d\"_blank\"\u003eNYC TAXI Analytics Demo  Notebook\u003c/a\u003e\u003c/h3\u003e\n\n\u003ch2\u003eAIRLINE ON-TIME ANALYTICS DEMO\u003c/h2\u003e\n\u003cp\u003eAirline On-Time Analytics Demo showcases the following: \u003c/p\u003e\n\u003cp\u003eThe U.S. Department of Transportation\u0027s (DOT) Bureau of Transportation Statistics (BTS) tracks the on-time performance of domestic flights operated by large air carriers.\u003c/p\u003e\n\u003cp\u003eSummary information on the number of on-time, delayed, canceled and diverted flights is available for the last 20 years.\u003c/p\u003e\n\u003cp\u003eIn this demo we used the 2009-2015 data set (40 million records) and show simple analytic queries on \"exact\" as well as \"sampled\" data.You will be able to compare the response times and be able to inspect the accuracy differences.\u003c/p\u003e\n\u003ch3\u003eVisit \u003ca href\u003d\"http://localhost:8080/#/notebook/airlineanalytics\" target\u003d\"_blank\"\u003eAirline On-Time Analytics Demo Notebook\u003c/a\u003e\u003c/h3\u003e\n \n\"\"\")\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Oct 11, 2017 8:03:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text",
+        "title": false,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch2\u003eImmediate inSight using Snappy Data Synopses\u003c/h2\u003e\n\n\u003cp\u003eWith these SDE notebooks, users immediately get their almost-perfect answer to analytical queries within a couple of seconds while the full answer is computed in the background. Depending on the immediate answer, users can opt to cancel the full execution early, if they are either satisfied with the almost-perfect initial answer and if they are no longer interested in seeing the final results based on the initial results. This can lead to dramatically higher productivity and significantly less resource consumption in multi-tenant and concurrent workloads on shared clusters. \u003c/p\u003e\n\n\u003cp\u003eWhile in-memory analytics can be fast, it is still expensive and cumbersome to provision large clusters. Instead, SDE allows you to retain your data in existing databases and disparate sources and only caches a fraction of the data using stratified sampling and other techniques. In many cases, data explorers can use their laptops and run high speed interactive analytics over billions of records. Unlike existing optimization techniques based on OLAP cubes or in-memory extracts that can consume a lot of resources and work for apriori known queries, the SnappyData Synopses data structures are designed to work for any ad-hoc query. \u003c/p\u003e\n\n\u003ch3\u003e Detailed documentation can be found \u003ca href\u003d\"http://snappydatainc.github.io/snappydata/aqp/\" target\u003d\"_blank\"\u003e here \u003c/a\u003e  \u003c/h3\u003e\n\n\u003ch2\u003eHow does it work?\u003c/h2\u003e\n\n\u003cp\u003eRather than treating a sample (or other statistically generated structures) as an explicit target for a query, sampling is deeply integrated into a general purpose SQL query engine and treated the same as how databases treat indexes - a optimizer decides if and where the sample can be used in lieu of the \"exact\" table to return an answer within the user specified accuracy constraint (offered through simple SQL extensions). When a sample cannot be used, the query is automatically evaluated on in-memory columnar or row tables or, if absent, directly go to the source (e.g. a RDBMS, Hadoop, NoSQL, CSV, JSON, S3, etc) to evaluate the query. Users use a simple knob they can turn to tradeoff accuracy for speed. Interestingly, as we will show through the demo notebooks, the imperfections in the answers in many cases make zero difference to your visualized result.\u003c/p\u003e\n\n\u003cp\u003eFigure(1) provides an illustration of how samples are managed in-memory. Figure(2) illustrates the query engine design with Synopses.\u003c/p\u003e\n\n\u003cp\u003e\u003cimg src\u003d\"https://docs.google.com/uc?id\u003d0B7_m-QBIIyBQSktkQW1rTUpFUG8\" border\u003d\"10\" width\u003d\"640\" height\u003d\"480\" style\u003d\"border:2px solid black\"\u003e\u003c/img\u003e\u003c/p\u003e\n\n\u003cp\u003e\u003cimg src\u003d\"https://docs.google.com/uc?id\u003d0B7_m-QBIIyBQWkxjVmhRS20xdnM\" border\u003d\"10\" width\u003d\"640\" height\u003d\"480\" style\u003d\"border:2px solid black\"\u003e\u003c/img\u003e\u003c/p\u003e\n\n\u003cp\u003eRandom, Uniform sampling is nothing new in the data mining world but they mostly only work for static data sets. Snappydata supports streaming data like IoT time series and continuously adapts its sampling fraction by over-sampling data groups(i.e dimensions) that have low representation in the input data and under-sampling when the data group is heavily represented in the input (See \u003ca href\u003d\"http://snappydatainc.github.io/snappydata/aqp/\" target\u003d\"_blank\"\u003e Docs \u003c/a\u003e for more details). The end result is far more accurate answers than a random sample while still consuming fewer resources. \u003c/p\u003e\n\n\u003cp\u003eSampling is rather intuitive and we can all easily imagine being able to compute an answer much more efficiently working with a small fraction of the data. While this is simple, it is quite challenging to compute an error estimate with high confidence for adhoc queries without having to scan the full data set. In other words it is the ability to tell you how good your answer is without looking through the entire data is where the power lies. While the \u003ca href\u003d\"http://snappydatainc.github.io/snappydata/aqp/\" target\u003d\"_blank\"\u003e docs \u003c/a\u003e and literature goes through a range of statistical algorithms, a common statistical approach is to use the \u003ca href\u003d\"https://en.wikipedia.org/wiki/Bootstrapping_(statistics)\" target\u003d\"_blank\"\u003e \u0027Bootstrap\u0027 \u003c/a\u003e algorithm. Unfortunately, this computation requires re-executing the query hundreds of times over the resamples of the sample table which can be very expensive. Instead, we use single pass algorithms so error computation execute in a fraction of a second.\u003c/p\u003e\n\n\u003ch2\u003eNYC TAXI ANALYTICS DEMO\u003c/h2\u003e\n\u003cp\u003eNYC TAXI Analytics Demo showcases the following: \u003c/p\u003e\n\n1)  Execute the query on the exact data noting the time it takes to parse parquet data and execute the query using Spark parallel processing  (LEFT PARAGRAPHS)\u003cbr\u003e\n2)  Execute the same query using Synopses data engine noting both the accuracy and response time of the answer. (RIGHT PARAGRAPHS)\u003cbr\u003e\n3)  We illustrate various features: constraining the error in query responses, Automatically swapping the approximate visualized plot with an exact response, projecting error rates as part of the query response and automatic query re-routing to underlying data source when error constraints cannot be satisfied.\n\n\u003ch3\u003eVisit \u003ca href\u003d\"http://localhost:8080/#/notebook/nyctaxianalytics\" target\u003d\"_blank\"\u003eNYC TAXI Analytics Demo  Notebook\u003c/a\u003e\u003c/h3\u003e\n\n\u003ch2\u003eAIRLINE ON-TIME ANALYTICS DEMO\u003c/h2\u003e\n\u003cp\u003eAirline On-Time Analytics Demo showcases the following: \u003c/p\u003e\n\u003cp\u003eThe U.S. Department of Transportation\u0027s (DOT) Bureau of Transportation Statistics (BTS) tracks the on-time performance of domestic flights operated by large air carriers.\u003c/p\u003e\n\u003cp\u003eSummary information on the number of on-time, delayed, canceled and diverted flights is available for the last 20 years.\u003c/p\u003e\n\u003cp\u003eIn this demo we used the 2009-2015 data set (40 million records) and show simple analytic queries on \"exact\" as well as \"sampled\" data.You will be able to compare the response times and be able to inspect the accuracy differences.\u003c/p\u003e\n\u003ch3\u003eVisit \u003ca href\u003d\"http://localhost:8080/#/notebook/airlineanalytics\" target\u003d\"_blank\"\u003eAirline On-Time Analytics Demo Notebook\u003c/a\u003e\u003c/h3\u003e\n \n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1507640532075_-1880039074",
+      "id": "20171010-183212_1207558197",
+      "dateCreated": "Oct 10, 2017 6:32:12 PM",
+      "dateStarted": "Oct 11, 2017 8:03:02 PM",
+      "dateFinished": "Oct 11, 2017 8:03:03 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nprintln(s\"\"\"%html\n\u003ch3\u003eYou can always share your thoughts/questions or just encourage us at \u003ca href\u003d\"http://www.snappydata.io/community\" target\u003d\"_blank\"\u003e http://www.snappydata.io/community \u003c/a\u003e\u003c/h3\u003e\n(You can use \u003ca href\u003d\"http://snappydata-slackin.herokuapp.com/\" target\u003d\"_blank\"\u003eslack\u003c/a\u003e,\u003ca href\u003d\"https://gitter.im/SnappyDataInc/snappydata\" target\u003d\"_blank\"\u003eGitter\u003c/a\u003e,\u003ca href\u003d\"http://stackoverflow.com/questions/tagged/snappydata\" target\u003d\"_blank\"\u003estackoverflow \u003c/a\u003e, or \u003ca href\u003d\"https://groups.google.com/forum/#!forum/snappydata-user\" target\u003d\"_blank\"\u003egoogle groups\u003c/a\u003e)\"\"\") \n",
+      "user": "anonymous",
+      "dateUpdated": "Oct 10, 2017 6:36:03 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eYou can always share your thoughts/questions or just encourage us at \u003ca href\u003d\"http://www.snappydata.io/community\" target\u003d\"_blank\"\u003e http://www.snappydata.io/community \u003c/a\u003e\u003c/h3\u003e\n(You can use \u003ca href\u003d\"http://snappydata-slackin.herokuapp.com/\" target\u003d\"_blank\"\u003eslack\u003c/a\u003e,\u003ca href\u003d\"https://gitter.im/SnappyDataInc/snappydata\" target\u003d\"_blank\"\u003eGitter\u003c/a\u003e,\u003ca href\u003d\"http://stackoverflow.com/questions/tagged/snappydata\" target\u003d\"_blank\"\u003estackoverflow \u003c/a\u003e, or \u003ca href\u003d\"https://groups.google.com/forum/#!forum/snappydata-user\" target\u003d\"_blank\"\u003egoogle groups\u003c/a\u003e)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1507636197074_-407165493",
+      "id": "20171010-171957_584925945",
+      "dateCreated": "Oct 10, 2017 5:19:57 PM",
+      "dateStarted": "Oct 10, 2017 6:32:54 PM",
+      "dateFinished": "Oct 10, 2017 6:32:55 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "Oct 10, 2017 6:36:07 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1507640569180_1264791166",
+      "id": "20171010-183249_445902049",
+      "dateCreated": "Oct 10, 2017 6:32:49 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "SnappyData Overview",
+  "id": "snappydata",
+  "angularObjects": {
+    "2CUPYRF1J:shared_process": [],
+    "2CWRPU8JR:shared_process": [],
+    "2CXQVK4RY:shared_process": [],
+    "2CVUVZY5U:shared_process": [],
+    "2CWNXRB4F:shared_process": [],
+    "2CWCX2TBB:shared_process": [],
+    "2CWZATV7C:shared_process": [],
+    "2CXCYPQJJ:shared_process": [],
+    "2CUFT6YA4:shared_process": [],
+    "2CVNV3K16:shared_process": [],
+    "2CV8B5KY9:shared_process": [],
+    "2CURSNY3B:shared_process": [],
+    "2CV53ZW6U:shared_process": [],
+    "2CWS5KNUY:shared_process": [],
+    "2CX5KN37P:shared_process": [],
+    "2CVC3GD5D:shared_process": [],
+    "2CWE8DH8B:shared_process": [],
+    "2CUTT5BSE:existing_process": [],
+    "2CWQ5XXY4:shared_process": [],
+    "2CVK8MSY5:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

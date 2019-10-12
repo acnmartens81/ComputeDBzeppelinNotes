@@ -1,0 +1,96 @@
+{
+  "paragraphs": [
+    {
+      "text": "%sql\ncreate schema CFPB;",
+      "user": "anonymous",
+      "dateUpdated": "Apr 15, 2019 5:28:31 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1555349290190_-435582009",
+      "id": "20190415-172810_817395324",
+      "dateCreated": "Apr 15, 2019 5:28:10 PM",
+      "dateStarted": "Apr 15, 2019 5:28:31 PM",
+      "dateFinished": "Apr 15, 2019 5:28:34 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nimport org.apache.spark.sql.SaveMode\nimport java.sql.DriverManager\nClass.forName(\"io.snappydata.jdbc.ClientDriver\")\nimport java.util.Properties\nval jdbcUsername \u003d \"app\"\nval jdbcPassword \u003d \"app\"\nval jdbcHostname \u003d \"34.213.233.236\"\nval jdbcPort \u003d 1527\nval jdbcUrl \u003d s\"jdbc:snappydata://${jdbcHostname}:${jdbcPort}\"\n\nval connectionProperties \u003d new Properties()\nconnectionProperties.put(\"user\", \"app\")\nconnectionProperties.put(\"password\", \"app\")\nval connection \u003d DriverManager.getConnection(jdbcUrl, jdbcUsername, jdbcPassword)\nconnection.isClosed()\n\nval tableName \u003d \"CFPB.STAGING_CONSUMER_COMPLAINTS\"\nval df\u003dsnc.read.jdbc(jdbcUrl, tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").saveAsTable(tableName)",
+      "user": "anonymous",
+      "dateUpdated": "Apr 16, 2019 3:28:10 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.SaveMode\nimport java.sql.DriverManager\nres58: Class[_] \u003d class io.snappydata.jdbc.ClientDriver\nimport java.util.Properties\njdbcUsername: String \u003d app\njdbcPassword: String \u003d app\njdbcHostname: String \u003d 34.213.233.236\njdbcPort: Int \u003d 1527\njdbcUrl: String \u003d jdbc:snappydata://34.213.233.236:1527\nconnectionProperties: java.util.Properties \u003d {}\nres59: Object \u003d null\nres60: Object \u003d null\nconnection: java.sql.Connection \u003d io.snappydata.thrift.internal.ClientConnection@7d0e8df9[Unlocked]\nres61: Boolean \u003d false\ntableName: String \u003d CFPB.STAGING_CONSUMER_COMPLAINTS\ndf: org.apache.spark.sql.DataFrame \u003d [Date received: string, Product: string ... 16 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1555347020017_-1572859472",
+      "id": "20190415-165020_659416070",
+      "dateCreated": "Apr 15, 2019 4:50:20 PM",
+      "dateStarted": "Apr 16, 2019 3:28:10 PM",
+      "dateFinished": "Apr 16, 2019 3:29:06 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 15, 2019 7:16:06 PM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1555355766768_1249856185",
+      "id": "20190415-191606_1305732752",
+      "dateCreated": "Apr 15, 2019 7:16:06 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Load Consumer Complaints",
+  "id": "2E7Q78GZ8",
+  "angularObjects": {
+    "2EA979ZH6:existing_process": [],
+    "2E8BS2UKF:shared_process": [],
+    "2EA2P371D:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

@@ -1,0 +1,101 @@
+{
+  "paragraphs": [
+    {
+      "text": "%sql\nSELECT * FROM FHIR_ORIGINAL.procedures limit 10;",
+      "user": "anonymous",
+      "dateUpdated": "May 24, 2019 6:29:46 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "DATE\tPATIENT\tENCOUNTER\tCODE\tDESCRIPTION\tCOST\tREASONCODE\tREASONDESCRIPTION\n1985-10-06 00:00:00.0\t70dd29a1-8ee6-46d2-9210-200137802376\tf155423d-7f9b-431b-9e57-653dfc73906b\t274031008\tRectal polypectomy\t11218.43\t713197008\tRecurrent rectal polyp\n1985-10-16 00:00:00.0\t70dd29a1-8ee6-46d2-9210-200137802376\t6987c543-fef4-4813-a1cf-901df571786b\t43075005\tPartial resection of colon\t41238.06\t363406005\tMalignant tumor of colon\n1985-11-12 00:00:00.0\t70dd29a1-8ee6-46d2-9210-200137802376\t17850e68-1e99-412a-adf6-f41d2e6b92f2\t703423002\tCombined chemotherapy and radiation therapy (procedure)\t9326.84\t363406005\tMalignant tumor of colon\n1985-12-13 00:00:00.0\t70dd29a1-8ee6-46d2-9210-200137802376\t8bd34d21-e81c-4aa9-b9a6-59f06e3df66f\t703423002\tCombined chemotherapy and radiation therapy (procedure)\t9985.86\t363406005\tMalignant tumor of colon\n1986-01-05 00:00:00.0\t70dd29a1-8ee6-46d2-9210-200137802376\t1c57fba4-8cfe-4f3a-8477-2bce91a28144\t428191000124101\tDocumentation of current medications\t590.6\tnull\tnull\n1986-01-10 00:00:00.0\t70dd29a1-8ee6-46d2-9210-200137802376\tfe56edb1-3e91-4fc2-a1a1-a71b44865b22\t703423002\tCombined chemotherapy and radiation therapy (procedure)\t19751.75\t363406005\tMalignant tumor of colon\n1986-02-13 00:00:00.0\t70dd29a1-8ee6-46d2-9210-200137802376\ta2b24b76-26ae-4325-a9c5-c44ba29196ac\t703423002\tCombined chemotherapy and radiation therapy (procedure)\t15288.0\t363406005\tMalignant tumor of colon\n1986-03-15 00:00:00.0\t70dd29a1-8ee6-46d2-9210-200137802376\ta12c8c7d-559f-4a3c-99b5-b59beb087794\t703423002\tCombined chemotherapy and radiation therapy (procedure)\t9304.97\t363406005\tMalignant tumor of colon\n1986-04-12 00:00:00.0\t70dd29a1-8ee6-46d2-9210-200137802376\tdff55c59-cfc0-4f66-89b8-4c9b7175292c\t703423002\tCombined chemotherapy and radiation therapy (procedure)\t18051.74\t363406005\tMalignant tumor of colon\n2013-01-28 00:00:00.0\t6fb42a59-d9c6-43d5-ae88-96631996decf\t26ef9913-adcd-4e57-a4d0-9c8b1398b68d\t428191000124101\tDocumentation of current medications\t439.54\tnull\tnull\n\u003c!--TABLE_COMMENT--\u003e\n\u003cbr\u003e\u003cfont color\u003dred\u003eTime required to execute query : 90 millis.\u003c/font\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1555353713640_-1350602503",
+      "id": "20190415-184153_419221",
+      "dateCreated": "Apr 15, 2019 6:41:53 PM",
+      "dateStarted": "May 24, 2019 6:29:46 PM",
+      "dateFinished": "May 24, 2019 6:29:46 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n\nimport org.apache.spark.sql.SaveMode\nimport java.sql.DriverManager\nClass.forName(\"io.snappydata.jdbc.ClientDriver\")\nimport java.util.Properties\nval jdbcUsername \u003d \"app\"\nval jdbcPassword \u003d \"app\"\nval jdbcHostname \u003d \"34.213.233.236\"\nval jdbcPort \u003d 1527\nval jdbcUrl \u003d s\"jdbc:snappydata://${jdbcHostname}:${jdbcPort}\"\n\nval connectionProperties \u003d new Properties()\nconnectionProperties.put(\"user\", \"app\")\nconnectionProperties.put(\"password\", \"app\")\nval connection \u003d DriverManager.getConnection(jdbcUrl, jdbcUsername, jdbcPassword)\nconnection.isClosed()\n\nval tableName \u003d \"FHIR_ORIGINAL.ALLERGIES\"\nval df\u003dsnc.read.jdbc(jdbcUrl, tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").saveAsTable(tableName)\n\nval tableName \u003d \"FHIR_ORIGINAL.CAREPLANS\"\nval df\u003dsnc.read.jdbc(jdbcUrl, tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").saveAsTable(tableName)\n\nval tableName \u003d \"FHIR_ORIGINAL.CONDITIONS\"\nval df\u003dsnc.read.jdbc(jdbcUrl, tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").saveAsTable(tableName)\n\nval tableName \u003d \"FHIR_ORIGINAL.ENCOUNTERS\"\nval df\u003dsnc.read.jdbc(jdbcUrl, tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").saveAsTable(tableName)\n\nval tableName \u003d \"FHIR_ORIGINAL.IMAGING_STUDIES\"\nval df\u003dsnc.read.jdbc(jdbcUrl, tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").saveAsTable(tableName)\n\nval tableName \u003d \"FHIR_ORIGINAL.IMMUNIZATIONS\"\nval df\u003dsnc.read.jdbc(jdbcUrl, tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").saveAsTable(tableName)\n\nval tableName \u003d \"FHIR_ORIGINAL.MEDICATIONS\"\nval df\u003dsnc.read.jdbc(jdbcUrl, tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").saveAsTable(tableName)\n\nval tableName \u003d \"FHIR_ORIGINAL.OBSERVATIONS\"\nval df\u003dsnc.read.jdbc(jdbcUrl, tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").saveAsTable(tableName)\n\nval tableName \u003d \"FHIR_ORIGINAL.ORGANIZATIONS\"\nval df\u003dsnc.read.jdbc(jdbcUrl, tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").saveAsTable(tableName)\n\nval tableName \u003d \"FHIR_ORIGINAL.PATIENTS\"\nval df\u003dsnc.read.jdbc(jdbcUrl, tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").option(\"buckets\", \"2\").option(\"partition_by\", \"Gender\").saveAsTable(tableName)\n\nval tableName \u003d \"FHIR_ORIGINAL.PROCEDURES\"\nval df\u003dsnc.read.jdbc(jdbcUrl, tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").saveAsTable(tableName)\n\nval tableName \u003d \"FHIR_ORIGINAL.PROVIDERS\"\nval df\u003dsnc.read.jdbc(jdbcUrl, tableName, connectionProperties)\ndf.write.format(\"column\").mode(\"overwrite\").option(\"buckets\", \"2\").option(\"partition_by\", \"Gender\").saveAsTable(tableName)\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 26, 2019 7:12:23 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.SaveMode\nimport java.sql.DriverManager\nres0: Class[_] \u003d class io.snappydata.jdbc.ClientDriver\nimport java.util.Properties\njdbcUsername: String \u003d app\njdbcPassword: String \u003d app\njdbcHostname: String \u003d 34.213.233.236\njdbcPort: Int \u003d 1527\njdbcUrl: String \u003d jdbc:snappydata://34.213.233.236:1527\nconnectionProperties: java.util.Properties \u003d {}\nres1: Object \u003d null\nres2: Object \u003d null\njava.sql.SQLException: (SQLState\u003d40XD0 Severity\u003d30000) ([34.213.233.236[1527]]) Container has been closed or has moved from \u002734.213.233.236[1527]\u0027 {failed after trying all available servers: [34.213.233.236[1527]] with: Failed to create or configure socket. [SOCKET NOT OPEN]}.\n  at io.snappydata.thrift.common.ThriftExceptionUtil.newSnappyException(ThriftExceptionUtil.java:164)\n  at io.snappydata.thrift.internal.ControlConnection.failoverExhausted(ControlConnection.java:447)\n  at io.snappydata.thrift.internal.ControlConnection.failoverToAvailableHost(ControlConnection.java:405)\n  at io.snappydata.thrift.internal.ControlConnection.getPreferredServer(ControlConnection.java:177)\n  at io.snappydata.thrift.internal.ControlConnection.getOrCreateControlConnection(ControlConnection.java:131)\n  at io.snappydata.thrift.internal.ClientService.openConnection(ClientService.java:444)\n  at io.snappydata.thrift.internal.ClientService.\u003cinit\u003e(ClientService.java:426)\n  at io.snappydata.thrift.internal.ClientService.create(ClientService.java:309)\n  at io.snappydata.thrift.internal.ClientConnection.create(ClientConnection.java:105)\n  at io.snappydata.jdbc.ClientDriver.createThriftConnection(ClientDriver.java:121)\n  at com.pivotal.gemfirexd.jdbc.ClientDRDADriver.connect(ClientDRDADriver.java:203)\n  at java.sql.DriverManager.getConnection(DriverManager.java:664)\n  at java.sql.DriverManager.getConnection(DriverManager.java:247)\n  ... 45 elided\nCaused by: org.apache.thrift.transport.TTransportException: Failed to create or configure socket.\n  at io.snappydata.thrift.common.SnappyTSocket.\u003cinit\u003e(SnappyTSocket.java:180)\n  at io.snappydata.thrift.common.SnappyTSocket.\u003cinit\u003e(SnappyTSocket.java:154)\n  at io.snappydata.thrift.internal.ControlConnection.failoverToAvailableHost(ControlConnection.java:352)\n  ... 55 more\nCaused by: java.net.ConnectException: Connection timed out\n  at sun.nio.ch.Net.connect0(Native Method)\n  at sun.nio.ch.Net.connect(Net.java:454)\n  at sun.nio.ch.Net.connect(Net.java:446)\n  at sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:648)\n  at io.snappydata.thrift.common.SnappyTSocket.openChannel(SnappyTSocket.java:317)\n  at io.snappydata.thrift.common.SnappyTSocket.\u003cinit\u003e(SnappyTSocket.java:176)\n  ... 57 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1555353667960_1211578341",
+      "id": "20190415-184107_55075947",
+      "dateCreated": "Apr 15, 2019 6:41:07 PM",
+      "dateStarted": "Apr 26, 2019 7:12:23 PM",
+      "dateFinished": "Apr 26, 2019 7:16:39 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "Apr 15, 2019 6:42:58 PM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1555353778359_-1774302987",
+      "id": "20190415-184258_1878403700",
+      "dateCreated": "Apr 15, 2019 6:42:58 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "FHIR",
+  "id": "2E8QR5KFX",
+  "angularObjects": {
+    "2EA979ZH6:existing_process": [],
+    "2E8BS2UKF:shared_process": [],
+    "2EA2P371D:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}
